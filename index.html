@@ -12,10 +12,15 @@
 <meta property="og:url" content="/">
 <meta property="og:image" content="/assets/hero-ending.jpg">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101216"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="%23e3a94f" text-anchor="middle">Q</text></svg>'>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* фирменный Montserrat, свой хостинг */
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
 /* ============ tokens ============ */
 :root{
   --canvas:#101216;
@@ -131,7 +136,7 @@ a.mi{cursor:pointer;text-decoration:none}
 /* ============ hero ============ */
 .hero{position:relative;height:1000vh;z-index:1}
 .stage{
-  position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
   background:var(--canvas);
 }
 .stage video{
@@ -312,14 +317,14 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
 /* ============ static-hero gates: CSS side (строки должны совпадать с JS) ============ */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .hero{height:100vh;height:100svh}
+  .hero{height:100vh;height:100dvh}
   .band,.cue,.ring{display:none}
   .static-copy{display:flex}
   *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
   .reveal .part{opacity:1;transform:none}
 }
 @media (orientation: landscape) and (pointer: coarse) and (max-height: 560px){
-  .hero{height:100vh;height:100svh}
+  .hero{height:100vh;height:100dvh}
   .band{display:none}
   .static-copy{display:flex}
 }
