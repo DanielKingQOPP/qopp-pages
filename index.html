@@ -265,8 +265,8 @@ main{position:relative;z-index:2;background:var(--canvas)}
   background:linear-gradient(to bottom,transparent,var(--accent));
   opacity:.55;
 }
-.catalog{max-width:1400px;margin:0 auto;padding:10px clamp(16px,3vw,40px) 50px}
-.cat{display:block;position:relative;overflow:hidden;border-radius:22px;margin-bottom:clamp(18px,2.6vw,30px);background:var(--panel)}
+.catalog{width:100%;margin:0;padding:0}
+.cat{display:block;position:relative;overflow:hidden;background:var(--panel)}
 .cat img{width:100%;height:auto;display:block;transition:transform .7s var(--ease)}
 .cat:hover img{transform:scale(1.015)}
 .product-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -409,14 +409,12 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
 </header>
 
 <main id="main" tabindex="-1">
-  <div class="thread" aria-hidden="true"></div>
-
   <section class="catalog" id="catalog" aria-label="Каталог">
-    <a class="cat reveal" aria-label="Внутренние SSD"><img class="part" src="assets/cat-ssd.jpg" alt="Внутренние SSD" loading="lazy" width="2560" height="709"></a>
-    <a class="cat reveal" aria-label="Оперативная память"><img class="part" src="assets/cat-ddr.jpg" alt="Оперативная память" loading="lazy" width="2560" height="698"></a>
-    <a class="cat reveal" aria-label="Карты памяти"><img class="part" src="assets/cat-microsd.jpg" alt="Карты памяти" loading="lazy" width="2560" height="714"></a>
-    <a class="cat reveal" aria-label="Флеш-накопители"><img class="part" src="assets/cat-usb.jpg" alt="Флеш-накопители" loading="lazy" width="2560" height="709"></a>
-    <a class="cat reveal" aria-label="Ноутбуки QBOOKS"><img class="part" src="assets/cat-notebook.jpg" alt="Ноутбуки QBOOKS" loading="lazy" width="2560" height="1029"></a>
+    <a class="cat reveal" aria-label="Внутренние SSD"><img class="part" src="assets/cat-ssd.jpg" alt="Внутренние SSD" loading="lazy" width="2560" height="1440"></a>
+    <a class="cat reveal" aria-label="Оперативная память"><img class="part" src="assets/cat-ddr.jpg" alt="Оперативная память" loading="lazy" width="2560" height="1440"></a>
+    <a class="cat reveal" aria-label="Карты памяти"><img class="part" src="assets/cat-microsd.jpg" alt="Карты памяти" loading="lazy" width="2560" height="1440"></a>
+    <a class="cat reveal" aria-label="Флеш-накопители"><img class="part" src="assets/cat-usb.jpg" alt="Флеш-накопители" loading="lazy" width="2560" height="1440"></a>
+    <a class="cat reveal" aria-label="Ноутбуки QBOOKS"><img class="part" src="assets/cat-notebook.jpg" alt="Ноутбуки QBOOKS" loading="lazy" width="2560" height="1440"></a>
   </section>
 </main>
 
