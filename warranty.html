@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гарантия. QOPP</title>
+<meta name="description" content="Гарантийная политика QOPP без мелкого шрифта: каждая модель, каждый объём и каждый срок на одной странице. SSD, оперативная память, карты памяти, флешки и ноутбуки.">
+<meta name="theme-color" content="#101216">
+<!-- DEPLOY STEP: заменить og:url и og:image на абсолютные адреса живого сайта перед публикацией -->
+<meta property="og:title" content="Гарантия. QOPP">
+<meta property="og:description" content="Каждая модель, каждый объём и каждый срок на одной странице.">
+<meta property="og:url" content="/warranty.html">
+<meta property="og:image" content="/assets/hero-ending.jpg">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101216"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="%23e3a94f" text-anchor="middle">Q</text></svg>'>
+<style>
+/* ============ фирменный Montserrat, локально из assets/fonts ============ */
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+/* ============ tokens (те же, что на главной) ============ */
+:root{
+  --canvas:#101216;
+  --panel:#171a20;
+  --accent:#e3a94f;
+  --accent-hover:#f0bc66;
+  --accent-muted:rgba(227,169,79,.16);
+  --text-primary:#f2f0ea;
+  --text-secondary:#a2a8b4;
+  --hairline:rgba(162,168,180,.16);
+  --border-strong:rgba(162,168,180,.42);
+  --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
+  --ease:cubic-bezier(.22,.61,.2,1);
+  --display:'Montserrat',sans-serif;
+  --body:'Montserrat',sans-serif;
+  --mono:'Montserrat',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  background:var(--canvas);
+  color:var(--text-primary);
+  font-family:var(--body);
+  font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ environment layer ============ */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none}
+.env .dust{
+  position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse 40% 30% at 24% 30%,rgba(227,169,79,.05),transparent 70%),
+    radial-gradient(ellipse 34% 26% at 78% 64%,rgba(120,140,190,.045),transparent 70%);
+  animation:envdrift 96s var(--ease) -18s infinite alternate;
+}
+@keyframes envdrift{
+  from{transform:translate3d(-1.5%,-1%,0) scale(1)}
+  to{transform:translate3d(1.5%,1.5%,0) scale(1.06)}
+}
+.env .grain{
+  position:absolute;inset:0;opacity:.05;
+  background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.6"/></svg>');
+}
+
+/* ============ skip link, nav ============ */
+.skip{position:fixed;left:12px;top:-48px;z-index:100;background:var(--panel);color:var(--text-primary);padding:10px 16px;border-radius:10px;transition:top .25s var(--ease)}
+.skip:focus-visible{top:12px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:16px clamp(20px,4vw,56px);
+}
+.logo{display:block;justify-self:start}
+.logo img{height:48px;width:auto;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
+.menu-btn{
+  display:none;grid-column:3;justify-self:end;
+  align-items:center;gap:8px;
+  background:#fff;color:#14161c;border:0;cursor:pointer;
+  font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:.01em;
+  padding:11px 22px;border-radius:999px;
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
+}
+.menu-btn svg{transition:transform .3s var(--ease)}
+.menu-btn.x svg{transform:rotate(180deg)}
+.m-menu{
+  position:fixed;top:70px;left:14px;right:14px;z-index:59;
+  display:none;flex-direction:column;
+  background:#fff;border-radius:24px;padding:6px 0;
+  box-shadow:0 18px 60px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(-10px);pointer-events:none;
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.m-menu.open{opacity:1;transform:none;pointer-events:auto}
+.m-menu .mi{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:19px 24px;font-size:17px;font-weight:500;color:#14161c;letter-spacing:0;
+}
+.m-menu .mi::after{content:"›";font-size:22px;line-height:1;color:rgba(20,22,28,.75);font-weight:400}
+.m-menu .mi+.mi{border-top:1px solid rgba(20,22,28,.08)}
+.menu-pill{
+  grid-column:2;display:flex;gap:4px;
+  background:rgba(16,18,22,.32);border:1px solid rgba(162,168,180,.14);
+  border-radius:999px;padding:6px;backdrop-filter:blur(14px);
+  transition:background .45s var(--ease);
+}
+nav.solid .menu-pill{background:rgba(16,18,22,.55)}
+.mi{
+  font-size:14px;font-weight:500;letter-spacing:.03em;color:var(--text-secondary);
+  padding:9px 22px;border-radius:999px;cursor:default;user-select:none;
+  transition:color .3s var(--ease),background .3s var(--ease);
+}
+.mi:hover{color:var(--text-primary)}
+a.mi{cursor:pointer;text-decoration:none}
+.mi.active{color:var(--text-primary);background:rgba(227,169,79,.14)}
+.m-menu a.mi{color:#14161c}
+
+/* ============ вертикальная подпись, фирменная деталь макета ============ */
+.side-label{
+  position:fixed;left:20px;top:50%;z-index:5;
+  transform:translateY(-50%) rotate(180deg);
+  writing-mode:vertical-rl;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.5em;text-transform:uppercase;
+  color:var(--text-secondary);opacity:.55;pointer-events:none;
+}
+@media (max-width:1100px){.side-label{display:none}}
+
+/* ============ hero ============ */
+.w-hero{
+  position:relative;z-index:1;
+  min-height:94vh;min-height:94svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  text-align:center;padding:clamp(110px,16vh,170px) 24px 90px;
+  background:var(--canvas);overflow:hidden;
+}
+.w-hero .bg{
+  position:absolute;inset:0;
+  background:url('assets/hero-ending.jpg') center/cover no-repeat;
+}
+.w-hero .scrim{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 52% at 50% 22%,rgba(10,10,16,.5),rgba(10,10,16,.08) 62%,rgba(10,10,16,.3) 100%),
+    linear-gradient(to bottom,rgba(16,18,22,.5),rgba(16,18,22,.12) 32%,rgba(16,18,22,.06) 60%,var(--canvas) 97%);
+}
+.w-hero .inner{position:relative;max-width:820px;text-shadow:var(--tshadow)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.w-hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(26px,4.6vw,48px);letter-spacing:.05em;line-height:1.16;
+  margin-top:18px;text-transform:uppercase;white-space:nowrap;
+}
+.w-hero .sub{
+  color:var(--text-secondary);font-size:clamp(15px,1.7vw,19px);margin-top:18px;
+  max-width:46ch;margin-left:auto;margin-right:auto;text-wrap:balance;
+}
+
+/* ============ layout ============ */
+main{position:relative;z-index:2;background:var(--canvas)}
+.section{max-width:1080px;margin:0 auto;padding:clamp(70px,10vh,120px) clamp(20px,4vw,56px)}
+.section-head{max-width:640px;margin-bottom:clamp(30px,5vh,50px)}
+.section-head h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.4vw,42px);letter-spacing:.02em;margin-top:12px}
+.section-head .lede{color:var(--text-secondary);margin-top:14px}
+/* разделитель: россыпь песчинок с растворяющимися линиями */
+.divider{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  max-width:520px;margin:0 auto;padding:0 24px;color:var(--accent);opacity:.75;
+}
+.divider::before,.divider::after{content:"";height:1px;flex:1}
+.divider::before{background:linear-gradient(to right,transparent,rgba(227,169,79,.4))}
+.divider::after{background:linear-gradient(to left,transparent,rgba(227,169,79,.4))}
+.divider svg{flex:none;display:block}
+
+/* reveal, как на главной */
+.reveal .part{opacity:0;transform:translateY(22px)}
+.reveal.in .part{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in .part:nth-child(2){transition-delay:.09s}
+.reveal.in .part:nth-child(3){transition-delay:.18s}
+.reveal.in .part:nth-child(4){transition-delay:.27s}
+.reveal.in .part:nth-child(5){transition-delay:.36s}
+.reveal.done .part{transition-delay:0s}
+
+/* ============ вводный текст политики ============ */
+.policy-intro p{color:var(--text-secondary);max-width:72ch}
+.policy-intro p+p{margin-top:16px}
+.policy-intro p:first-of-type{color:var(--text-primary);font-size:clamp(17px,1.9vw,20px);line-height:1.65}
+.note{
+  margin-top:30px;max-width:72ch;
+  background:var(--panel);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;
+  padding:22px 26px;
+}
+.note b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.note p{color:var(--text-secondary)}
+.note p+p{margin-top:10px}
+
+/* ============ карточки с цифрами ============ */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat{
+  background:var(--panel);border:1px solid var(--hairline);border-radius:18px;
+  padding:clamp(24px,3vw,36px);position:relative;overflow:hidden;
+}
+.stat::after{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent-muted),transparent);
+}
+.stat .num{
+  font-family:var(--display);font-weight:800;color:var(--accent);
+  font-size:clamp(28px,3.1vw,40px);letter-spacing:.02em;line-height:1.1;
+}
+.stat .lbl{font-weight:600;margin-top:10px}
+.stat .fine{color:var(--text-secondary);font-size:14px;margin-top:8px}
+
+/* ============ аккордеон моделей ============ */
+.acc{border:1px solid var(--hairline);border-radius:16px;background:var(--panel);overflow:hidden}
+.acc+.acc{margin-top:12px}
+.acc summary{
+  list-style:none;cursor:pointer;user-select:none;
+  display:flex;align-items:baseline;gap:16px;
+  padding:20px clamp(18px,2.6vw,28px);
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover .model{color:var(--accent-hover)}
+.acc .model{
+  font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.14em;
+  transition:color .3s var(--ease);
+}
+.acc .meta{margin-left:auto;color:var(--text-secondary);font-size:13.5px;letter-spacing:.04em;text-align:right}
+.acc .chev{flex:none;align-self:center;color:var(--accent);transition:transform .35s var(--ease)}
+.acc[open] .chev{transform:rotate(180deg)}
+.acc-body{overflow:hidden;transition:height .4s var(--ease)}
+.acc-in{padding:0 clamp(18px,2.6vw,28px) 22px}
+.acc table{width:100%;border-collapse:collapse}
+.acc th,.acc td{
+  text-align:left;padding:12px 4px;font-size:15px;
+  border-top:1px solid var(--hairline);
+}
+.acc thead th{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-secondary);border-top:0;padding-top:0;
+}
+.acc td:last-child,.acc th:last-child{text-align:right}
+.acc td:last-child{font-weight:600}
+.acc .tag{
+  display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-muted);border-radius:8px;padding:3px 10px;
+  vertical-align:2px;margin-left:10px;
+}
+.tbw-note{
+  margin-top:26px;color:var(--text-secondary);font-size:14.5px;max-width:72ch;
+  padding-left:16px;border-left:2px solid var(--accent-muted);
+}
+.tbw-note b{color:var(--text-primary);font-weight:600}
+
+/* ============ память: громкое заявление ============ */
+.ram-hero{
+  background:var(--panel);border:1px solid var(--hairline);border-radius:22px;
+  padding:clamp(30px,4.5vw,56px);position:relative;overflow:hidden;
+}
+.ram-hero .glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 82% 10%,var(--accent-muted),transparent 70%);pointer-events:none}
+.ram-hero h3{
+  font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,38px);
+  letter-spacing:.02em;max-width:22ch;position:relative;
+}
+.ram-hero h3 em{font-style:normal;color:var(--accent)}
+.ram-hero .lede{color:var(--text-secondary);margin-top:14px;max-width:58ch;position:relative}
+.ram-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px);margin-top:36px;position:relative}
+.ram-col h4{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);padding-bottom:10px;border-bottom:1px solid var(--hairline);margin-bottom:14px;
+}
+.ram-col ul{list-style:none}
+.ram-col li{
+  font-size:14.5px;color:var(--text-secondary);padding:5px 0;letter-spacing:.03em;
+}
+.ram-col li b{color:var(--text-primary);font-weight:600;letter-spacing:.08em}
+.ram-note{
+  margin-top:34px;position:relative;
+  padding-left:16px;border-left:2px solid var(--accent-muted);
+  color:var(--text-secondary);font-size:14.5px;max-width:72ch;
+}
+.ram-note b{color:var(--text-primary);font-weight:600}
+
+/* ============ карты и флешки: две панели ============ */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.duo-card{background:var(--panel);border:1px solid var(--hairline);border-radius:18px;padding:clamp(24px,3vw,34px)}
+.duo-card .cat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.duo-card h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.03em}
+.duo-card .term{
+  margin-left:auto;font-family:var(--display);font-weight:800;color:var(--accent);
+  font-size:clamp(22px,2.4vw,30px);letter-spacing:.02em;
+}
+.duo-card table{width:100%;border-collapse:collapse;margin-top:18px}
+.duo-card th,.duo-card td{text-align:left;padding:11px 4px;font-size:15px;border-top:1px solid var(--hairline)}
+.duo-card thead th{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-secondary);border-top:0;padding-top:0;
+}
+.duo-card td:last-child,.duo-card th:last-child{text-align:right}
+.duo-card td:first-child{font-weight:600;letter-spacing:.08em}
+.duo-card td:last-child{color:var(--text-secondary)}
+
+/* ============ ноутбук ============ */
+.nb{
+  background:var(--panel);border:1px solid var(--hairline);border-radius:22px;
+  padding:clamp(30px,4.5vw,52px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start;
+}
+.nb h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,36px);letter-spacing:.06em}
+.nb .conf{color:var(--text-secondary);margin-top:12px;font-size:15px}
+.nb-terms{list-style:none}
+.nb-terms li{display:flex;gap:16px;align-items:baseline;padding:13px 0}
+.nb-terms li+li{border-top:1px solid var(--hairline)}
+.nb-terms .yrs{
+  flex:none;width:86px;font-family:var(--display);font-weight:800;color:var(--accent);
+  font-size:22px;letter-spacing:.02em;
+}
+.nb-terms p{color:var(--text-secondary);font-size:15px}
+.nb-terms .none{color:var(--text-secondary);font-weight:600;font-size:15px}
+
+/* ============ шаги и CTA ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st}
+.step{background:var(--panel);border:1px solid var(--hairline);border-radius:18px;padding:24px}
+.step::before{
+  counter-increment:st;content:"0" counter(st);
+  display:block;font-family:var(--display);font-weight:800;font-size:26px;color:var(--accent);
+  margin-bottom:12px;letter-spacing:.04em;
+}
+.step p{font-size:15px;color:var(--text-secondary)}
+.step p b{color:var(--text-primary);font-weight:600}
+.cta-row{margin-top:40px;text-align:center}
+.btn{
+  display:inline-block;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.03em;
+  background:var(--accent);color:#14161c;text-decoration:none;
+  padding:15px 34px;border-radius:12px;border:0;cursor:pointer;
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.btn:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.cta-fine{color:var(--text-secondary);font-size:13.5px;margin-top:14px}
+
+/* ============ юридический блок ============ */
+.legal .acc summary{padding:18px clamp(18px,2.6vw,26px)}
+.legal .acc .model{font-size:15.5px;letter-spacing:.06em;font-weight:600}
+.legal .acc-in{padding:2px clamp(18px,2.6vw,26px) 22px}
+.legal .acc-in p,.legal .acc-in li{color:var(--text-secondary);font-size:14.5px}
+.legal .acc-in p+p{margin-top:10px}
+.legal ol{padding-left:22px}
+.legal ol li{padding:6px 0}
+footer{border-top:1px solid var(--hairline);padding:38px clamp(20px,4vw,56px);display:flex;justify-content:space-between;align-items:baseline;color:var(--text-secondary);font-size:14px;position:relative;z-index:2;background:var(--canvas)}
+footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
+
+/* ============ mobile ============ */
+@media (max-width:860px){
+  .stats{grid-template-columns:1fr}
+  .ram-cols{grid-template-columns:1fr}
+  .duo{grid-template-columns:1fr}
+  .nb{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  nav{padding:12px 16px}
+  .menu-pill{display:none}
+  .logo img{height:34px}
+  .menu-btn{display:flex}
+  .m-menu{display:flex}
+  /* на телефоне кадр с диском уходит под текст отдельным блоком */
+  .w-hero{min-height:auto;padding:104px 20px 0}
+  .w-hero h1{white-space:normal;font-size:clamp(28px,8.4vw,36px)}
+  .w-hero .inner{order:1}
+  .w-hero .bg{
+    order:2;position:static;
+    width:calc(100% + 40px);height:300px;margin:18px -20px 0;
+    background-position:center 62%;
+  }
+  .w-hero .scrim{
+    background:linear-gradient(to bottom,rgba(16,18,22,.4),rgba(16,18,22,0) 30%,rgba(16,18,22,0) 76%,var(--canvas) 98%);
+  }
+  .acc summary{flex-wrap:wrap;row-gap:2px}
+  .acc .meta{margin-left:0;width:100%;order:3;text-align:left}
+  .acc .chev{margin-left:auto;order:2}
+  .steps{grid-template-columns:1fr}
+}
+@media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .reveal .part{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="env" aria-hidden="true"><div class="dust"></div><div class="grain"></div></div>
+<span class="side-label" aria-hidden="true">Гарантия</span>
+
+<nav aria-label="Основная навигация">
+  <a class="logo" href="index.html">
+    <img src="assets/logo.png" alt="QOPP. На главную" width="384" height="152">
+  </a>
+  <div class="menu-pill">
+    <a class="mi" href="index.html#product">Каталог</a>
+    <a class="mi active" href="warranty.html" aria-current="page">Гарантия</a>
+    <span class="mi">Контакты</span>
+  </div>
+  <button class="menu-btn" aria-expanded="false" aria-controls="m-menu">Меню
+    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</nav>
+<div class="m-menu" id="m-menu">
+  <a class="mi" href="index.html#product">Каталог</a>
+  <a class="mi" href="warranty.html" aria-current="page">Гарантия</a>
+  <span class="mi">Контакты</span>
+</div>
+
+<header class="w-hero">
+  <div class="bg" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="inner">
+    <p class="kicker">Поддержка QOPP</p>
+    <h1>Гарантийная политика</h1>
+    <p class="sub">Без мелкого шрифта: каждая модель, каждый объём и каждый срок собраны на одной странице.</p>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- вводный текст политики -->
+  <section class="section policy-intro reveal">
+    <p class="part">Бренд QOPP гарантирует покупателю товаров в оригинальной запечатанной упаковке («Вы»), что товары не имеют дефектов материала и изготовления при соблюдении условий, изложенных в настоящем документе, в течение ограниченного гарантийного периода, продолжительность которого указана на странице товара на сайте продавца, начиная с даты приобретения товара в оригинальной запечатанной упаковке.</p>
+    <p class="part">В случае отсутствия действительного доказательства покупки срок ограниченной гарантии будет определяться датой изготовления товара. Настоящая гарантия распространяется исключительно на первоначального розничного покупателя товара и не может быть передана, уступлена или отчуждена последующим владельцам или третьим лицам.</p>
+    <div class="note part">
+      <b>Важно</b>
+      <p>Всегда делайте резервную копию важных данных перед обращением за гарантийным обслуживанием.</p>
+      <p>Если в течение гарантийного периода ваш продукт QOPP выйдет из строя при нормальном использовании в рекомендуемой среде из-за неподходящих материалов или качества изготовления, QOPP предоставит обслуживание в соответствии с условиями, изложенными ниже.</p>
+    </div>
+  </section>
+
+  <!-- цифры вместо лозунгов -->
+  <section class="section reveal" style="padding-top:0" aria-label="Основные сроки гарантии">
+    <div class="stats">
+      <div class="stat part">
+        <p class="num">5 лет</p>
+        <p class="lbl">на твердотельные накопители</p>
+        <p class="fine">или до лимита записи TBW, смотря что наступит раньше</p>
+      </div>
+      <div class="stat part">
+        <p class="num">Бессрочно</p>
+        <p class="lbl">на оперативную память</p>
+        <p class="fine">каждый модуль DDR3, DDR4 и DDR5</p>
+      </div>
+      <div class="stat part">
+        <p class="num">До 10 лет</p>
+        <p class="lbl">на карты памяти и флешки</p>
+        <p class="fine">microSD до 10 лет, USB-накопители 5 лет</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- SSD -->
+  <section class="section reveal" id="ssd">
+    <div class="section-head">
+      <p class="kicker part">SSD · срок или TBW</p>
+      <h2 class="part">Твердотельные накопители</h2>
+      <p class="lede part">Раскройте модель, чтобы увидеть условия для каждого объёма.</p>
+    </div>
+    <div class="part">
+      <details class="acc">
+        <summary>
+          <span class="model">Q500S</span>
+          <span class="meta">4 объёма · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>120 ГБ</td><td>5 лет или 50 TBW</td></tr>
+              <tr><td>240 ГБ</td><td>5 лет или 100 TBW</td></tr>
+              <tr><td>480 ГБ</td><td>5 лет или 200 TBW</td></tr>
+              <tr><td>960 ГБ</td><td>5 лет или 320 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Q600S</span>
+          <span class="meta">5 объёмов · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>128 ГБ</td><td>5 лет или 60 TBW</td></tr>
+              <tr><td>256 ГБ</td><td>5 лет или 150 TBW</td></tr>
+              <tr><td>512 ГБ</td><td>5 лет или 300 TBW</td></tr>
+              <tr><td>1 ТБ</td><td>5 лет или 600 TBW</td></tr>
+              <tr><td>2 ТБ</td><td>5 лет или 1200 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Q600MS</span>
+          <span class="meta">5 объёмов · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>128 ГБ</td><td>5 лет или 60 TBW</td></tr>
+              <tr><td>256 ГБ</td><td>5 лет или 125 TBW</td></tr>
+              <tr><td>512 ГБ</td><td>5 лет или 250 TBW</td></tr>
+              <tr><td>1 ТБ</td><td>5 лет или 500 TBW</td></tr>
+              <tr><td>2 ТБ</td><td>5 лет или 1000 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Q2000MN</span>
+          <span class="meta">5 объёмов · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>128 ГБ</td><td>5 лет или 80 TBW</td></tr>
+              <tr><td>256 ГБ</td><td>5 лет или 160 TBW</td></tr>
+              <tr><td>512 ГБ</td><td>5 лет или 320 TBW</td></tr>
+              <tr><td>1 ТБ</td><td>5 лет или 640 TBW</td></tr>
+              <tr><td>2 ТБ</td><td>5 лет или 1280 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Q4000MN</span>
+          <span class="meta">3 объёма · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>512 ГБ</td><td>5 лет или 250 TBW</td></tr>
+              <tr><td>1 ТБ</td><td>5 лет или 500 TBW</td></tr>
+              <tr><td>2 ТБ</td><td>5 лет или 1000 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Q7000MN</span>
+          <span class="meta">4 объёма · 5 лет или TBW</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <table>
+            <thead><tr><th scope="col">Объём</th><th scope="col">Гарантия</th></tr></thead>
+            <tbody>
+              <tr><td>512 ГБ</td><td>5 лет или 390 TBW</td></tr>
+              <tr><td>1 ТБ</td><td>5 лет или 780 TBW</td></tr>
+              <tr><td>2 ТБ</td><td>5 лет или 1560 TBW</td></tr>
+              <tr><td>4 ТБ</td><td>5 лет или 3120 TBW</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </details>
+    </div>
+    <p class="tbw-note part"><b>Что такое TBW?</b> Это сколько терабайт можно записать на диск за его жизнь (Terabytes Written). Гарантия на SSD действует до конца срока или до достижения лимита записи, смотря что наступит раньше.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- Оперативная память -->
+  <section class="section reveal" id="ram">
+    <div class="section-head">
+      <p class="kicker part">Оперативная память</p>
+      <h2 class="part">Работает, пока работает</h2>
+    </div>
+    <div class="ram-hero part">
+      <div class="glow" aria-hidden="true"></div>
+      <h3>На каждый модуль памяти QOPP: <em>бессрочная гарантия</em>.</h3>
+      <p class="lede">Без сроков и без лимитов. DDR3, DDR4 или DDR5, один модуль или комплект: условие одно для всех.</p>
+      <div class="ram-cols">
+        <div class="ram-col">
+          <h4>DDR3</h4>
+          <ul>
+            <li><b>ST-S R3</b> · 4 и 8 ГБ</li>
+            <li><b>ST-S R3 K2/16</b> · 2×8 ГБ</li>
+            <li><b>ST-U R3</b> · 8 ГБ</li>
+            <li><b>ST-U R3 K2/16</b> · 2×8 ГБ</li>
+          </ul>
+        </div>
+        <div class="ram-col">
+          <h4>DDR4</h4>
+          <ul>
+            <li><b>ST-S R4</b> · 8 и 16 ГБ</li>
+            <li><b>ST-S R4 K2</b> · 16 и 32 ГБ</li>
+            <li><b>ST-U R4</b> · 8 и 16 ГБ</li>
+            <li><b>ST-U R4 K2</b> · 16 и 32 ГБ</li>
+            <li><b>ME-S R4</b> · 8 и 16 ГБ</li>
+            <li><b>ME-S R4 K2</b> · 16 и 32 ГБ</li>
+            <li><b>ME-U R4</b> · 8 и 16 ГБ</li>
+            <li><b>ME-U R4 K2</b> · 16 и 32 ГБ</li>
+            <li><b>HI-U R4 K2</b> · 16 и 32 ГБ</li>
+          </ul>
+        </div>
+        <div class="ram-col">
+          <h4>DDR5</h4>
+          <ul>
+            <li><b>QS556C4616</b> · 16 ГБ</li>
+            <li><b>QS556C4632</b> · 32 ГБ</li>
+            <li><b>EPIC QE560C30K2/32</b> · 2×16 ГБ</li>
+            <li><b>EPIC QE560C30K2/64</b> · 2×32 ГБ</li>
+          </ul>
+        </div>
+      </div>
+      <p class="ram-note"><b>Про разгон:</b> если модуль вышел из строя из-за разгона, это не гарантийный случай. Во всём остальном гарантия действует без оговорок.</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- Карты памяти и флешки -->
+  <section class="section reveal" id="cards">
+    <div class="section-head">
+      <p class="kicker part">Карты памяти и флешки</p>
+      <h2 class="part">Память, которая всегда с собой</h2>
+    </div>
+    <div class="duo">
+      <div class="duo-card part">
+        <div class="cat">
+          <h3>Карты microSD</h3>
+          <p class="term">10 лет</p>
+        </div>
+        <table>
+          <thead><tr><th scope="col">Модель</th><th scope="col">Объёмы</th></tr></thead>
+          <tbody>
+            <tr><td>Q80SD</td><td>32, 64, 128 ГБ</td></tr>
+            <tr><td>RUSH</td><td>32, 64, 128, 256 ГБ</td></tr>
+            <tr><td>RUSH+</td><td>128, 256, 512 ГБ и 1 ТБ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="duo-card part">
+        <div class="cat">
+          <h3>USB-накопители</h3>
+          <p class="term">5 лет</p>
+        </div>
+        <table>
+          <thead><tr><th scope="col">Модель</th><th scope="col">Объёмы</th></tr></thead>
+          <tbody>
+            <tr><td>Q120FL</td><td>32, 64, 128 ГБ</td></tr>
+            <tr><td>Q140FL</td><td>32, 64, 128, 256 ГБ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- Ноутбуки -->
+  <section class="section reveal" id="laptops">
+    <div class="section-head">
+      <p class="kicker part">Ноутбуки</p>
+      <h2 class="part">Честно по компонентам</h2>
+    </div>
+    <div class="nb part">
+      <div>
+        <h3>QBOOK15</h3>
+        <p class="conf">Все конфигурации: процессоры N100 и N5095, накопители от 128 ГБ до 2 ТБ.</p>
+      </div>
+      <ul class="nb-terms">
+        <li>
+          <span class="yrs">3 года</span>
+          <p>на процессор, твердотельный накопитель и оперативную память</p>
+        </li>
+        <li>
+          <span class="yrs">1 год</span>
+          <p>на остальные компоненты ноутбука</p>
+        </li>
+        <li>
+          <span class="yrs none">Нет</span>
+          <p>программное обеспечение гарантийному обслуживанию не подлежит</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- Как обратиться -->
+  <section class="section reveal" id="service">
+    <div class="section-head">
+      <p class="kicker part">Как обратиться</p>
+      <h2 class="part">Четыре шага до сервиса</h2>
+    </div>
+    <div class="steps">
+      <div class="step part"><p><b>Найдите чек</b> или другой документ, подтверждающий дату покупки.</p></div>
+      <div class="step part"><p><b>Напишите в поддержку</b> QOPP любым удобным способом.</p></div>
+      <div class="step part"><p><b>Назовите серийный номер</b> продукта и опишите проблему.</p></div>
+      <div class="step part"><p><b>Отправьте продукт</b> в оригинальной или другой защитной упаковке.</p></div>
+    </div>
+    <div class="cta-row part">
+      <a class="btn" href="https://taplink.cc/qopp" target="_blank" rel="noopener">Написать в поддержку</a>
+      <p class="cta-fine">Откроется страница со всеми каналами связи QOPP.</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg width="46" height="12" viewBox="0 0 46 12" fill="currentColor"><circle cx="4" cy="7" r="1.1" opacity=".55"/><circle cx="12" cy="4.6" r="1.6" opacity=".8"/><circle cx="23" cy="6" r="2.2"/><circle cx="34" cy="4.8" r="1.5" opacity=".8"/><circle cx="42" cy="7.2" r="1.1" opacity=".55"/></svg></div>
+
+  <!-- Полные условия -->
+  <section class="section legal reveal" id="terms">
+    <div class="section-head">
+      <p class="kicker part">Полные условия</p>
+      <h2 class="part">Мелкий шрифт, набранный крупно</h2>
+      <p class="lede part">Здесь всё, что обычно прячут. Мы не прячем.</p>
+    </div>
+    <div class="part">
+      <details class="acc">
+        <summary>
+          <span class="model">Когда гарантия не действует</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <ol>
+            <li>Продукт изменён, собран, разобран или отремонтирован без письменного разрешения QOPP.</li>
+            <li>Продукт имеет аномальные явления, такие как изгиб и деформация внешней поверхности; корпус продукта повреждён, деформирован и т.д.</li>
+            <li>Наклейка (если таковая имеется) на основном продукте сорвана или была отклеена.</li>
+            <li>Ошибка или повреждение вызваны использованием, не соответствующим руководству по эксплуатации, или несоблюдением инструкции по эксплуатации.</li>
+            <li>Повреждение продукта вызвано стихийными бедствиями (например, наводнение, пожар, землетрясение, молния, тайфун), умышленным уничтожением (например, удар, падение, разрыв), неисправностью интерфейса компьютера, человеческим фактором (например, падение в воду, потеря, неправильное хранение) или другими аномальными причинами.</li>
+            <li>Продукт повреждён компьютерным вирусом или антивирусом.</li>
+            <li>Повреждение вызвано физическим, электронным или электромагнитным воздействием, вмешательством, нестабильностью и неправильным использованием источника питания, молнией, статическим электричеством, пожаром или другими факторами непреодолимой силы.</li>
+            <li>Повреждение вызвано экспозицией или хранением в неправильной среде, включая среду с высокой температурой, низкой температурой или высокой влажностью.</li>
+            <li>Повреждение или потеря вызваны неправильной транспортировкой и упаковкой во время доставки товара клиентом к QOPP.</li>
+            <li>Ошибка или повреждение вызваны использованием продуктов QOPP в исследованиях и разработке, производстве или специализированных испытаниях.</li>
+            <li>Неисправность или дефект явились результатом неправильной установки или неправильного использования, небрежного отношения, неавторизованного ремонта, модификации, аварии или других внешних причин, либо иных обстоятельств, которые QOPP определяет как нарушение Соглашения со стороны Пользователя.</li>
+          </ol>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Замена и ремонт</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <p>При обнаружении производственного дефекта QOPP отремонтирует или заменит продукт по своему усмотрению. Замена производится на аналогичную или функционально эквивалентную модель: QOPP не гарантирует наличие на складе точно такой же модели.</p>
+          <p>Отремонтированный или заменённый продукт покрывается оставшимся сроком первоначальной гарантии или 90 днями с момента ремонта либо замены, в зависимости от того, что дольше.</p>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Ограничение ответственности</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <p>QOPP не несёт ответственности за потерю данных, косвенные, случайные, специальные или последующие убытки, потерю прибыли, доходов или использования, прерывание деятельности или коммерческие потери, а также за стоимость восстановления или замещения программ и данных. Максимальная ответственность QOPP ограничивается стоимостью замены или ремонта дефектного продукта.</p>
+        </div></div>
+      </details>
+      <details class="acc">
+        <summary>
+          <span class="model">Отказ от иных гарантий</span>
+          <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M1 1.5 7 7.5 13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="acc-body"><div class="acc-in">
+          <p>В соответствии с применимым законодательством компания предоставляет гарантию, изложенную выше, которая заменяет все другие гарантии и заявления, как устные, так и письменные. Компания отклоняет любые гарантии, не заявленные в данном документе, включая гарантии, которые могут быть предусмотрены в национальных, государственных, провинциальных или местных законах, в том числе любые подразумеваемые гарантии ненарушения прав интеллектуальной собственности, пригодности для продажи или использования в особых целях. Все гарантии, выраженные в явной форме или подразумеваемые, ограничиваются установленными сроками.</p>
+          <p>Продукция QOPP не может использоваться в качестве ответственных элементов в системах жизнеобеспечения, а также в тех случаях, когда отказ или сбой продукции может привести к несчастному случаю или летальному исходу. QOPP не несёт ответственности за чью-либо смерть, а также за вред или ущерб, причинённый людям или имуществу в результате использования продуктов QOPP в каком-либо оборудовании, включая, в частности, оборудование военного или медицинского назначения, системы управления дорожным движением и системы предотвращения бедствий.</p>
+        </div></div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 QOPP</span>
+  <span class="made">сделано из песка</span>
+</footer>
+
+<script>
+'use strict';
+const navEl=document.querySelector('nav');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+
+/* nav подложка после начала прокрутки */
+addEventListener('scroll',()=>{
+  const solid=scrollY>60;
+  if(solid!==navEl.classList.contains('solid'))navEl.classList.toggle('solid',solid);
+},{passive:true});
+
+/* плавное раскрытие аккордеонов; без JS details работает сам */
+document.querySelectorAll('details.acc').forEach(d=>{
+  const sum=d.querySelector('summary');
+  const body=d.querySelector('.acc-body');
+  let busy=false;
+  sum.addEventListener('click',e=>{
+    if(reduced.matches)return; /* системная настройка: мгновенно, без анимации */
+    e.preventDefault();
+    if(busy)return;
+    busy=true;
+    const settle=()=>{body.style.height='';busy=false};
+    if(d.open){
+      body.style.height=body.offsetHeight+'px';
+      requestAnimationFrame(()=>{body.style.height='0px'});
+      body.addEventListener('transitionend',()=>{d.open=false;settle()},{once:true});
+      setTimeout(()=>{if(busy){d.open=false;settle()}},500);
+    }else{
+      d.open=true;
+      const h=body.scrollHeight;
+      body.style.height='0px';
+      requestAnimationFrame(()=>{body.style.height=h+'px'});
+      body.addEventListener('transitionend',settle,{once:true});
+      setTimeout(()=>{if(busy)settle()},500);
+    }
+  });
+});
+
+/* появление секций, как на главной */
+const io=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      setTimeout(()=>en.target.classList.add('done'),1200);
+      io.unobserve(en.target);
+    }
+  });
+},{threshold:0.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+if(reduced.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in','done'));
+reduced.addEventListener('change',e=>{
+  if(e.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in','done'));
+});
+
+/* мобильное меню */
+const menuBtn=document.querySelector('.menu-btn');
+const mmenu=document.getElementById('m-menu');
+if(menuBtn&&mmenu){
+  menuBtn.addEventListener('click',()=>{
+    const open=mmenu.classList.toggle('open');
+    menuBtn.classList.toggle('x',open);
+    menuBtn.setAttribute('aria-expanded',open);
+  });
+  addEventListener('scroll',()=>{
+    if(mmenu.classList.contains('open')){
+      mmenu.classList.remove('open');menuBtn.classList.remove('x');menuBtn.setAttribute('aria-expanded','false');
+    }
+  },{passive:true});
+}
+</script>
+</body>
+</html>
