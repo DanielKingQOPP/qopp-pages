@@ -265,6 +265,10 @@ main{position:relative;z-index:2;background:var(--canvas)}
   background:linear-gradient(to bottom,transparent,var(--accent));
   opacity:.55;
 }
+.catalog{max-width:1400px;margin:0 auto;padding:10px clamp(16px,3vw,40px) 50px}
+.cat{display:block;position:relative;overflow:hidden;border-radius:22px;margin-bottom:clamp(18px,2.6vw,30px);background:var(--panel)}
+.cat img{width:100%;height:auto;display:block;transition:transform .7s var(--ease)}
+.cat:hover img{transform:scale(1.015)}
 .product-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
 .product-copy h2{font-family:var(--display);font-weight:500;font-size:clamp(34px,4.4vw,58px);letter-spacing:.03em;margin:14px 0 18px}
@@ -340,7 +344,7 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
     <img class="logo-word-m" src="assets/logo-word.png" alt="QOPP" width="356" height="120">
   </a>
   <div class="menu-pill">
-    <a class="mi" href="#product">Каталог</a>
+    <a class="mi" href="#catalog">Каталог</a>
     <a class="mi" href="warranty.html">Гарантия</a>
     <span class="mi">Контакты</span>
   </div>
@@ -352,7 +356,7 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
   <svg width="20" height="20" viewBox="0 0 22 30" fill="none" aria-hidden="true"><path d="M11 26V8m0 0 7 7m-7-7-7 7" stroke="#e3a94f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 <div class="m-menu" id="m-menu">
-  <a class="mi" href="#product">Каталог</a>
+  <a class="mi" href="#catalog">Каталог</a>
   <a class="mi" href="warranty.html">Гарантия</a>
   <span class="mi">Контакты</span>
 </div>
@@ -383,15 +387,15 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
       <h1 data-split-words>Память становится QOPP</h1>
       <p class="sub">Скорость, рождённая из песка</p>
       <div class="cta-row">
-        <a class="btn" href="#product">Каталог</a>
-        <a class="btn-ghost" href="#product">Смотреть продукт</a>
+        <a class="btn" href="#catalog">Каталог</a>
+        <a class="btn-ghost" href="#catalog">Смотреть продукт</a>
       </div>
     </div>
 
     <div class="static-copy">
       <h1>Память становится <img class="qopp-word" src="assets/logo-word.png" alt="QOPP"></h1>
       <p>Скорость, рождённая из песка</p>
-      <div class="cta-row"><a class="btn" href="#product">Каталог</a></div>
+      <div class="cta-row"><a class="btn" href="#catalog">Каталог</a></div>
     </div>
 
     <svg class="ring" viewBox="0 0 48 48" aria-hidden="true">
@@ -407,24 +411,12 @@ footer .made{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em}
 <main id="main" tabindex="-1">
   <div class="thread" aria-hidden="true"></div>
 
-  <section class="section" id="product">
-    <div class="product-grid reveal">
-      <div class="product-copy">
-        <p class="kicker part">SSD NVMe 4.0</p>
-        <h2 class="part">Q7000MN</h2>
-        <p class="part">Первый диск, который мы показываем целиком: контроллер, память, ресурс. Без мелкого шрифта и без сюрпризов с объёмом.</p>
-        <div class="chips part">
-          <span class="chip">NVMe 4.0</span>
-          <span class="chip">M.2 2280</span>
-          <span class="chip">до 7 000 МБ/с</span>
-        </div>
-        <p class="wip part">Полная страница продукта собирается. Здесь появятся фото, начинка и честные цифры ресурса.</p>
-      </div>
-      <div class="product-visual reveal in">
-        <img src="assets/hero-ending.jpg" alt="Q7000MN, финальный кадр истории" width="960" height="720">
-        <div class="glow" aria-hidden="true"></div>
-      </div>
-    </div>
+  <section class="catalog" id="catalog" aria-label="Каталог">
+    <a class="cat reveal" aria-label="Внутренние SSD"><img class="part" src="assets/cat-ssd.jpg" alt="Внутренние SSD" loading="lazy" width="2560" height="709"></a>
+    <a class="cat reveal" aria-label="Оперативная память"><img class="part" src="assets/cat-ddr.jpg" alt="Оперативная память" loading="lazy" width="2560" height="698"></a>
+    <a class="cat reveal" aria-label="Карты памяти"><img class="part" src="assets/cat-microsd.jpg" alt="Карты памяти" loading="lazy" width="2560" height="714"></a>
+    <a class="cat reveal" aria-label="Флеш-накопители"><img class="part" src="assets/cat-usb.jpg" alt="Флеш-накопители" loading="lazy" width="2560" height="709"></a>
+    <a class="cat reveal" aria-label="Ноутбуки QBOOKS"><img class="part" src="assets/cat-notebook.jpg" alt="Ноутбуки QBOOKS" loading="lazy" width="2560" height="1029"></a>
   </section>
 </main>
 
