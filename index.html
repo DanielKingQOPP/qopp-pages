@@ -233,9 +233,10 @@ a.mi{cursor:pointer;text-decoration:none}
   .b-settle .cta-row{margin-top:16px}
   .b-settle .btn{padding:11px 24px}
 }
+.b-settle{text-shadow:none}
 .b-settle .kicker{margin-bottom:18px}
-.b-settle h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.4vw,62px);letter-spacing:.02em;line-height:1.14}
-.qopp-word{height:.8em;width:auto;display:inline-block;vertical-align:-.04em;filter:brightness(.96) drop-shadow(0 3px 12px rgba(5,5,10,.78))}
+.b-settle h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.4vw,62px);letter-spacing:.02em;line-height:1.14;color:#14161c}
+.qopp-word{height:.8em;width:auto;display:inline-block;vertical-align:-.04em;filter:invert(1) brightness(.25)}
 .b-settle h1 .w{display:inline-block;white-space:pre}
 .b-settle h1 .w{
   --kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);
@@ -245,7 +246,7 @@ a.mi{cursor:pointer;text-decoration:none}
 .b-settle .sub{
   --ks:clamp(0,(var(--k,0) - .62)*4,1);
   opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*16px));
-  color:var(--text-secondary);font-size:clamp(15px,1.6vw,19px);margin-top:18px;
+  color:#5a5348;font-size:clamp(15px,1.6vw,19px);margin-top:18px;
 }
 .b-settle .cta-row{
   --kb:clamp(0,(var(--k,0) - .76)*5,1);
@@ -253,6 +254,8 @@ a.mi{cursor:pointer;text-decoration:none}
   margin-top:30px;pointer-events:none;
 }
 .b-settle.live .cta-row{pointer-events:auto}
+.b-settle .btn-ghost{color:#5a5348;border-color:rgba(20,22,28,.45)}
+.b-settle .btn-ghost:hover{color:#14161c;border-color:#14161c}
 .btn{
   display:inline-block;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.03em;
   background:var(--accent);color:#14161c;text-decoration:none;text-shadow:none;
@@ -317,7 +320,7 @@ main{position:relative;z-index:2;background:var(--canvas)}
 .reveal.in .part:nth-child(5){transition-delay:.36s}
 .reveal.done .part,.reveal.done .part:nth-child(2),.reveal.done .part:nth-child(3),.reveal.done .part:nth-child(4),.reveal.done .part:nth-child(5){transition-delay:0s}
 
-.dawn{height:52vh;background:linear-gradient(180deg,#101216 0%,#191510 16%,#3a2f1e 36%,#8c7a58 58%,#cfc4ac 76%,#eceae4 90%,#f6f6f7 100%)}
+.dawn{height:26vh;background:linear-gradient(180deg,#cab29c 0%,#e2d5c6 45%,#f0ebe3 75%,#f6f6f7 100%)}
 .site-footer{background:#f6f6f7;color:#14161c;position:relative;z-index:2;padding:clamp(40px,7vh,84px) clamp(20px,5vw,72px) 28px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,5vw,80px);max-width:1200px;margin:0 auto}
 .foot-col h3{font-size:15px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
@@ -332,7 +335,7 @@ main{position:relative;z-index:2;background:var(--canvas)}
 .agree input{width:auto;margin:0;accent-color:#14161c}
 .form-done{margin-top:12px;font-size:14px;font-weight:600;color:#1d7a3f}
 .foot-legal{max-width:1200px;margin:44px auto 0;padding-top:18px;border-top:1px solid #dcdee2;display:flex;flex-wrap:wrap;gap:8px 26px;font-size:12px;color:#8b9098}
-@media (max-width:720px){.foot-grid{grid-template-columns:1fr;gap:34px}.dawn{height:38vh}}
+@media (max-width:720px){.foot-grid{grid-template-columns:1fr;gap:34px}.dawn{height:18vh}}
 
 /* ============ mobile layout ============ */
 @media (max-width:720px){
@@ -433,7 +436,7 @@ main{position:relative;z-index:2;background:var(--canvas)}
       <h2 data-split>Кремний растёт в один кристалл</h2>
     </div>
 
-    <div class="band b-right e-weave" data-a="0.62" data-b="0.77" data-entr="weave">
+    <div class="band b-right e-weave" data-a="0.585" data-b="0.675" data-entr="weave">
       <h2 data-split>Кристалл становится памятью</h2>
     </div>
 
@@ -509,8 +512,8 @@ main{position:relative;z-index:2;background:var(--canvas)}
 'use strict';
 /* ============ config ============ */
 const SOURCES = {
-  desktop: { url:'assets/hero-scrub.mp4',        poster:'assets/hero-poster.jpg',        bytes: 14526341 },
-  mobile:  { url:'assets/hero-m3.mp4', poster:'assets/hero-poster-m3.jpg', bytes: 5800946 }
+  desktop: { url:'assets/hero-scrub.mp4',        poster:'assets/hero-poster.jpg',        bytes: 12088460 },
+  mobile:  { url:'assets/hero-m4.mp4', poster:'assets/hero-poster-m4.jpg', bytes: 4939999 }
 };
 const MOBILE_Q = '(max-width: 720px), ((orientation: portrait) and (pointer: coarse))';
 /* строки гейтов: должны совпадать с CSS слово в слово */
@@ -686,6 +689,7 @@ function onScroll(ev){
   if(rafId===null&&heroOnScreen)rafId=requestAnimationFrame(tick);
   const solid = scrollY>innerHeight*0.5;
   if(solid!==navEl.classList.contains('solid')) navEl.classList.toggle('solid',solid);
+  applyNavLight();
 }
 new IntersectionObserver(es=>{heroOnScreen=es[0].isIntersecting},{threshold:0}).observe(hero);
 
@@ -883,10 +887,15 @@ if(mmCatalog){
 }
 
 /* ============ шапка над белой зоной ============ */
+let footerInView=false;
+function applyNavLight(){
+  navEl.classList.toggle('light',footerInView||heroProgress()>0.86);
+}
 const lightZone=document.querySelector('.site-footer');
 if(lightZone){
   new IntersectionObserver(es=>{
-    navEl.classList.toggle('light',es[0].isIntersecting);
+    footerInView=es[0].isIntersecting;
+    applyNavLight();
   },{rootMargin:'-70px 0px 0px 0px',threshold:0}).observe(lightZone);
 }
 
