@@ -230,16 +230,40 @@ a.mi{cursor:pointer;text-decoration:none}
 .film{position:relative;z-index:1;background:#050505}
 .film .strip{position:relative}
 .film img{width:100%;height:auto;display:block}
-.ov{
-  position:absolute;color:#f2f0ea;
-  font-family:var(--display);font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;line-height:1.5;
-  pointer-events:none;
+.ovl{position:absolute;z-index:2;color:#f2f0ea;pointer-events:none;text-transform:uppercase}
+.t-kick{font-family:var(--mono);font-weight:600;letter-spacing:.5em;font-size:clamp(8px,1.35vw,30px)}
+.t-sub{font-family:var(--mono);font-weight:600;letter-spacing:.3em;font-size:clamp(7px,1vw,22px)}
+.t-model{font-family:var(--display);font-weight:800;letter-spacing:.24em;font-size:clamp(17px,3.2vw,72px);line-height:1.15}
+.t-big{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:clamp(10px,1.8vw,40px);line-height:1.5}
+.t-line{font-family:var(--body);font-weight:400;letter-spacing:.12em;font-size:clamp(6.5px,.95vw,21px);line-height:2}
+.t-num{font-family:var(--display);font-weight:800;letter-spacing:.04em;font-size:clamp(15px,2.7vw,60px);line-height:1.1}
+.t-num small{font-family:var(--mono);font-weight:600;font-size:.38em;letter-spacing:.2em;vertical-align:.5em}
+.t-cap{font-family:var(--mono);font-weight:600;letter-spacing:.24em;font-size:clamp(6px,.85vw,19px)}
+.ov-h{top:6%;left:0;right:0;text-align:center;display:flex;flex-direction:column;gap:.9vw;align-items:center}
+.ov-s-title{top:4.5%;left:0;right:0;text-align:center}
+.ov-s-nums{top:22%;right:5%;display:flex;gap:3.2vw;text-align:right}
+.ov-s-comp{top:53%;right:5%;width:37%;text-align:right}
+.bar-row{display:flex;align-items:center;justify-content:flex-end;gap:1vw;margin-top:1.1vw}
+.bar-lab{font-family:var(--mono);font-weight:600;letter-spacing:.14em;font-size:clamp(6px,.8vw,17px)}
+.bar{
+  height:clamp(9px,1.7vw,36px);display:flex;align-items:center;justify-content:center;
+  color:#14161c;font-family:var(--display);font-weight:700;font-size:clamp(6.5px,.95vw,21px);letter-spacing:.1em;
+  background:linear-gradient(100deg,#f4f6f9 0%,#c9d2de 100%);
+  transform:skewX(-16deg);
 }
-.ov-endure{top:3.4%;right:2%;width:50%;text-align:center;font-size:clamp(9px,1.75vw,40px)}
-.ov-quiet1{top:5.6%;left:2.6%;width:53%;font-size:clamp(9px,1.75vw,40px);line-height:1.6}
-.ov-quiet2{top:31.6%;left:8.4%;font-size:clamp(7px,1.25vw,28px);letter-spacing:.22em}
-.ov-compat{top:40.5%;left:1.6%;width:47%;font-weight:400;font-size:clamp(7px,1.05vw,24px);letter-spacing:.1em;text-transform:uppercase;line-height:1.75}
+.bar>span{transform:skewX(16deg)}
+.bar-ssd{width:34%}
+.bar-hdd{width:58%}
+.ov-e-tag{display:flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--mono);font-weight:600;letter-spacing:.28em;font-size:clamp(5.5px,.8vw,18px);color:#dfe3ea}
+.ov-e-tag1{left:10.5%;top:6.7%;width:29%;height:4.2%}
+.ov-e-tag2{left:10.5%;top:12.9%;width:14.3%;height:4.2%}
+.ov-e-r{top:15%;right:4.5%;width:44%;text-align:right}
+.ov-e-r .t-line{margin-top:1.4vw}
+.ov-e-r .t-num{margin-top:1.6vw}
+.ov-c{top:13%;left:4%;width:41%;text-align:center}
+.ov-c .t-line{text-align:left;margin-top:1.6vw}
+.ov-q{top:9%;left:5%;width:42%}
+.ov-q .t-line{margin-top:1.4vw}
 
 /* ============ характеристики ============ */
 .specs{position:relative;z-index:1;background:#fff;padding:clamp(60px,9vh,110px) clamp(20px,4vw,56px)}
@@ -296,6 +320,26 @@ a.fl:hover{color:var(--ink)}
   .menu-btn{display:flex}
   .m-menu{display:flex}
   .foot-grid{grid-template-columns:1fr;gap:34px}
+}
+/* узкие экраны: тексты обзора уходят под полосу, на тёмном фоне секции */
+@media (max-width:640px){
+  .ovl{position:static;width:auto;text-align:left;padding:14px 20px 6px}
+  .ovl.ov-h{position:absolute;padding:0;text-align:center}
+  .ov-e-tag{display:none!important}
+  .t-kick{font-size:10px}
+  .t-sub{font-size:9px}
+  .t-model{font-size:22px}
+  .t-big{font-size:14px}
+  .t-line{font-size:11.5px;line-height:1.9}
+  .t-num{font-size:22px}
+  .t-cap{font-size:9px}
+  .ov-s-nums{justify-content:flex-start;gap:30px;text-align:left}
+  .ov-s-comp,.ov-e-r,.ov-c{text-align:left}
+  .bar-row{justify-content:flex-start;gap:10px;margin-top:8px}
+  .bar{height:22px;font-size:11px}
+  .bar-ssd{width:36%}
+  .bar-hdd{width:62%}
+  .ov-e-r .t-line,.ov-e-r .t-num,.ov-c .t-line,.ov-q .t-line{margin-top:10px}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -358,7 +402,7 @@ a.fl:hover{color:var(--ink)}
 
 <header class="conf reveal" id="top">
   <figure class="conf-photo part">
-    <img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="617">
+    <img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="676">
   </figure>
   <div class="part">
     <p class="kicker">Внутренний SSD</p>
@@ -419,23 +463,49 @@ a.fl:hover{color:var(--ink)}
   <!-- кино-обзор -->
   <section class="film" id="overview" aria-label="Обзор">
     <div class="strip">
-      <img src="assets/sata-hero.jpg" alt="QOPP Q600S на тёмном столе" width="2200" height="884" loading="lazy">
+      <img src="assets/sata-hero.jpg" alt="QOPP Q600S на тёмном столе" width="2200" height="952" loading="lazy">
+      <div class="ovl ov-h" aria-hidden="true">
+        <span class="t-kick">Внутренний SSD</span>
+        <span class="t-sub">2.5" SATA III SSD</span>
+        <span class="t-model">Q600S</span>
+      </div>
     </div>
     <div class="strip">
-      <img src="assets/sata-speed.jpg" alt="Скорость чтения 515 МБ/с, записи 440 МБ/с: загрузка системы в 3 раза быстрее HDD" width="2200" height="1086" loading="lazy">
+      <img src="assets/sata-speed.jpg" alt="Скорость чтения 515 МБ/с, записи 440 МБ/с: загрузка системы в 3 раза быстрее HDD" width="2200" height="1028" loading="lazy">
+      <span class="ovl ov-s-title t-big" aria-hidden="true">В 3 раза быстрее загрузка<br>и работа системы</span>
+      <div class="ovl ov-s-nums" aria-hidden="true">
+        <span><span class="t-num">515<small>МБ/С</small></span><br><span class="t-cap">скорость чтения</span></span>
+        <span><span class="t-num">440<small>МБ/С</small></span><br><span class="t-cap">скорость записи</span></span>
+      </div>
+      <div class="ovl ov-s-comp" aria-hidden="true">
+        <span class="t-big">В 3 раза быстрее</span>
+        <div class="bar-row"><span class="bar-lab">SSD Q600S 2.5</span><div class="bar bar-ssd"><span>20 СЕК</span></div></div>
+        <div class="bar-row"><span class="bar-lab">HDD</span><div class="bar bar-hdd"><span>60 СЕК</span></div></div>
+      </div>
     </div>
     <div class="strip">
-      <img src="assets/sata-endure.jpg" alt="Время наработки на отказ 2 000 000 часов, поддержка циклической записи видео" width="2200" height="1022" loading="lazy">
-      <span class="ov ov-endure" aria-hidden="true">Быстрый апгрейд<br>для вашего устройства</span>
+      <img src="assets/sata-endure.jpg" alt="Время наработки на отказ 2 000 000 часов, поддержка циклической записи видео" width="2200" height="1070" loading="lazy">
+      <span class="ovl ov-e-tag ov-e-tag1" aria-hidden="true">&#9656; Время наработки на отказ</span>
+      <span class="ovl ov-e-tag ov-e-tag2" aria-hidden="true">&#9662; Ресурс TBW</span>
+      <div class="ovl ov-e-r" aria-hidden="true">
+        <span class="t-big">Быстрый апгрейд<br>для вашего устройства</span>
+        <p class="t-line">Поддержка Loop Recording<br>(циклическая запись видео в формате 4K)<br>Сохранение и просмотр без сбоев<br>Работа на любом видеорегистраторе</p>
+        <span class="t-num">2 000 000<small>Ч</small></span>
+      </div>
     </div>
     <div class="strip">
-      <img src="assets/sata-compat.jpg" alt="Совместимость с большинством ноутбуков и ПК" width="2200" height="732" loading="lazy">
-      <span class="ov ov-compat" aria-hidden="true">Дольше работа от батареи<br>у ноутбуков и портативных устройств</span>
+      <img src="assets/sata-compat.jpg" alt="Совместимость с большинством ноутбуков и ПК" width="2200" height="1070" loading="lazy">
+      <div class="ovl ov-c" aria-hidden="true">
+        <span class="t-big">Совместимость</span>
+        <p class="t-line">С большинством ноутбуков и ПК<br>Дольше работа от батареи у ноутбуков<br>и портативных устройств</p>
+      </div>
     </div>
     <div class="strip">
-      <img src="assets/sata-quiet.jpg" alt="Бесшумный, низкая температура, устойчивость к вибрациям и ударам" width="2200" height="1542" loading="lazy">
-      <span class="ov ov-quiet1" aria-hidden="true">Быстрый апгрейд<br>для вашего устройства</span>
-      <span class="ov ov-quiet2" aria-hidden="true">Тихий и выносливый</span>
+      <img src="assets/sata-quiet.jpg" alt="Бесшумный, низкая температура, устойчивость к вибрациям и ударам" width="2200" height="1188" loading="lazy">
+      <div class="ovl ov-q" aria-hidden="true">
+        <span class="t-big">Тихий и выносливый</span>
+        <p class="t-line">Бесшумный<br>Низкая температура<br>Устойчивость к вибрациям и ударам</p>
+      </div>
     </div>
     <div class="strip">
       <img src="assets/sata-quality.jpg" alt="Гарантия QOPP 5 лет" width="2200" height="1070" loading="lazy">
