@@ -141,7 +141,8 @@ nav{
   border-radius:999px;padding:6px;backdrop-filter:blur(14px);
   transition:background .45s var(--ease),box-shadow .45s var(--ease);
 }
-nav{transition:background .4s var(--ease)}
+nav{transition:transform .35s var(--ease),background .4s var(--ease)}
+nav.hide{transform:translateY(-100%)}
 nav.solid{background:rgba(246,246,247,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline)}
 nav.solid .menu-pill{background:#fff;box-shadow:0 8px 30px rgba(20,22,28,.08)}
 .mi{
@@ -157,12 +158,24 @@ a.mi{cursor:pointer;text-decoration:none}
 .conf{
   position:relative;z-index:1;
   max-width:1260px;margin:0 auto;
-  padding:clamp(100px,13vh,140px) clamp(20px,4vw,56px) clamp(30px,5vh,50px);
-  display:grid;grid-template-columns:1.18fr 1fr;gap:clamp(26px,4vw,56px);align-items:center;
+  min-height:calc(100svh - 160px);
+  padding:clamp(20px,4vh,44px) clamp(20px,4vw,56px) clamp(26px,4vh,44px);
+  display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(26px,4vw,56px);align-items:center;
 }
-.conf-photo{background:#f2f2f3;border-radius:18px;overflow:hidden;aspect-ratio:1.55;display:flex;align-items:center}
-.conf-photo img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .3s var(--ease)}
-.conf-photo img[data-ff="m2"]{object-fit:contain}
+.gallery{display:flex;flex-direction:column;gap:12px;min-width:0}
+.g-main{background:#f2f2f3;border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin:0}
+.g-main img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s var(--ease)}
+.g-main img.contain{object-fit:contain}
+.g-main img.swap{opacity:0}
+.g-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
+.g-th{
+  flex:none;width:74px;height:74px;border:1px solid var(--hairline);border-radius:10px;
+  background-color:#f2f2f3;background-size:cover;background-position:center;
+  cursor:pointer;padding:0;
+  transition:border-color .25s var(--ease),transform .25s var(--ease);
+}
+.g-th:hover{transform:translateY(-2px)}
+.g-th.on{border:2px solid var(--ink)}
 .conf-photo img.swap{opacity:0}
 .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 .conf-title{
@@ -213,23 +226,32 @@ a.mi{cursor:pointer;text-decoration:none}
 .soon svg{flex:none;opacity:.55}
 
 /* ============ прилипший бар вкладок ============ */
-.tabbar{
-  position:sticky;top:80px;z-index:55;
-  background:rgba(246,246,247,.96);backdrop-filter:blur(14px);
-  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+.pbar{
+  position:sticky;top:80px;z-index:55;margin-top:80px;
+  background:rgba(246,246,247,.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hairline);
+  transition:top .35s var(--ease);
 }
-.tabbar .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:9px clamp(16px,4vw,56px)}
-.tabs{display:flex;gap:6px;overflow-x:auto}
+body.nav-hidden .pbar{top:0}
+.pbar-top{
+  max-width:1260px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:10px clamp(16px,4vw,56px) 6px;
+}
+.pbar-name{display:flex;align-items:baseline;gap:14px;min-width:0}
+.pbar-name b{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.06em}
+.pbar-name span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbar-tabs{max-width:1260px;margin:0 auto;display:flex;gap:30px;padding:0 clamp(16px,4vw,56px);overflow-x:auto}
 .tab{
-  flex:none;font-family:var(--body);font-size:13.5px;font-weight:600;letter-spacing:.02em;
+  flex:none;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;
   color:var(--muted);text-decoration:none;
-  padding:8px 18px;border-radius:999px;
-  transition:color .25s var(--ease),background .25s var(--ease);
+  padding:8px 0 11px;border-bottom:2px solid transparent;
+  transition:color .25s var(--ease),border-color .25s var(--ease);
 }
 .tab:hover{color:var(--ink)}
-.tab.on{background:var(--ink);color:#fff}
+.tab.on{color:var(--ink);border-color:var(--ink)}
 .tab.dis{opacity:.45;cursor:default}
 .tab.dis:hover{color:var(--muted)}
+.pbar .pbtn-blue{padding:10px 28px;font-size:12.5px;flex:none}
 
 /* ============ кино-обзор ============ */
 .film{position:relative;z-index:1;background:#050505}
@@ -313,13 +335,19 @@ a.fl:hover{color:var(--ink)}
 
 /* ============ mobile ============ */
 @media (max-width:860px){
-  .conf{grid-template-columns:1fr;padding-top:96px}
+  .conf{grid-template-columns:1fr;padding-top:10px}
   .conf-title{white-space:normal;font-size:clamp(32px,9vw,44px)}
   .lab{width:100%}
   .spec{grid-template-columns:1fr;gap:2px}
 }
 @media (max-width:720px){
-  .tabbar{top:58px}
+  .pbar{top:58px;margin-top:58px}
+  .pbar-name b{font-size:16px}
+  .pbar-name span{font-size:10px}
+  .pbar .pbtn-blue{padding:8px 18px;font-size:11px}
+  .pbar-tabs{gap:20px}
+  .conf{min-height:auto}
+  .g-th{width:58px;height:58px}
   nav{padding:12px 16px}
   .menu-pill{display:none}
   .logo img{height:34px}
@@ -406,10 +434,26 @@ a.fl:hover{color:var(--ink)}
   <a class="mi" href="about.html">О компании</a>
 </div>
 
+<div class="pbar" id="pbar">
+  <div class="pbar-top">
+    <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
+    <span class="pbtn pbtn-blue" aria-disabled="true">Где купить</span>
+  </div>
+  <div class="pbar-tabs">
+    <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
+    <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
+    <span class="tab dis">Отзывы</span>
+    <span class="tab dis">Купить</span>
+  </div>
+</div>
+
 <header class="conf reveal" id="top">
-  <figure class="conf-photo part">
-    <img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="676">
-  </figure>
+  <div class="gallery part">
+    <figure class="g-main">
+      <img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="676">
+    </figure>
+    <div class="g-thumbs" id="g-thumbs" aria-label="Фотографии продукта"></div>
+  </div>
   <div class="part">
     <p class="kicker">Внутренний SSD</p>
     <h1 class="conf-title"><span id="t-main">Q600S</span> <span class="alt" id="t-alt">| Q500S</span></h1>
@@ -440,7 +484,6 @@ a.fl:hover{color:var(--ink)}
       </div>
     </div>
     <div class="conf-acts">
-      <span class="pbtn pbtn-blue" aria-disabled="true">Где купить</span>
       <span class="soon">
         <svg width="22" height="26" viewBox="0 0 360 400" aria-hidden="true"><circle cx="150" cy="150" r="119" fill="none" stroke="currentColor" stroke-width="52"/><path d="M254 233 L318 361 L185 292 Z" fill="currentColor"/></svg>
         Скоро доступно<br>для заказа на сайте
@@ -448,17 +491,6 @@ a.fl:hover{color:var(--ink)}
     </div>
   </div>
 </header>
-
-<div class="tabbar" id="tabbar">
-  <div class="in">
-    <div class="tabs">
-      <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
-      <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
-      <span class="tab dis">Отзывы</span>
-      <span class="tab dis">Купить</span>
-    </div>
-  </div>
-</div>
 
 <main id="main" tabindex="-1">
 
@@ -596,6 +628,46 @@ const FF={
 };
 const state={model:'Q600S',cap:'128 ГБ'};
 const confImg=document.getElementById('conf-img');
+/* галерея: наборы кадров по разъёму */
+const GAL={
+  '25':[
+    {src:'assets/sata-conf-25.jpg',fit:'cover'},
+    {src:'assets/gal-25-white.jpg',fit:'cover'},
+    {src:'assets/gal-25-blue.jpg',fit:'cover'},
+    {src:'assets/gal-25-key.jpg',fit:'cover'}
+  ],
+  'm2':[
+    {src:'assets/sata-conf-m2.jpg',fit:'contain'},
+    {src:'assets/gal-m2-white.jpg',fit:'cover'}
+  ]
+};
+const thumbsEl=document.getElementById('g-thumbs');
+let galFF=null,galIx=0;
+function showFrame(i){
+  galIx=i;
+  const fr=GAL[galFF][i];
+  confImg.classList.add('swap');
+  setTimeout(function(){
+    confImg.src=fr.src;
+    confImg.classList.toggle('contain',fr.fit==='contain');
+    confImg.classList.remove('swap');
+  },140);
+  Array.prototype.forEach.call(thumbsEl.children,function(b,n){b.classList.toggle('on',n===i)});
+}
+function setGallery(ff){
+  if(galFF===ff)return;
+  galFF=ff;
+  thumbsEl.innerHTML='';
+  GAL[ff].forEach(function(fr,i){
+    const b=document.createElement('button');
+    b.className='g-th'+(i===0?' on':'');
+    b.style.backgroundImage="url('"+fr.src+"')";
+    b.setAttribute('aria-label','Фото '+(i+1));
+    b.addEventListener('click',function(){showFrame(i)});
+    thumbsEl.appendChild(b);
+  });
+  showFrame(0);
+}
 
 function modelsOf(ff){return Object.keys(DATA).filter(m=>DATA[m].ff===ff)}
 function render(){
@@ -617,16 +689,12 @@ function render(){
   const others=modelsOf(ff).filter(m=>m!==state.model);
   document.getElementById('t-alt').textContent=others.length?('| '+others.join(' | ')):'';
   document.getElementById('conf-sub').textContent=FF[ff].label;
-  /* фото со сменой разъёма */
-  if(!confImg.dataset.ff||confImg.dataset.ff!==ff){
-    confImg.dataset.ff=ff;
-    confImg.classList.add('swap');
-    setTimeout(()=>{
-      confImg.src=FF[ff].img;
-      confImg.alt=FF[ff].alt25;
-      confImg.classList.remove('swap');
-    },160);
-  }
+  /* галерея со сменой разъёма */
+  setGallery(ff);
+  confImg.alt=FF[ff].alt25;
+  /* бар товара */
+  document.getElementById('bar-model').textContent=state.model;
+  document.getElementById('bar-sub').textContent=FF[ff].label+' · '+state.cap;
   /* характеристики */
   document.getElementById('s-model').textContent=state.model;
   document.getElementById('s-cap').textContent=state.cap;
@@ -675,10 +743,18 @@ function spy(){
 }
 addEventListener('scroll',spy,{passive:true});
 
-/* ============ общий каркас ============ */
+/* ============ общий каркас: шапка прячется вниз, возвращается вверх ============ */
+let lastY=0;
 addEventListener('scroll',()=>{
-  const solid=scrollY>60;
+  const y=scrollY;
+  const solid=y>60;
   if(solid!==navEl.classList.contains('solid'))navEl.classList.toggle('solid',solid);
+  if(y>140&&y>lastY+4){
+    navEl.classList.add('hide');document.body.classList.add('nav-hidden');
+  }else if(y<lastY-4||y<=140){
+    navEl.classList.remove('hide');document.body.classList.remove('nav-hidden');
+  }
+  lastY=y;
 },{passive:true});
 
 const io=new IntersectionObserver(es=>{
