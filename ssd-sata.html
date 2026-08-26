@@ -102,7 +102,7 @@ nav{
 .m-menu .mi:hover{color:var(--ink)}
 .cat-drop{
   position:fixed;top:74px;left:50%;transform:translate(-50%,-10px);z-index:59;
-  width:min(560px,94vw);background:#fff;border-radius:26px;padding:10px 0;
+  width:min(560px,94vw);background:#fff;border-radius:26px;padding:10px 8px;
   box-shadow:0 22px 70px rgba(20,22,28,.22);
   display:none;flex-direction:column;
   opacity:0;pointer-events:none;
@@ -111,7 +111,7 @@ nav{
 .cat-drop.open{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .cd-item{
   display:flex;justify-content:space-between;align-items:center;
-  padding:16px 30px;font-size:17px;font-weight:500;color:var(--ink);cursor:pointer;
+  padding:16px 22px;font-size:17px;font-weight:500;color:var(--ink);cursor:pointer;border-radius:16px;
   text-decoration:none;
   transition:background .25s var(--ease);
 }
@@ -141,7 +141,9 @@ nav{
   border-radius:999px;padding:6px;backdrop-filter:blur(14px);
   transition:background .45s var(--ease),box-shadow .45s var(--ease);
 }
-nav.solid .menu-pill{background:rgba(255,255,255,.82);box-shadow:0 8px 30px rgba(20,22,28,.08)}
+nav{transition:background .4s var(--ease)}
+nav.solid{background:rgba(246,246,247,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline)}
+nav.solid .menu-pill{background:#fff;box-shadow:0 8px 30px rgba(20,22,28,.08)}
 .mi{
   font-size:14px;font-weight:500;letter-spacing:.03em;color:var(--muted);
   padding:9px 22px;border-radius:999px;cursor:default;user-select:none;
@@ -154,12 +156,13 @@ a.mi{cursor:pointer;text-decoration:none}
 /* ============ конфигуратор ============ */
 .conf{
   position:relative;z-index:1;
-  max-width:1200px;margin:0 auto;
+  max-width:1260px;margin:0 auto;
   padding:clamp(100px,13vh,140px) clamp(20px,4vw,56px) clamp(30px,5vh,50px);
-  display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(26px,4vw,56px);align-items:center;
+  display:grid;grid-template-columns:1.18fr 1fr;gap:clamp(26px,4vw,56px);align-items:center;
 }
-.conf-photo{background:#f1f1f2;border-radius:18px;overflow:hidden}
-.conf-photo img{width:100%;height:auto;display:block;transition:opacity .3s var(--ease)}
+.conf-photo{background:#f2f2f3;border-radius:18px;overflow:hidden;aspect-ratio:1.55;display:flex;align-items:center}
+.conf-photo img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .3s var(--ease)}
+.conf-photo img[data-ff="m2"]{object-fit:contain}
 .conf-photo img.swap{opacity:0}
 .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 .conf-title{
@@ -192,6 +195,14 @@ a.mi{cursor:pointer;text-decoration:none}
 .pbtn:hover{background:#272b34;transform:translateY(-2px);box-shadow:0 10px 28px rgba(20,22,28,.18)}
 .pbtn-gold{color:var(--ink);background:var(--accent);border-color:var(--accent)}
 .pbtn-gold:hover{background:#f0bc66;border-color:#f0bc66;box-shadow:0 10px 28px rgba(227,169,79,.35)}
+.pbtn-blue{
+  color:#fff;border-color:#2f80ed;border-radius:10px;
+  font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 36px;
+  background:#2f80ed linear-gradient(#1b66cc,#1b66cc) no-repeat left/0% 100%;
+  transition:background-size .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease);
+}
+.pbtn-blue:hover{background-size:100% 100%;transform:translateY(-2px);box-shadow:0 10px 28px rgba(47,128,237,.4)}
 .pbtn[aria-disabled="true"]{cursor:default}
 .soon{
   display:inline-flex;align-items:center;gap:12px;
@@ -203,17 +214,11 @@ a.mi{cursor:pointer;text-decoration:none}
 
 /* ============ прилипший бар вкладок ============ */
 .tabbar{
-  position:sticky;top:0;z-index:61;
+  position:sticky;top:80px;z-index:55;
   background:rgba(246,246,247,.96);backdrop-filter:blur(14px);
   border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
 }
-.tabbar .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px clamp(16px,4vw,56px)}
-.tab-brand{
-  display:inline-flex;align-items:center;gap:10px;flex:none;
-  font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.1em;
-  color:var(--ink);text-decoration:none;
-}
-.tab-brand svg{color:var(--ink)}
+.tabbar .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:9px clamp(16px,4vw,56px)}
 .tabs{display:flex;gap:6px;overflow-x:auto}
 .tab{
   flex:none;font-family:var(--body);font-size:13.5px;font-weight:600;letter-spacing:.02em;
@@ -314,6 +319,7 @@ a.fl:hover{color:var(--ink)}
   .spec{grid-template-columns:1fr;gap:2px}
 }
 @media (max-width:720px){
+  .tabbar{top:58px}
   nav{padding:12px 16px}
   .menu-pill{display:none}
   .logo img{height:34px}
@@ -434,7 +440,7 @@ a.fl:hover{color:var(--ink)}
       </div>
     </div>
     <div class="conf-acts">
-      <span class="pbtn pbtn-gold" aria-disabled="true">Где купить</span>
+      <span class="pbtn pbtn-blue" aria-disabled="true">Где купить</span>
       <span class="soon">
         <svg width="22" height="26" viewBox="0 0 360 400" aria-hidden="true"><circle cx="150" cy="150" r="119" fill="none" stroke="currentColor" stroke-width="52"/><path d="M254 233 L318 361 L185 292 Z" fill="currentColor"/></svg>
         Скоро доступно<br>для заказа на сайте
@@ -445,10 +451,6 @@ a.fl:hover{color:var(--ink)}
 
 <div class="tabbar" id="tabbar">
   <div class="in">
-    <a class="tab-brand" href="#top">
-      <svg width="16" height="19" viewBox="0 0 360 400" aria-hidden="true"><circle cx="150" cy="150" r="119" fill="none" stroke="currentColor" stroke-width="52"/><path d="M254 233 L318 361 L185 292 Z" fill="currentColor"/></svg>
-      SSD SATA
-    </a>
     <div class="tabs">
       <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
       <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
