@@ -129,8 +129,8 @@ nav.light .logo img{filter:invert(1) brightness(.15) drop-shadow(0 1px 3px rgba(
 .mm-sub{background:#f6f6f7}
 .mm-si{display:block;padding:14px 24px 14px 40px;font-size:15.5px;font-weight:500;color:#3c4046;cursor:pointer}
 .mm-si+.mm-si{border-top:1px solid rgba(20,22,28,.05)}
-#mm-catalog::after{transition:transform .3s var(--ease)}
-#mm-catalog.open::after{transform:rotate(90deg)}
+#mm-catalog::after,#mm-contacts::after{transition:transform .3s var(--ease)}
+#mm-catalog.open::after,#mm-contacts.open::after{transform:rotate(90deg)}
 .to-top{
   position:fixed;right:clamp(16px,2.5vw,28px);bottom:clamp(18px,3vh,30px);z-index:58;
   width:50px;height:50px;border-radius:50%;
@@ -387,19 +387,24 @@ main{position:relative;z-index:2;background:var(--canvas)}
   <div class="menu-pill">
     <a class="mi" id="mi-catalog">Каталог</a>
     <a class="mi" href="warranty.html">Гарантия</a>
-    <span class="mi">Контакты</span>
-    <span class="mi">О компании</span>
+    <a class="mi" id="mi-contacts">Контакты</a>
+    <a class="mi" href="about.html">О компании</a>
   </div>
   <button class="menu-btn" aria-expanded="false" aria-controls="m-menu">Меню
     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 </nav>
 <div class="cat-drop" id="cat-drop" aria-label="Категории каталога">
-  <span class="cd-item">Внутренние SSD</span>
+  <a class="cd-item" href="ssd.html" style="text-decoration:none">Внутренние SSD</a>
   <span class="cd-item">Оперативная память</span>
   <span class="cd-item">Карты памяти</span>
   <span class="cd-item">Флеш-накопители</span>
   <span class="cd-item">Ноутбуки</span>
+</div>
+<div class="cat-drop" id="contact-drop" aria-label="Контакты">
+  <span class="cd-item">Поддержка</span>
+  <span class="cd-item">Сотрудничество</span>
+  <span class="cd-item">Вопросы и ответы</span>
 </div>
 <button class="to-top" id="to-top" aria-label="Наверх">
   <svg width="20" height="20" viewBox="0 0 22 30" fill="none" aria-hidden="true"><path d="M11 26V8m0 0 7 7m-7-7-7 7" stroke="#e3a94f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -407,15 +412,20 @@ main{position:relative;z-index:2;background:var(--canvas)}
 <div class="m-menu" id="m-menu">
   <a class="mi" id="mm-catalog">Каталог</a>
   <div class="mm-sub" hidden>
-    <span class="mm-si">Внутренние SSD</span>
+    <a class="mm-si" href="ssd.html" style="text-decoration:none">Внутренние SSD</a>
     <span class="mm-si">Оперативная память</span>
     <span class="mm-si">Карты памяти</span>
     <span class="mm-si">Флеш-накопители</span>
     <span class="mm-si">Ноутбуки</span>
   </div>
   <a class="mi" href="warranty.html">Гарантия</a>
-  <span class="mi">Контакты</span>
-  <span class="mi">О компании</span>
+  <a class="mi" id="mm-contacts">Контакты</a>
+  <div class="mm-sub" hidden>
+    <span class="mm-si">Поддержка</span>
+    <span class="mm-si">Сотрудничество</span>
+    <span class="mm-si">Вопросы и ответы</span>
+  </div>
+  <a class="mi" href="about.html">О компании</a>
 </div>
 
 <header class="hero" id="top">
@@ -495,7 +505,7 @@ main{position:relative;z-index:2;background:var(--canvas)}
     </div>
     <div class="foot-col">
       <h3>Покупателю</h3>
-      <span class="fl">О компании</span>
+      <a class="fl" href="about.html">О компании</a>
       <span class="fl">Продукция</span>
       <span class="fl">Поддержка</span>
       <span class="fl">Гарантия</span>
@@ -865,26 +875,31 @@ toTop.addEventListener('click',()=>{
 });
 
 /* ============ каталог: наведение и мобильное раскрытие ============ */
-const miCatalog=document.getElementById('mi-catalog');
-const catDrop=document.getElementById('cat-drop');
-if(miCatalog&&catDrop&&matchMedia('(min-width:721px) and (hover:hover)').matches){
+function hoverDrop(tid,did){
+  const t=document.getElementById(tid),d=document.getElementById(did);
+  if(!t||!d||!matchMedia('(min-width:721px) and (hover:hover)').matches)return;
   let closeT=null;
-  const openDrop=()=>{clearTimeout(closeT);catDrop.classList.add('open');miCatalog.classList.add('hot')};
-  const closeDrop=()=>{closeT=setTimeout(()=>{catDrop.classList.remove('open');miCatalog.classList.remove('hot')},160)};
-  miCatalog.addEventListener('mouseenter',openDrop);
-  miCatalog.addEventListener('mouseleave',closeDrop);
-  catDrop.addEventListener('mouseenter',openDrop);
-  catDrop.addEventListener('mouseleave',closeDrop);
-  addEventListener('scroll',()=>{if(catDrop.classList.contains('open'))closeDrop()},{passive:true});
+  const open=()=>{clearTimeout(closeT);d.classList.add('open')};
+  const close=()=>{closeT=setTimeout(()=>d.classList.remove('open'),160)};
+  t.addEventListener('mouseenter',open);
+  t.addEventListener('mouseleave',close);
+  d.addEventListener('mouseenter',open);
+  d.addEventListener('mouseleave',close);
+  addEventListener('scroll',()=>{if(d.classList.contains('open'))close()},{passive:true});
 }
-const mmCatalog=document.getElementById('mm-catalog');
-if(mmCatalog){
-  const sub=document.querySelector('.mm-sub');
-  mmCatalog.addEventListener('click',()=>{
+hoverDrop('mi-catalog','cat-drop');
+hoverDrop('mi-contacts','contact-drop');
+function subToggle(tid){
+  const t=document.getElementById(tid);
+  if(!t)return;
+  const sub=t.nextElementSibling;
+  t.addEventListener('click',()=>{
     sub.hidden=!sub.hidden;
-    mmCatalog.classList.toggle('open',!sub.hidden);
+    t.classList.toggle('open',!sub.hidden);
   });
 }
+subToggle('mm-catalog');
+subToggle('mm-contacts');
 
 /* ============ шапка над белой зоной ============ */
 let footerInView=false;

@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О компании. QOPP</title>
+<meta name="description" content="QOPP: российский бренд накопителей и памяти. Качество по умолчанию: делать, объяснять, отвечать. Гарантия, сервис и поддержка рядом с покупателем.">
+<meta name="theme-color" content="#f6f6f7">
+<!-- DEPLOY STEP: заменить og:url и og:image на абсолютные адреса живого сайта перед публикацией -->
+<meta property="og:title" content="О компании. QOPP">
+<meta property="og:description" content="Качество по умолчанию: делать, объяснять, отвечать">
+<meta property="og:url" content="/about.html">
+<meta property="og:image" content="/assets/about-dark.jpg">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101216"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="%23e3a94f" text-anchor="middle">Q</text></svg>'>
+<link rel="preload" href="assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* фирменный Montserrat, свой хостинг */
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+/* ============ tokens: белый мир каталога ============ */
+:root{
+  --canvas:#f6f6f7;
+  --panel:#ececee;
+  --ink:#14161c;
+  --muted:#5b6068;
+  --silver:#8b9098;
+  --accent:#e3a94f;
+  --accent-deep:#b8863b;
+  --accent-muted:rgba(227,169,79,.16);
+  --hairline:rgba(20,22,28,.1);
+  --ease:cubic-bezier(.22,.61,.2,1);
+  --display:'Montserrat',sans-serif;
+  --body:'Montserrat',sans-serif;
+  --mono:'Montserrat',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth}
+body{
+  background:var(--canvas);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+/* ============ environment layer ============ */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none}
+.env .dust{
+  position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse 40% 30% at 22% 26%,rgba(227,169,79,.05),transparent 70%),
+    radial-gradient(ellipse 36% 28% at 80% 68%,rgba(120,140,190,.05),transparent 70%);
+  animation:envdrift 96s var(--ease) -18s infinite alternate;
+}
+@keyframes envdrift{
+  from{transform:translate3d(-1.5%,-1%,0) scale(1)}
+  to{transform:translate3d(1.5%,1.5%,0) scale(1.06)}
+}
+
+/* ============ skip link, nav ============ */
+.skip{position:fixed;left:12px;top:-64px;z-index:100;background:#fff;color:var(--ink);padding:10px 16px;border-radius:10px;box-shadow:0 6px 24px rgba(20,22,28,.14);transition:top .25s var(--ease)}
+.skip:focus-visible{top:12px}
+:focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px;border-radius:4px}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:16px clamp(20px,4vw,56px);
+}
+.logo{display:block;justify-self:start}
+.logo img{height:48px;width:auto;display:block;filter:invert(1) brightness(.15) drop-shadow(0 1px 3px rgba(255,255,255,.4))}
+.menu-btn{
+  display:none;grid-column:3;justify-self:end;
+  align-items:center;gap:8px;
+  background:#fff;color:var(--ink);border:0;cursor:pointer;
+  font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:.01em;
+  padding:11px 22px;border-radius:999px;
+  box-shadow:0 4px 18px rgba(20,22,28,.16);
+}
+.menu-btn svg{transition:transform .3s var(--ease)}
+.menu-btn.x svg{transform:rotate(180deg)}
+.m-menu{
+  position:fixed;top:70px;left:14px;right:14px;z-index:59;
+  display:none;flex-direction:column;
+  background:#fff;border-radius:24px;padding:6px 0;
+  box-shadow:0 18px 60px rgba(20,22,28,.24);
+  opacity:0;transform:translateY(-10px);pointer-events:none;
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.m-menu.open{opacity:1;transform:none;pointer-events:auto}
+.m-menu .mi{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:19px 24px;font-size:17px;font-weight:500;color:var(--ink);letter-spacing:0;
+}
+.m-menu .mi::after{content:"›";font-size:22px;line-height:1;color:rgba(20,22,28,.75);font-weight:400}
+.m-menu .mi+.mi{border-top:1px solid rgba(20,22,28,.08)}
+.m-menu .mi:hover{color:var(--ink)}
+.cat-drop{
+  position:fixed;top:74px;left:50%;transform:translate(-50%,-10px);z-index:59;
+  width:min(560px,94vw);background:#fff;border-radius:26px;padding:10px 0;
+  box-shadow:0 22px 70px rgba(20,22,28,.22);
+  display:none;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s var(--ease),transform .28s var(--ease);
+}
+.cat-drop.open{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.cd-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 30px;font-size:17px;font-weight:500;color:var(--ink);cursor:pointer;
+  text-decoration:none;
+  transition:background .25s var(--ease);
+}
+.cd-item::after{content:"\203A";font-size:22px;line-height:1;color:rgba(20,22,28,.55)}
+.cd-item:hover{background:#f4f4f6}
+.cd-item+.cd-item{border-top:1px solid rgba(20,22,28,.06)}
+@media (min-width:721px) and (hover:hover){.cat-drop{display:flex}}
+.mm-sub{background:#f6f6f7}
+.mm-si{display:block;padding:14px 24px 14px 40px;font-size:15.5px;font-weight:500;color:#3c4046;cursor:pointer;text-decoration:none}
+.mm-si+.mm-si{border-top:1px solid rgba(20,22,28,.05)}
+#mm-catalog::after,#mm-contacts::after{transition:transform .3s var(--ease)}
+#mm-catalog.open::after,#mm-contacts.open::after{transform:rotate(90deg)}
+.to-top{
+  position:fixed;right:clamp(16px,2.5vw,28px);bottom:clamp(18px,3vh,30px);z-index:58;
+  width:50px;height:50px;border-radius:50%;
+  background:rgba(255,255,255,.7);border:1px solid rgba(20,22,28,.14);
+  backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s var(--ease);
+}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:#fff}
+.menu-pill{
+  grid-column:2;display:flex;gap:4px;
+  background:rgba(255,255,255,.5);border:1px solid rgba(20,22,28,.08);
+  border-radius:999px;padding:6px;backdrop-filter:blur(14px);
+  transition:background .45s var(--ease),box-shadow .45s var(--ease);
+}
+nav.solid .menu-pill{background:rgba(255,255,255,.82);box-shadow:0 8px 30px rgba(20,22,28,.08)}
+.mi{
+  font-size:14px;font-weight:500;letter-spacing:.03em;color:var(--muted);
+  padding:9px 22px;border-radius:999px;cursor:default;user-select:none;
+  transition:color .3s var(--ease),background .3s var(--ease);
+}
+.mi:hover{color:var(--ink)}
+a.mi{cursor:pointer;text-decoration:none}
+.mi.active{color:var(--ink);background:var(--accent-muted)}
+
+/* ============ hero ============ */
+.a-hero{
+  position:relative;z-index:1;
+  min-height:86vh;min-height:86svh;
+  display:flex;align-items:center;
+  padding:clamp(110px,16vh,170px) clamp(20px,6vw,80px) clamp(50px,8vh,90px);
+  background:linear-gradient(180deg,#fbfbfc 0%,var(--canvas) 100%);
+  overflow:hidden;
+}
+.a-hero .inner{position:relative;max-width:1160px;margin:0 auto;width:100%}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--accent-deep)}
+.a-hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(38px,6.4vw,88px);letter-spacing:.01em;line-height:1.04;
+  margin-top:20px;max-width:12ch;
+}
+.a-hero .sub{
+  color:var(--muted);font-size:clamp(15px,1.7vw,19px);
+  margin-top:26px;max-width:52ch;
+}
+.a-hero .sub b{color:var(--ink);font-weight:600}
+/* фирменная Q: рисуется при загрузке */
+.q-mark{
+  position:absolute;right:-2%;top:50%;transform:translateY(-52%);
+  width:clamp(260px,34vw,520px);height:auto;pointer-events:none;
+}
+.q-mark .ring{
+  fill:none;stroke:var(--ink);stroke-width:52;opacity:.08;
+  stroke-dasharray:748;stroke-dashoffset:748;
+  animation:qdraw 2.2s var(--ease) .3s forwards;
+}
+.q-mark .tail{fill:var(--ink);opacity:0;animation:qtail .8s var(--ease) 2s forwards}
+.q-mark .spark{
+  fill:none;stroke:var(--accent);stroke-width:52;opacity:.9;
+  stroke-dasharray:64 684;stroke-dashoffset:748;
+  animation:qspark 7s linear 2.6s infinite;
+}
+@keyframes qdraw{to{stroke-dashoffset:0}}
+@keyframes qtail{to{opacity:.08}}
+@keyframes qspark{from{stroke-dashoffset:816}to{stroke-dashoffset:0}}
+
+/* ============ layout ============ */
+main{position:relative;z-index:1}
+.section{max-width:1160px;margin:0 auto;padding:clamp(70px,10vh,120px) clamp(20px,4vw,56px)}
+.section-head{max-width:680px;margin-bottom:clamp(28px,5vh,46px)}
+.section-head h2{font-family:var(--display);font-weight:700;font-size:clamp(27px,3.6vw,44px);letter-spacing:.01em;margin-top:14px;line-height:1.18}
+.section-head .lede{color:var(--muted);margin-top:14px}
+
+/* reveal */
+.reveal .part{opacity:0;transform:translateY(22px)}
+.reveal.in .part{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in .part:nth-child(2){transition-delay:.09s}
+.reveal.in .part:nth-child(3){transition-delay:.18s}
+.reveal.in .part:nth-child(4){transition-delay:.27s}
+.reveal.in .part:nth-child(5){transition-delay:.36s}
+.reveal.in .part:nth-child(6){transition-delay:.45s}
+.reveal.done .part,.reveal.done .part:nth-child(2),.reveal.done .part:nth-child(3),.reveal.done .part:nth-child(4),.reveal.done .part:nth-child(5),.reveal.done .part:nth-child(6){transition-delay:0s}
+
+/* ============ кто мы ============ */
+.who p{color:var(--muted);max-width:72ch}
+.who p b{color:var(--ink);font-weight:600}
+.who p+p{margin-top:16px}
+.who p:first-of-type{color:var(--ink);font-size:clamp(17px,2vw,21px);line-height:1.6}
+.pull{
+  margin-top:36px;padding:26px 30px;max-width:560px;
+  background:#fff;border-left:3px solid var(--accent);border-radius:0 16px 16px 0;
+  font-family:var(--display);font-weight:600;font-size:clamp(17px,2vw,21px);line-height:1.45;
+}
+
+/* ============ три обещания ============ */
+.vows{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vow{
+  background:#fff;border:1px solid var(--hairline);border-radius:18px;
+  padding:clamp(24px,3vw,36px);position:relative;overflow:hidden;
+}
+.vow::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-muted),transparent)}
+.vow .num{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;color:var(--accent-deep)}
+.vow h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);margin-top:12px}
+.vow p{color:var(--muted);font-size:15px;margin-top:10px}
+
+/* ============ тёмная полоса ============ */
+.dark-strip{
+  position:relative;z-index:1;overflow:hidden;
+  background:#0b0a08;
+  padding:clamp(90px,16vh,180px) clamp(20px,6vw,80px);
+}
+.ds-photo{
+  position:absolute;right:0;top:0;height:100%;width:64%;
+  object-fit:cover;object-position:center;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 38%);
+  mask-image:linear-gradient(to right,transparent,#000 38%);
+}
+.dark-strip .inner{position:relative;max-width:1160px;margin:0 auto}
+@media (max-width:860px){
+  .ds-photo{width:100%;opacity:.42;-webkit-mask-image:none;mask-image:none}
+}
+.dark-strip .kicker{color:var(--accent)}
+.dark-strip h2{
+  font-family:var(--display);font-weight:700;color:#f2f0ea;
+  font-size:clamp(24px,3.4vw,42px);line-height:1.22;margin-top:14px;max-width:20ch;
+  text-shadow:0 2px 18px rgba(0,0,0,.6);
+}
+.dark-strip p{color:rgba(242,240,234,.75);margin-top:14px;max-width:44ch;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+
+/* ============ философия ============ */
+.philo{background:#fff}
+.philo-q{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(26px,4.2vw,54px);line-height:1.12;letter-spacing:.01em;max-width:16ch;
+}
+.philo-q em{font-style:normal;color:var(--accent-deep)}
+.philo .note{color:var(--muted);margin-top:18px;max-width:64ch}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(30px,5vh,46px)}
+.pillar{border-top:2px solid var(--ink);padding-top:18px}
+.pillar h3{font-family:var(--display);font-weight:700;font-size:19px}
+.pillar p{color:var(--muted);font-size:15px;margin-top:10px}
+
+/* ============ ценности ============ */
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.val{
+  background:#fff;border:1px solid var(--hairline);border-radius:18px;
+  padding:clamp(22px,2.6vw,32px);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.val:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(20,22,28,.08)}
+.val .tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep)}
+.val h3{font-family:var(--display);font-weight:700;font-size:20px;margin-top:10px}
+.val p{color:var(--muted);font-size:14.5px;margin-top:10px}
+
+/* ============ цифры ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:#fff;border:1px solid var(--hairline);border-radius:18px;padding:clamp(22px,2.6vw,32px)}
+.stat .num{font-family:var(--display);font-weight:800;color:var(--accent-deep);font-size:clamp(24px,2.6vw,34px);line-height:1.1}
+.stat .lbl{font-weight:600;margin-top:8px;font-size:15px}
+.stat .fine{color:var(--muted);font-size:13.5px;margin-top:6px}
+
+/* ============ доказательства ============ */
+.proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.proof{border-top:1px solid var(--hairline);padding-top:18px}
+.proof h3{font-family:var(--display);font-weight:700;font-size:17px;display:flex;align-items:baseline;gap:10px}
+.proof h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;align-self:center}
+.proof p{color:var(--muted);font-size:14.5px;margin-top:8px}
+
+/* ============ люди ============ */
+.people{
+  background:#fff;border:1px solid var(--hairline);border-radius:22px;
+  padding:clamp(30px,4.5vw,54px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;
+}
+.people h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,36px);line-height:1.2}
+.people .lede{color:var(--muted);margin-top:14px}
+.teams{list-style:none}
+.teams li{display:flex;gap:16px;align-items:baseline;padding:14px 0}
+.teams li+li{border-top:1px solid var(--hairline)}
+.teams .where{flex:none;width:110px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
+.teams p{color:var(--muted);font-size:15px}
+.one-rule{margin-top:18px;font-weight:600;font-size:15px}
+
+/* ============ финал ============ */
+.final{text-align:center}
+.final h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,52px);line-height:1.12}
+.final .lede{color:var(--muted);margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto}
+.final .promise{margin-top:26px;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
+.act-row{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.pbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--body);font-weight:600;font-size:13.5px;letter-spacing:.02em;
+  color:#fff;background:var(--ink);text-decoration:none;
+  padding:9px 20px;border-radius:999px;border:1px solid var(--ink);white-space:nowrap;
+  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.pbtn svg{transition:transform .35s var(--ease)}
+.pbtn:hover{background:#272b34;transform:translateY(-2px);box-shadow:0 10px 28px rgba(20,22,28,.18)}
+.pbtn:hover svg{transform:translateX(4px)}
+.pbtn-gold{color:var(--ink);background:var(--accent);border-color:var(--accent)}
+.pbtn-gold:hover{background:#f0bc66;border-color:#f0bc66;box-shadow:0 10px 28px rgba(227,169,79,.35)}
+
+/* ============ подвал ============ */
+.site-footer{background:var(--canvas);color:var(--ink);position:relative;z-index:2;padding:clamp(40px,7vh,84px) clamp(20px,5vw,72px) 28px;border-top:1px solid var(--hairline)}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,5vw,80px);max-width:1200px;margin:0 auto}
+.foot-col h3{font-size:15px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+.foot-lede{font-size:14.5px;color:var(--muted);max-width:34ch;margin-bottom:16px}
+.foot-col .fl{display:block;font-size:15px;color:#3c4046;padding:7px 0;cursor:default;text-decoration:none}
+a.fl{cursor:pointer}
+a.fl:hover{color:var(--ink)}
+.fl.current{color:var(--accent-deep)}
+.coop-form input:not([type=checkbox]){display:block;width:100%;max-width:300px;font-family:var(--body);font-size:14px;color:var(--ink);background:#fff;border:1px solid #cfd2d7;border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.coop-form input::placeholder{color:#9aa0a8}
+.coop-form input:focus-visible{outline:2px solid var(--accent-deep);outline-offset:1px}
+.foot-btn{display:block;width:100%;max-width:300px;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--ink);border-radius:6px;padding:10px 12px;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease)}
+.foot-btn:hover{background:var(--ink);color:#fff}
+.agree{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);margin-top:10px}
+.agree input{width:auto;margin:0;accent-color:var(--ink)}
+.form-done{margin-top:12px;font-size:14px;font-weight:600;color:#1d7a3f}
+.foot-legal{max-width:1200px;margin:44px auto 0;padding-top:18px;border-top:1px solid #dcdee2;display:flex;flex-wrap:wrap;gap:8px 26px;font-size:12px;color:var(--silver)}
+
+/* ============ mobile ============ */
+@media (max-width:860px){
+  .vows,.pillars,.vals,.proofs{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .people{grid-template-columns:1fr}
+  .q-mark{right:-16%;top:24%;width:60vw;opacity:.7}
+  .a-hero{min-height:auto}
+  .a-hero h1{max-width:none}
+}
+@media (max-width:720px){
+  nav{padding:12px 16px}
+  .menu-pill{display:none}
+  .logo img{height:34px}
+  .menu-btn{display:flex}
+  .m-menu{display:flex}
+  .foot-grid{grid-template-columns:1fr;gap:34px}
+  .stats{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .reveal .part{opacity:1;transform:none}
+  .q-mark .ring{stroke-dashoffset:0}
+  .q-mark .tail{opacity:.08}
+  .q-mark .spark{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<div class="env" aria-hidden="true"><div class="dust"></div></div>
+
+<nav aria-label="Основная навигация">
+  <a class="logo" href="index.html">
+    <img src="assets/logo.png" alt="QOPP. На главную" width="384" height="152">
+  </a>
+  <div class="menu-pill">
+    <a class="mi" id="mi-catalog">Каталог</a>
+    <a class="mi" href="warranty.html">Гарантия</a>
+    <a class="mi" id="mi-contacts">Контакты</a>
+    <a class="mi active" href="about.html" aria-current="page">О компании</a>
+  </div>
+  <button class="menu-btn" aria-expanded="false" aria-controls="m-menu">Меню
+    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</nav>
+<div class="cat-drop" id="cat-drop" aria-label="Категории каталога">
+  <a class="cd-item" href="ssd.html">Внутренние SSD</a>
+  <span class="cd-item">Оперативная память</span>
+  <span class="cd-item">Карты памяти</span>
+  <span class="cd-item">Флеш-накопители</span>
+  <span class="cd-item">Ноутбуки</span>
+</div>
+<div class="cat-drop" id="contact-drop" aria-label="Контакты">
+  <span class="cd-item">Поддержка</span>
+  <span class="cd-item">Сотрудничество</span>
+  <span class="cd-item">Вопросы и ответы</span>
+</div>
+<button class="to-top" id="to-top" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 22 30" fill="none" aria-hidden="true"><path d="M11 26V8m0 0 7 7m-7-7-7 7" stroke="#b8863b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div class="m-menu" id="m-menu">
+  <a class="mi" id="mm-catalog">Каталог</a>
+  <div class="mm-sub" hidden>
+    <a class="mm-si" href="ssd.html">Внутренние SSD</a>
+    <span class="mm-si">Оперативная память</span>
+    <span class="mm-si">Карты памяти</span>
+    <span class="mm-si">Флеш-накопители</span>
+    <span class="mm-si">Ноутбуки</span>
+  </div>
+  <a class="mi" href="warranty.html">Гарантия</a>
+  <a class="mi" id="mm-contacts">Контакты</a>
+  <div class="mm-sub" hidden>
+    <span class="mm-si">Поддержка</span>
+    <span class="mm-si">Сотрудничество</span>
+    <span class="mm-si">Вопросы и ответы</span>
+  </div>
+  <a class="mi" href="about.html" aria-current="page">О компании</a>
+</div>
+
+<header class="a-hero reveal">
+  <svg class="q-mark" viewBox="0 0 360 400" aria-hidden="true">
+    <circle class="ring" cx="150" cy="150" r="119"/>
+    <circle class="spark" cx="150" cy="150" r="119"/>
+    <path class="tail" d="M254 233 L318 361 L185 292 Z"/>
+  </svg>
+  <div class="inner">
+    <p class="kicker part">О компании</p>
+    <h1 class="part">Качество по&nbsp;умолчанию</h1>
+    <p class="sub part">Это когда не нужно изучать спецификации, чтобы купить правильно, и не нужно волноваться после покупки. Продукт работает так, как написано на упаковке, цена соответствует, а если возник вопрос, поддержка рядом. <b>Так мы делаем каждый продукт QOPP: от SSD до карты памяти.</b></p>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- кто мы -->
+  <section class="section who reveal" id="who">
+    <div class="section-head">
+      <p class="kicker part">Кто мы</p>
+      <h2 class="part">Бренд, за который не нужно переживать</h2>
+    </div>
+    <p class="part">QOPP: российский бренд компьютерных комплектующих и техники. SSD, оперативная память, флеш-накопители, карты памяти, ноутбуки.</p>
+    <p class="part">Мы делаем технику среднего и выше среднего класса, которой можно доверять: качественную, красивую и по честной цене. И отвечаем за неё гарантией, сервисом и поддержкой здесь, рядом с покупателем. Ключевое слово бренда: качество. В него входят надёжность, скорость, упаковка, карточка, поддержка и первая буква названия.</p>
+    <p class="part">Мы не делаем ставку на громкие обещания. Наша сила в реальном качестве, честной подаче, длинной гарантии и понятном сервисе.</p>
+    <div class="pull part">Покупатель должен знать: если что-то случится, вопрос решат</div>
+  </section>
+
+  <!-- три обещания -->
+  <section class="section reveal" id="mission" style="padding-top:0">
+    <div class="section-head">
+      <p class="kicker part">Миссия</p>
+      <h2 class="part">Три наших обещания покупателю</h2>
+      <p class="lede part">Делать технику, которую купили бы сами, объяснять сложное просто и отвечать за результат.</p>
+    </div>
+    <div class="vows">
+      <div class="vow part">
+        <p class="num">01</p>
+        <h3>Делать</h3>
+        <p>Продукт, который работает так, как написано на упаковке. По цене, которая соответствует характеристикам.</p>
+      </div>
+      <div class="vow part">
+        <p class="num">02</p>
+        <h3>Объяснять</h3>
+        <p>Просто и на языке покупателя. Чтобы выбрать правильно можно было за минуту, а не за день.</p>
+      </div>
+      <div class="vow part">
+        <p class="num">03</p>
+        <h3>Отвечать</h3>
+        <p>За результат: гарантией, сервисом и поддержкой рядом с покупателем, а не у производителя где-то в мире.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- тёмная полоса -->
+  <section class="dark-strip reveal" aria-label="Качество видно до включения">
+    <img class="ds-photo" src="assets/about-dark.jpg" alt="" width="2000" height="1152" loading="lazy" aria-hidden="true">
+    <div class="inner">
+      <p class="kicker part">Красивое тоже качество</p>
+      <h2 class="part">Качество должно быть видно ещё до того, как товар включили</h2>
+      <p class="part">Продукт, упаковка и карточка товара одного уровня. Техника может быть не только рабочей, но и приятной: в руках, на полке, на экране.</p>
+    </div>
+  </section>
+
+  <!-- философия -->
+  <section class="philo reveal" id="philosophy">
+    <div class="section">
+      <p class="kicker part">Философия</p>
+      <h2 class="philo-q part" style="margin-top:14px">Одно правило решает большинство споров: <em>«Купили бы мы это сами?»</em></h2>
+      <p class="note part">Купили бы мы продукт, который «почти не глючит»? Коробку с кривым шрифтом? Гарантию, по которой не дозвониться? Нет. Значит, и продавать не будем. Делаем технику, которую купили бы сами.</p>
+      <div class="pillars">
+        <div class="pillar part">
+          <h3>Продукт</h3>
+          <p>Не бывает «и так сойдёт». Компоненты, тестирование, упаковка и дизайн одного уровня.</p>
+        </div>
+        <div class="pillar part">
+          <h3>Покупатель</h3>
+          <p>Он не обязан разбираться. Мы говорим на его языке, помогаем выбрать и остаёмся рядом после покупки.</p>
+        </div>
+        <div class="pillar part">
+          <h3>Команда</h3>
+          <p>Каждый знает, куда идёт компания, и отвечает за результат, а не за присутствие.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ценности -->
+  <section class="section reveal" id="values">
+    <div class="section-head">
+      <p class="kicker part">Ценности</p>
+      <h2 class="part">Качество: наша первая буква</h2>
+      <p class="lede part">Принципы, по которым бренд действует, развивается и принимает решения.</p>
+    </div>
+    <div class="vals">
+      <div class="val part">
+        <p class="tag">Продукт</p>
+        <h3>Качество по умолчанию</h3>
+        <p>Компоненты, тестирование, контроль. Это не раздел сайта, а условие, при котором товар вообще выходит под нашим именем.</p>
+      </div>
+      <div class="val part">
+        <p class="tag">Продукт</p>
+        <h3>Эстетика</h3>
+        <p>Красивое тоже качество. Техника может быть приятной: в руках, на полке, на экране.</p>
+      </div>
+      <div class="val part">
+        <p class="tag">Покупатели</p>
+        <h3>Ответственность</h3>
+        <p>На упаковке наше имя, и переложить ответственность не на кого. Гарантия, сервис и поддержка здесь, рядом.</p>
+      </div>
+      <div class="val part">
+        <p class="tag">Покупатели</p>
+        <h3>Ясность</h3>
+        <p>Сложное просто. Объясняем на языке покупателя, а для тех, кто любит цифры, даём все цифры.</p>
+      </div>
+      <div class="val part">
+        <p class="tag">Покупатели</p>
+        <h3>Честность</h3>
+        <p>Говорим как есть. Цена соответствует характеристикам, характеристики реальности, сроки обещаниям.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- цифры -->
+  <section class="section reveal" id="numbers" style="padding-top:0" aria-label="Гарантия в цифрах">
+    <div class="stats">
+      <div class="stat part">
+        <p class="num">Бессрочно</p>
+        <p class="lbl">гарантия на память</p>
+        <p class="fine">каждый модуль DDR3, DDR4 и DDR5</p>
+      </div>
+      <div class="stat part">
+        <p class="num">5 лет</p>
+        <p class="lbl">гарантия на SSD</p>
+        <p class="fine">и USB-накопители</p>
+      </div>
+      <div class="stat part">
+        <p class="num">До 10 лет</p>
+        <p class="lbl">на карты памяти</p>
+        <p class="fine">дольше, чем принято в категории</p>
+      </div>
+      <div class="stat part">
+        <p class="num">В России</p>
+        <p class="lbl">сервис и поддержка</p>
+        <p class="fine">на русском языке, ответ быстро</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- доказательства -->
+  <section class="section reveal" id="why" style="padding-top:0">
+    <div class="section-head">
+      <p class="kicker part">Почему выбирают QOPP</p>
+      <h2 class="part">Не тезисы, а обязательства</h2>
+      <p class="lede part">Каждый пункт подтверждается продуктом, условиями гарантии и работой сервиса. Если пункт перестаёт быть правдой, он уходит со страницы.</p>
+    </div>
+    <div class="proofs">
+      <div class="proof part">
+        <h3>Качество и контроль</h3>
+        <p>Проверенные компоненты, тестирование и контроль на каждом этапе. Поэтому в отзывах пишут «работает», а не «повезло».</p>
+      </div>
+      <div class="proof part">
+        <h3>Гарантия</h3>
+        <p>Бессрочная на модули памяти и многолетняя на карты памяти, SSD и USB-накопители.</p>
+      </div>
+      <div class="proof part">
+        <h3>Честная цена</h3>
+        <p>Не экономим на компонентах ради низкой цены и не накручиваем за бренд.</p>
+      </div>
+      <div class="proof part">
+        <h3>Понятный выбор</h3>
+        <p>Карточки, инструкции и обзоры, по которым можно выбрать правильно. Для тех, кто любит цифры, полные характеристики и тесты.</p>
+      </div>
+      <div class="proof part">
+        <h3>Свой дизайн</h3>
+        <p>Свой корпус, своя упаковка и карточка у каждого продукта, чтобы QOPP узнавали с первого взгляда.</p>
+      </div>
+      <div class="proof part">
+        <h3>Вдолгую</h3>
+        <p>Российский бренд, который вдолгую. Линейки развиваются, отзывы копятся годами.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- люди -->
+  <section class="section reveal" id="people" style="padding-top:0">
+    <div class="people part">
+      <div>
+        <h2>QOPP делают люди</h2>
+        <p class="lede">Две команды, которые работают как одна.</p>
+        <p class="one-rule">Разные часовые пояса, одни правила</p>
+      </div>
+      <ul class="teams">
+        <li>
+          <span class="where">За рубежом</span>
+          <p>заводы, компоненты и контроль качества на месте</p>
+        </li>
+        <li>
+          <span class="where">В России</span>
+          <p>продукт, дизайн, сервис и поддержка</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- финал -->
+  <section class="section final reveal" id="vision">
+    <p class="kicker part">Видение</p>
+    <h2 class="part" style="margin-top:14px">Сначала дом, потом мир</h2>
+    <p class="lede part">Сначала стать брендом, которому доверяют дома. Потом доказать, что качественную и честную технику из России ждут и на других рынках.</p>
+    <p class="promise part">Гарантия: наше обещание, которое мы всегда выполняем</p>
+    <div class="act-row part">
+      <a class="pbtn" href="ssd.html">Смотреть SSD
+        <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="pbtn pbtn-gold" href="warranty.html">Гарантия</a>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="site-footer">
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h3>Сотрудничество</h3>
+      <p class="foot-lede">Чтобы узнать цены и условия сотрудничества, оставьте заявку, и мы свяжемся с вами</p>
+      <form class="coop-form" novalidate>
+        <input name="name" placeholder="Имя" autocomplete="name" aria-label="Имя">
+        <input name="email" type="email" placeholder="E-mail" autocomplete="email" aria-label="E-mail">
+        <input name="phone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" aria-label="Телефон">
+        <button class="foot-btn" type="submit">Отправить</button>
+        <label class="agree"><input type="checkbox" checked> Согласен на обработку личных данных</label>
+        <p class="form-done" hidden>Заявка принята, мы свяжемся с вами</p>
+      </form>
+    </div>
+    <div class="foot-col">
+      <h3>Продукция</h3>
+      <span class="fl">Ноутбуки</span>
+      <span class="fl">Оперативная память</span>
+      <span class="fl">Внешние SSD</span>
+      <a class="fl" href="ssd.html">Внутренние SSD</a>
+      <span class="fl">Карты памяти</span>
+      <span class="fl">Флеш-накопители</span>
+    </div>
+    <div class="foot-col">
+      <h3>Покупателю</h3>
+      <a class="fl current" href="about.html" aria-current="page">О компании</a>
+      <span class="fl">Продукция</span>
+      <span class="fl">Поддержка</span>
+      <a class="fl" href="warranty.html">Гарантия</a>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <span>Политика обработки персональных данных</span>
+    <span>Согласие на обработку персональных данных</span>
+    <span>© QOPP 2026. Все права защищены</span>
+  </div>
+</footer>
+
+<script>
+'use strict';
+const navEl=document.querySelector('nav');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+
+/* nav подложка после начала прокрутки */
+addEventListener('scroll',()=>{
+  const solid=scrollY>60;
+  if(solid!==navEl.classList.contains('solid'))navEl.classList.toggle('solid',solid);
+},{passive:true});
+
+/* появление секций */
+const io=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      setTimeout(()=>en.target.classList.add('done'),1400);
+      io.unobserve(en.target);
+    }
+  });
+},{threshold:0.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+if(reduced.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in','done'));
+reduced.addEventListener('change',e=>{
+  if(e.matches)document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in','done'));
+});
+
+/* мобильное меню */
+const menuBtn=document.querySelector('.menu-btn');
+const mmenu=document.getElementById('m-menu');
+if(menuBtn&&mmenu){
+  menuBtn.addEventListener('click',()=>{
+    const open=mmenu.classList.toggle('open');
+    menuBtn.classList.toggle('x',open);
+    menuBtn.setAttribute('aria-expanded',open);
+  });
+  addEventListener('scroll',()=>{
+    if(mmenu.classList.contains('open')){
+      mmenu.classList.remove('open');menuBtn.classList.remove('x');menuBtn.setAttribute('aria-expanded','false');
+    }
+  },{passive:true});
+}
+
+/* каталог: наведение на десктопе, гармошка на мобайле */
+function hoverDrop(tid,did){
+  const t=document.getElementById(tid),d=document.getElementById(did);
+  if(!t||!d||!matchMedia('(min-width:721px) and (hover:hover)').matches)return;
+  let closeT=null;
+  const open=()=>{clearTimeout(closeT);d.classList.add('open')};
+  const close=()=>{closeT=setTimeout(()=>d.classList.remove('open'),160)};
+  t.addEventListener('mouseenter',open);
+  t.addEventListener('mouseleave',close);
+  d.addEventListener('mouseenter',open);
+  d.addEventListener('mouseleave',close);
+  addEventListener('scroll',()=>{if(d.classList.contains('open'))close()},{passive:true});
+}
+hoverDrop('mi-catalog','cat-drop');
+hoverDrop('mi-contacts','contact-drop');
+function subToggle(tid){
+  const t=document.getElementById(tid);
+  if(!t)return;
+  const sub=t.nextElementSibling;
+  t.addEventListener('click',()=>{
+    sub.hidden=!sub.hidden;
+    t.classList.toggle('open',!sub.hidden);
+  });
+}
+subToggle('mm-catalog');
+subToggle('mm-contacts');
+
+/* наверх */
+const toTop=document.getElementById('to-top');
+addEventListener('scroll',()=>{
+  const s=scrollY>innerHeight*1.2;
+  if(s!==toTop.classList.contains('show'))toTop.classList.toggle('show',s);
+},{passive:true});
+toTop.addEventListener('click',()=>{
+  scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});
+});
+
+/* форма сотрудничества (пока локальное подтверждение) */
+const coopForm=document.querySelector('.coop-form');
+if(coopForm){
+  coopForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    coopForm.querySelectorAll('input,button').forEach(el=>el.disabled=true);
+    coopForm.querySelector('.form-done').hidden=false;
+  });
+}
+
+/* пауза анимаций на скрытой вкладке */
+document.addEventListener('visibilitychange',()=>{
+  document.body.classList.toggle('paused',document.hidden);
+});
+</script>
+</body>
+</html>
