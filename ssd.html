@@ -10,7 +10,7 @@
 <meta property="og:title" content="Внутренние SSD. QOPP">
 <meta property="og:description" content="SATA, PCI-E 3.0 и PCI-E 4.0: вся линейка внутренних накопителей QOPP">
 <meta property="og:url" content="/ssd.html">
-<meta property="og:image" content="/assets/ssd-hero.jpg">
+<meta property="og:image" content="/assets/ssd-hero.png">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101216"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="%23e3a94f" text-anchor="middle">Q</text></svg>'>
 <link rel="preload" href="assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
@@ -190,6 +190,25 @@ a.mi{cursor:pointer;text-decoration:none}
 }
 .strip.lift .strip-acts{bottom:19%} /* у SATA внизу картинки инфо-строка 2.5 и M2 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* заголовки поверх чистых фото-полос, в стиле макета */
+.strip-title{
+  position:absolute;z-index:2;pointer-events:none;
+  font-family:var(--display);font-weight:800;color:var(--ink);
+  letter-spacing:.26em;line-height:1;font-size:clamp(15px,2.7vw,60px);
+}
+.st-sata{top:12%;right:4%}
+.st-n3{top:32%;left:4.2%}
+.st-n4{top:28%;left:4.2%}
+.st-all{top:8%;left:0;right:0;text-align:center;letter-spacing:.18em;font-size:clamp(16px,3vw,66px)}
+.ff-info{
+  position:absolute;left:0;right:0;bottom:5%;z-index:2;pointer-events:none;
+  display:flex;gap:10px;justify-content:center;width:max-content;margin:0 auto;
+}
+.ff-tag{
+  font-family:var(--mono);font-size:clamp(7px,.85vw,13px);font-weight:600;letter-spacing:.22em;
+  color:var(--muted);background:rgba(255,255,255,.55);border:1px solid var(--hairline);
+  border-radius:6px;padding:.45em 2.4em;
+}
 .pbtn{
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--body);font-weight:600;font-size:13.5px;letter-spacing:.02em;
@@ -318,7 +337,7 @@ a.fl:hover{color:var(--ink)}
 <header class="c-hero reveal" id="top">
   <h1 class="side-label part">Внутренние SSD</h1>
   <figure class="shot part" aria-label="Внутренние SSD QOPP">
-    <img src="assets/ssd-hero.jpg" alt="Внутренние SSD QOPP: накопитель 2.5 и модуль M2" width="2200" height="770">
+    <img src="assets/ssd-hero.png" alt="Внутренние SSD QOPP: накопитель 2.5 и модуль M2" width="2000" height="752">
   </figure>
 </header>
 
@@ -329,8 +348,10 @@ a.fl:hover{color:var(--ink)}
     <section class="strip lift reveal" id="sata">
       <h2 class="sr">SATA: модели Q500S, Q600S и Q600MS</h2>
       <a class="strip-link part" href="ssd-sata.html" aria-label="SSD SATA: подробнее">
-        <img src="assets/ssd-sata.jpg" alt="SSD QOPP SATA: накопитель 2.5 и модуль M2 Q600MS" width="2400" height="658">
+        <img src="assets/ssd-sata.jpg" alt="SSD QOPP SATA: накопитель 2.5 и модуль M2 Q600MS" width="2400" height="656">
       </a>
+      <span class="strip-title st-sata" aria-hidden="true">SATA</span>
+      <div class="ff-info" aria-hidden="true"><span class="ff-tag">2.5</span><span class="ff-tag">M2</span></div>
       <div class="strip-acts part">
         <a class="pbtn" href="ssd-sata.html">Узнать больше
           <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -343,8 +364,9 @@ a.fl:hover{color:var(--ink)}
     <section class="strip reveal" id="nvme3">
       <h2 class="sr">PCI-E 3.0: модель Q2000MN</h2>
       <span class="strip-link part">
-        <img src="assets/ssd-nvme3.jpg" alt="QOPP Q2000MN, SSD M2 NVMe PCI-E 3.0" width="2400" height="678">
+        <img src="assets/ssd-nvme3.jpg" alt="QOPP Q2000MN, SSD M2 NVMe PCI-E 3.0" width="2400" height="810">
       </span>
+      <span class="strip-title st-n3" aria-hidden="true">PCI-E 3.0</span>
       <div class="strip-acts part">
         <span class="pbtn" aria-disabled="true">Узнать больше
           <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -357,8 +379,9 @@ a.fl:hover{color:var(--ink)}
     <section class="strip reveal" id="nvme4">
       <h2 class="sr">PCI-E 4.0: модели Q4000MN и Q7000MN</h2>
       <span class="strip-link part">
-        <img src="assets/ssd-nvme4.jpg" alt="QOPP Q7000MN, SSD M2 NVMe PCI-E 4.0" width="2400" height="658">
+        <img src="assets/ssd-nvme4.jpg" alt="QOPP Q7000MN, SSD M2 NVMe PCI-E 4.0" width="2400" height="656">
       </span>
+      <span class="strip-title st-n4" aria-hidden="true">PCI-E 4.0</span>
       <div class="strip-acts part">
         <span class="pbtn" aria-disabled="true">Узнать больше
           <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -371,8 +394,9 @@ a.fl:hover{color:var(--ink)}
     <section class="strip reveal" id="all">
       <h2 class="sr">Все модели внутренних SSD</h2>
       <span class="strip-link part">
-        <img src="assets/ssd-all.jpg" alt="Линейка внутренних SSD QOPP" width="2400" height="560">
+        <img src="assets/ssd-all.jpg" alt="Линейка внутренних SSD QOPP" width="2400" height="656">
       </span>
+      <span class="strip-title st-all" aria-hidden="true">Все модели</span>
       <div class="strip-acts part">
         <span class="pbtn" aria-disabled="true">Узнать больше
           <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
