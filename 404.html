@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Страница не найдена. QOPP</title>
+<meta name="description" content="Такой страницы на сайте QOPP нет. Вернитесь на главную или откройте каталог.">
+<meta name="theme-color" content="#101216">
+<meta name="robots" content="noindex">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101216"/><text x="32" y="44" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="%23e3a94f" text-anchor="middle">Q</text></svg>'>
+<link rel="preload" href="assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Montserrat-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('assets/fonts/Montserrat-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+:root{
+  --canvas:#101216;
+  --accent:#e3a94f;
+  --text-primary:#f2f0ea;
+  --text-secondary:#a2a8b4;
+  --hairline:rgba(162,168,180,.16);
+  --ease:cubic-bezier(.22,.61,.2,1);
+  --display:'Montserrat',sans-serif;
+  --body:'Montserrat',sans-serif;
+  --mono:'Montserrat',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{
+  background:var(--canvas);color:var(--text-primary);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100svh;display:flex;flex-direction:column;
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+a{color:inherit}
+
+/* шапка */
+.top{position:absolute;top:0;left:0;right:0;z-index:5;padding:16px clamp(20px,4vw,56px)}
+.top img{height:44px;width:auto;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
+
+/* сцена */
+.err{
+  position:relative;flex:1;display:flex;align-items:flex-end;
+  min-height:min(72svh,620px);overflow:hidden;
+}
+.err-photo{position:absolute;inset:0}
+.err-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.err-scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 30%,transparent 30%,rgba(8,9,12,.5) 100%),
+    linear-gradient(180deg,rgba(8,9,12,.55) 0%,rgba(8,9,12,.08) 34%,rgba(16,18,22,.86) 82%,var(--canvas) 100%);
+}
+.err-copy{
+  position:relative;z-index:2;width:100%;
+  max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px) clamp(34px,6vh,64px);
+}
+.err-copy .kicker{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);
+}
+.err-copy h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(28px,4.4vw,54px);letter-spacing:.01em;line-height:1.1;margin-top:14px;
+  text-shadow:0 2px 20px rgba(0,0,0,.6);
+}
+.err-copy p{color:var(--text-secondary);margin-top:14px;max-width:46ch;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(22px,3.4vh,34px)}
+.pbtn{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:#f6f5f1;text-decoration:none;white-space:nowrap;
+  padding:13px 30px;border-radius:15px;
+  background:
+    linear-gradient(168deg,rgba(52,58,72,.74),rgba(17,19,25,.9) 62%),
+    radial-gradient(120% 90% at 22% 0%,rgba(255,255,255,.3),transparent 58%);
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(0,0,0,.45),inset 0 0 24px rgba(255,255,255,.07),0 10px 26px rgba(8,9,12,.4);
+  transition:border-color .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease),background .45s var(--ease);
+}
+.pbtn::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(108deg,transparent 24%,rgba(255,255,255,.28) 46%,transparent 66%);
+  transform:translateX(-135%);transition:transform .85s var(--ease);
+}
+.pbtn:hover::before{transform:translateX(135%)}
+.pbtn:hover{
+  border-color:rgba(255,255,255,.4);transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.46),inset 0 -1px 0 rgba(0,0,0,.5),inset 0 0 28px rgba(255,255,255,.1),0 16px 34px rgba(8,9,12,.5);
+}
+.pbtn-gold{color:var(--accent);border-color:rgba(227,169,79,.55)}
+.pbtn-gold:hover{border-color:rgba(240,196,120,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.46),inset 0 -1px 0 rgba(0,0,0,.5),inset 0 0 28px rgba(227,169,79,.16),0 16px 34px rgba(227,169,79,.26)}
+.pbtn svg{position:relative;transition:transform .45s var(--ease)}
+.pbtn:hover svg{transform:translateX(4px)}
+
+/* нижняя навигация */
+.err-nav{
+  border-top:1px solid var(--hairline);
+  padding:clamp(22px,3.4vh,34px) clamp(20px,5vw,56px);
+}
+.err-nav .in{
+  max-width:1180px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:10px 34px;align-items:baseline;
+}
+.err-nav b{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-secondary);margin-right:6px;
+}
+.err-nav a{
+  font-size:15px;color:var(--text-secondary);text-decoration:none;
+  transition:color .3s var(--ease);
+}
+.err-nav a:hover{color:var(--text-primary)}
+@media (max-width:720px){
+  .err{min-height:56svh}
+  .err-copy p{font-size:15.5px}
+  .acts .pbtn{flex:1;justify-content:center}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="index.html" aria-label="QOPP, на главную">
+    <img src="assets/logo.png" alt="QOPP" width="384" height="152">
+  </a>
+</header>
+
+<main class="err">
+  <div class="err-photo" aria-hidden="true">
+    <img src="assets/err-404.jpg" alt="" width="2000" height="996">
+  </div>
+  <div class="err-scrim" aria-hidden="true"></div>
+  <div class="err-copy">
+    <p class="kicker">Ошибка 404</p>
+    <h1>Такой страницы у нас нет</h1>
+    <p>Адрес набран с опечаткой или страница переехала. Вернитесь на главную или откройте каталог: всё на месте.</p>
+    <div class="acts">
+      <a class="pbtn pbtn-gold" href="index.html">На главную</a>
+      <a class="pbtn" href="ssd.html">Каталог
+        <svg width="14" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<nav class="err-nav" aria-label="Быстрые ссылки">
+  <div class="in">
+    <b>Куда дальше</b>
+    <a href="ssd.html">Внутренние SSD</a>
+    <a href="ssd-sata.html">SSD SATA</a>
+    <a href="warranty.html">Гарантия</a>
+    <a href="about.html">О компании</a>
+  </div>
+</nav>
+
+</body>
+</html>

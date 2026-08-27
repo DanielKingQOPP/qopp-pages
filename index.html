@@ -341,6 +341,56 @@ main{position:relative;z-index:2;background:var(--canvas)}
 .reveal.in .part:nth-child(5){transition-delay:.36s}
 .reveal.done .part,.reveal.done .part:nth-child(2),.reveal.done .part:nth-child(3),.reveal.done .part:nth-child(4),.reveal.done .part:nth-child(5){transition-delay:0s}
 
+
+/* ============ блок доверия: тёмные карты на светлом полу ============ */
+.utp{
+  position:relative;z-index:2;
+  background:linear-gradient(180deg,#efe6da 0%,#f4f1eb 34%,#f6f6f7 100%);
+  padding:clamp(70px,11vh,130px) clamp(20px,5vw,64px) clamp(150px,21vh,260px);
+}
+.utp-head{max-width:1180px;margin:0 auto clamp(34px,5vh,56px);text-align:center}
+.utp-head p{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:#b8863b;
+}
+.utp-head h2{
+  font-family:var(--display);font-weight:800;color:#14161c;
+  font-size:clamp(26px,3.4vw,44px);letter-spacing:.01em;line-height:1.14;margin-top:14px;
+}
+.utp-row{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px);
+}
+.utp-card{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  aspect-ratio:.78;border-radius:20px;
+  padding:clamp(24px,2.6vw,34px);
+  background:
+    radial-gradient(120% 80% at 50% 92%,rgba(126,158,196,.22),transparent 62%),
+    linear-gradient(168deg,#1c1f26 0%,#0c0e12 62%);
+  border:1px solid rgba(165,171,183,.16);
+  box-shadow:0 26px 60px rgba(20,22,28,.22);
+  -webkit-box-reflect:below 3px linear-gradient(transparent 64%,rgba(255,255,255,.34));
+}
+.utp-card h3{
+  font-family:var(--display);font-weight:600;color:#f2f0ea;
+  font-size:clamp(14px,1.35vw,19px);letter-spacing:.2em;text-transform:uppercase;
+}
+.utp-card p{color:#a5abb7;font-size:clamp(13px,1.05vw,15px);line-height:1.55;margin-top:14px;max-width:30ch}
+.utp-card img{
+  width:auto;max-width:78%;height:auto;max-height:46%;
+  margin:auto auto 4% ;display:block;object-fit:contain;
+}
+.utp-card.wide img{max-width:92%}
+@media (max-width:860px){
+  .utp{padding-bottom:clamp(90px,13vh,140px)}
+  .utp-row{grid-template-columns:1fr;gap:clamp(16px,3vh,26px);max-width:460px}
+  .utp-card{aspect-ratio:1.2}
+  .utp-card p{max-width:none}
+  .utp-card img{max-height:52%}
+}
+@media (prefers-reduced-motion: reduce){.utp-card{-webkit-box-reflect:none}}
 .dawn{height:26vh;background:linear-gradient(180deg,#cab29c 0%,#e2d5c6 45%,#f0ebe3 75%,#f6f6f7 100%)}
 .site-footer{background:#f6f6f7;color:#14161c;position:relative;z-index:2;padding:clamp(40px,7vh,84px) clamp(20px,5vw,72px) 28px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,5vw,80px);max-width:1200px;margin:0 auto}
@@ -498,6 +548,30 @@ main{position:relative;z-index:2;background:var(--canvas)}
 
 <main id="main" tabindex="-1">
 </main>
+
+<section class="utp" aria-label="Почему QOPP">
+  <div class="utp-head">
+    <p>Почему QOPP</p>
+    <h2>Качество по умолчанию</h2>
+  </div>
+  <div class="utp-row">
+    <article class="utp-card wide">
+      <h3>Гарантия</h3>
+      <p>Гарантирует качество и надёжность для всех клиентов, которые выбирают наши продукты и услуги</p>
+      <img src="assets/utp-warranty.png" alt="" width="760" height="488" loading="lazy">
+    </article>
+    <article class="utp-card">
+      <h3>Российский бренд</h3>
+      <p>Контроль качества на всех этапах производства</p>
+      <img src="assets/utp-brand.png" alt="" width="460" height="462" loading="lazy">
+    </article>
+    <article class="utp-card">
+      <h3>Комплектующие</h3>
+      <p>Лучшие комплектующие ведущих производителей</p>
+      <img src="assets/utp-parts.png" alt="" width="460" height="460" loading="lazy">
+    </article>
+  </div>
+</section>
 
 <section class="dawn" aria-hidden="true"></section>
 
