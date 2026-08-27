@@ -223,14 +223,14 @@ main{position:relative;z-index:1}
 /* ============ три обещания ============ */
 .vows{display:flex;flex-direction:column}
 .vow{
-  display:grid;grid-template-columns:minmax(150px,24%) 1fr;
-  gap:clamp(14px,4vw,56px);align-items:baseline;
-  padding:clamp(16px,2.4vh,26px) 0;border-top:1px solid var(--hairline);
+  display:grid;grid-template-columns:minmax(160px,26%) 1fr;
+  gap:clamp(14px,3vw,40px);align-items:center;
+  padding:clamp(18px,2.6vh,28px) 0;border-top:1px solid var(--hairline);
 }
 .vow:last-child{border-bottom:1px solid var(--hairline)}
 
-.vow h3{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1;letter-spacing:.01em}
-.vow p{color:var(--muted);font-size:15.5px;max-width:54ch}
+.vow h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,38px);line-height:1.05;letter-spacing:.01em}
+.vow p{color:var(--muted);font-size:16px;line-height:1.55;max-width:56ch}
 
 /* ============ тёмная полоса ============ */
 .dark-strip{
@@ -270,6 +270,11 @@ main{position:relative;z-index:1}
 .pillar p{color:var(--muted);font-size:15px;margin-top:10px}
 
 /* ============ ценности ============ */
+.val-group{margin-top:clamp(26px,4vh,40px)}
+.val-group>h3{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--silver);padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:16px;
+}
 .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .val{
   background:#fff;border:1px solid var(--hairline);border-radius:18px;
@@ -282,7 +287,6 @@ main{position:relative;z-index:1}
 .val:hover h3{transform:translateX(6px)}
 .val .tag{transition:color .35s var(--ease)}
 .val:hover .tag{color:var(--ink)}
-.val .tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep)}
 .val h3{font-family:var(--display);font-weight:700;font-size:20px;margin-top:10px}
 .val p{color:var(--muted);font-size:14.5px;margin-top:10px}
 
@@ -303,18 +307,25 @@ main{position:relative;z-index:1}
 
 /* ============ люди ============ */
 .people{
-  background:#fff;border:1px solid var(--hairline);border-radius:22px;
+  position:relative;overflow:hidden;
+  background:#14161c;color:#f2f0ea;border:1px solid rgba(165,171,183,.2);border-radius:22px;
   padding:clamp(30px,4.5vw,54px);
   display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;
 }
+.people::after{
+  content:"";position:absolute;right:-6%;top:50%;transform:translateY(-50%);
+  width:min(46%,420px);aspect-ratio:1;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(227,169,79,.16),transparent 62%);
+}
+.people>*{position:relative;z-index:2}
 .people h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,36px);line-height:1.2}
-.people .lede{color:var(--muted);margin-top:14px}
+.people .lede{color:#a5abb7;margin-top:14px}
 .teams{list-style:none}
 .teams li{display:flex;gap:16px;align-items:baseline;padding:14px 0}
-.teams li+li{border-top:1px solid var(--hairline)}
-.teams .where{flex:none;width:110px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
-.teams p{color:var(--muted);font-size:15px}
-.one-rule{margin-top:18px;font-weight:600;font-size:15px}
+.teams li+li{border-top:1px solid rgba(165,171,183,.2)}
+.teams .where{flex:none;width:110px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.teams p{color:#a5abb7;font-size:15px}
+.one-rule{margin-top:20px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
 
 /* ============ финал ============ */
 .final{text-align:center}
@@ -322,18 +333,44 @@ main{position:relative;z-index:1}
 .final .lede{color:var(--muted);margin-top:16px;max-width:52ch;margin-left:auto;margin-right:auto}
 .final .promise{margin-top:26px;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
 .act-row{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+/* ============ кнопки: графит под стеклом, золотая обводка ============ */
 .pbtn{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--body);font-weight:600;font-size:13.5px;letter-spacing:.02em;
-  color:#fff;background:var(--ink);text-decoration:none;
-  padding:9px 20px;border-radius:999px;border:1px solid var(--ink);white-space:nowrap;
-  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:#f4f2ec;text-decoration:none;white-space:nowrap;
+  padding:12px 28px;border-radius:13px;
+  background:rgba(20,22,28,.62);
+  border:1px solid rgba(244,242,236,.28);
+  backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.4),0 6px 20px rgba(20,22,28,.2);
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease),background .4s var(--ease);
 }
-.pbtn svg{transition:transform .35s var(--ease)}
-.pbtn:hover{background:#272b34;transform:translateY(-2px);box-shadow:0 10px 28px rgba(20,22,28,.18)}
+.pbtn::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(112deg,transparent 26%,rgba(255,255,255,.18) 46%,transparent 64%);
+  transform:translateX(-130%);
+  transition:transform .75s var(--ease);
+}
+.pbtn:hover::before{transform:translateX(130%)}
+.pbtn svg{position:relative;transition:transform .4s var(--ease)}
+.pbtn:hover{
+  background:rgba(20,22,28,.74);border-color:rgba(244,242,236,.42);transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(20,22,28,.26);
+}
 .pbtn:hover svg{transform:translateX(4px)}
-.pbtn-gold{color:var(--ink);background:var(--accent);border-color:var(--accent)}
-.pbtn-gold:hover{background:#f0bc66;border-color:#f0bc66;box-shadow:0 10px 28px rgba(227,169,79,.35)}
+.pbtn-gold{
+  color:var(--accent);
+  border-color:rgba(227,169,79,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.4),0 6px 20px rgba(20,22,28,.2),0 0 0 0 rgba(227,169,79,0);
+}
+.pbtn-gold:hover{
+  border-color:var(--accent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(227,169,79,.3);
+}
+.pbtn[aria-disabled="true"]{cursor:default}
+@media (prefers-reduced-motion: reduce){.pbtn::before{display:none}}
 
 /* ============ подвал ============ */
 .site-footer{background:var(--canvas);color:var(--ink);position:relative;z-index:2;padding:clamp(40px,7vh,84px) clamp(20px,5vw,72px) 28px;border-top:1px solid var(--hairline)}
@@ -530,57 +567,34 @@ a.fl:hover{color:var(--ink)}
       <h2 class="part">Качество: наша первая буква</h2>
       <p class="lede part">Принципы, по которым бренд действует, развивается и принимает решения.</p>
     </div>
-    <div class="vals">
-      <div class="val part">
-        <p class="tag">Продукт</p>
-        <h3>Качество по умолчанию</h3>
-        <p>Компоненты, тестирование, контроль. Это не раздел сайта, а условие, при котором товар вообще выходит под нашим именем.</p>
-      </div>
-      <div class="val part">
-        <p class="tag">Продукт</p>
-        <h3>Эстетика</h3>
-        <p>Красивое тоже качество. Техника может быть приятной: в руках, на полке, на экране.</p>
-      </div>
-      <div class="val part">
-        <p class="tag">Покупатели</p>
-        <h3>Ответственность</h3>
-        <p>На упаковке наше имя, и переложить ответственность не на кого. Гарантия, сервис и поддержка здесь, рядом.</p>
-      </div>
-      <div class="val part">
-        <p class="tag">Покупатели</p>
-        <h3>Ясность</h3>
-        <p>Сложное просто. Объясняем на языке покупателя, а для тех, кто любит цифры, даём все цифры.</p>
-      </div>
-      <div class="val part">
-        <p class="tag">Покупатели</p>
-        <h3>Честность</h3>
-        <p>Говорим как есть. Цена соответствует характеристикам, характеристики реальности, сроки обещаниям.</p>
+    <div class="val-group part">
+      <h3>Продукт</h3>
+      <div class="vals">
+        <div class="val">
+          <h3>Качество по умолчанию</h3>
+          <p>Компоненты, тестирование, контроль. Это не раздел сайта, а условие, при котором товар вообще выходит под нашим именем.</p>
+        </div>
+        <div class="val">
+          <h3>Эстетика</h3>
+          <p>Красивое тоже качество. Техника может быть приятной: в руках, на полке, на экране.</p>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- цифры -->
-  <section class="section reveal" id="numbers" style="padding-top:0" aria-label="Гарантия в цифрах">
-    <div class="stats">
-      <div class="stat part">
-        <p class="num">Бессрочно</p>
-        <p class="lbl">гарантия на память</p>
-        <p class="fine">каждый модуль DDR3, DDR4 и DDR5</p>
-      </div>
-      <div class="stat part">
-        <p class="num">5 лет</p>
-        <p class="lbl">гарантия на SSD</p>
-        <p class="fine">и USB-накопители</p>
-      </div>
-      <div class="stat part">
-        <p class="num">До 10 лет</p>
-        <p class="lbl">на карты памяти</p>
-        <p class="fine">дольше, чем принято в категории</p>
-      </div>
-      <div class="stat part">
-        <p class="num">В России</p>
-        <p class="lbl">сервис и поддержка</p>
-        <p class="fine">на русском языке, ответ быстро</p>
+    <div class="val-group part">
+      <h3>Покупатели и партнёры</h3>
+      <div class="vals">
+        <div class="val">
+          <h3>Ответственность</h3>
+          <p>На упаковке наше имя, и переложить ответственность не на кого. Гарантия, сервис и поддержка здесь, рядом.</p>
+        </div>
+        <div class="val">
+          <h3>Ясность</h3>
+          <p>Сложное просто. Объясняем на языке покупателя, а для тех, кто любит цифры, даём все цифры.</p>
+        </div>
+        <div class="val">
+          <h3>Честность</h3>
+          <p>Говорим как есть. Цена соответствует характеристикам, характеристики реальности, сроки обещаниям.</p>
+        </div>
       </div>
     </div>
   </section>

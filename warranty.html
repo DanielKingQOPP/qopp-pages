@@ -392,27 +392,79 @@ main{position:relative;z-index:1}
 .nb-terms .none{color:var(--muted);font-weight:600;font-size:15px}
 
 /* ============ шаги и CTA ============ */
-.steps{display:flex;flex-direction:column;counter-reset:st;max-width:72ch}
-.step{
-  display:grid;grid-template-columns:34px 1fr;gap:clamp(12px,2vw,26px);align-items:baseline;
-  padding:15px 0;border-top:1px solid var(--hairline);
+/* дорога обращения: линия дорисовывается, станции загораются */
+.road{border:1px solid;border-radius:22px;padding:clamp(28px,4.4vw,52px);position:relative;overflow:hidden}
+.road-top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,4.5vh,46px)}
+.road-lede{color:var(--muted);max-width:44ch;margin:0}
+.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,30px)}
+.track::before,.track::after{content:"";position:absolute;left:9px;right:calc(25% - 4px);top:8px;height:2px}
+.track::before{background:rgba(165,171,183,.22)}
+.track::after{
+  background:linear-gradient(90deg,var(--accent),rgba(227,169,79,.4));
+  transform:scaleX(0);transform-origin:left;transition:transform 1.8s var(--ease) .25s;
 }
-.step:last-of-type{border-bottom:1px solid var(--hairline)}
-.step::before{
-  counter-increment:st;content:counter(st);
-  font-family:var(--mono);font-weight:600;font-size:13px;color:var(--silver);letter-spacing:.04em;
+.reveal.in .track::after{transform:scaleX(1)}
+.stop{position:relative;padding-top:34px}
+.stop::before{
+  content:"";position:absolute;left:2px;top:0;width:16px;height:16px;border-radius:50%;
+  background:#14161c;border:2px solid rgba(165,171,183,.35);
+  transition:border-color .5s var(--ease),box-shadow .5s var(--ease);
 }
-.step p{font-size:15.5px;color:var(--muted)}
+.reveal.in .stop::before{border-color:var(--accent);box-shadow:0 0 0 5px rgba(227,169,79,.14)}
+.reveal.in .stop:nth-child(1)::before{transition-delay:.35s}
+.reveal.in .stop:nth-child(2)::before{transition-delay:.75s}
+.reveal.in .stop:nth-child(3)::before{transition-delay:1.15s}
+.reveal.in .stop:nth-child(4)::before{transition-delay:1.55s}
+.stop b{display:block;font-family:var(--display);font-weight:700;font-size:16.5px}
+.stop p{font-size:14.5px;color:var(--muted);margin-top:7px}
+@media (max-width:760px){
+  .track{grid-template-columns:1fr;gap:0}
+  .track::before,.track::after{left:8px;right:auto;top:8px;bottom:14px;width:2px;height:auto}
+  .track::after{background:linear-gradient(180deg,var(--accent),rgba(227,169,79,.4));transform:scaleY(0);transform-origin:top}
+  .reveal.in .track::after{transform:scaleY(1)}
+  .stop{padding:0 0 22px 34px}
+  .stop::before{left:0;top:3px}
+}
 .step p b{color:var(--ink);font-weight:600}
-.cta-row{margin-top:36px}
-.btn{
-  display:inline-block;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.03em;
-  background:var(--accent);color:#14161c;text-decoration:none;
-  padding:15px 34px;border-radius:12px;border:0;cursor:pointer;
-  transition:background .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
+.cta-row{margin-top:clamp(28px,4vh,40px)}
+/* ============ кнопки: графит под стеклом, золотая обводка ============ */
+.pbtn{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:#f4f2ec;text-decoration:none;white-space:nowrap;
+  padding:12px 28px;border-radius:13px;
+  background:rgba(20,22,28,.62);
+  border:1px solid rgba(244,242,236,.28);
+  backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.4),0 6px 20px rgba(20,22,28,.2);
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease),background .4s var(--ease);
 }
-.btn:hover{background:#f0bc66;transform:translateY(-2px);box-shadow:0 10px 28px rgba(227,169,79,.35)}
-.cta-fine{color:var(--muted);font-size:13.5px;margin-top:14px}
+.pbtn::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(112deg,transparent 26%,rgba(255,255,255,.18) 46%,transparent 64%);
+  transform:translateX(-130%);
+  transition:transform .75s var(--ease);
+}
+.pbtn:hover::before{transform:translateX(130%)}
+.pbtn svg{position:relative;transition:transform .4s var(--ease)}
+.pbtn:hover{
+  background:rgba(20,22,28,.74);border-color:rgba(244,242,236,.42);transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(20,22,28,.26);
+}
+.pbtn:hover svg{transform:translateX(4px)}
+.pbtn-gold{
+  color:var(--accent);
+  border-color:rgba(227,169,79,.62);
+}
+.pbtn-gold:hover{
+  border-color:var(--accent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(227,169,79,.3);
+}
+.pbtn[aria-disabled="true"]{cursor:default}
+@media (prefers-reduced-motion: reduce){.pbtn::before{display:none}}
+.cta-fine{color:var(--silver);font-size:13.5px;margin-top:16px}
 
 /* ============ юридический блок ============ */
 .legal .acc summary{padding:18px clamp(18px,2.6vw,26px)}
@@ -422,6 +474,15 @@ main{position:relative;z-index:1}
 .legal .acc-in p+p{margin-top:10px}
 .legal ol{padding-left:22px}
 .legal ol li{padding:6px 0}
+
+/* ============ тёмные панели гарантии на светлой странице ============ */
+.panel-dark{
+  --ink:#f2f0ea;--muted:#a5abb7;--silver:#9298a4;
+  --hairline:rgba(165,171,183,.2);--accent-deep:#e3a94f;
+  background:#14161c;color:#f2f0ea;border-color:rgba(165,171,183,.2);
+}
+.panel-dark .acc,.panel-dark .stat,.panel-dark .duo-card{background:transparent}
+.panel-dark .acc summary:hover .model{color:var(--accent)}
 
 /* ============ подвал ============ */
 .site-footer{background:var(--canvas);color:var(--ink);position:relative;z-index:2;padding:clamp(40px,7vh,84px) clamp(20px,5vw,72px) 28px;border-top:1px solid var(--hairline)}
@@ -460,7 +521,7 @@ a.fl:hover{color:var(--ink)}
   .acc .meta{margin-left:0;width:100%;order:3;text-align:left}
   .acc .chev{margin-left:auto;order:2}
 }
-@media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+@media (pointer:coarse){.pbtn{min-height:44px}}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
@@ -551,7 +612,7 @@ a.fl:hover{color:var(--ink)}
 
   <!-- цифры вместо лозунгов -->
   <section class="section reveal" style="padding-top:0" aria-label="Основные сроки гарантии">
-    <div class="stats">
+    <div class="stats panel-dark">
       <div class="stat part">
         <p class="num">5 лет</p>
         <p class="lbl">на твердотельные накопители</p>
@@ -577,7 +638,7 @@ a.fl:hover{color:var(--ink)}
       <h2 class="part">Твердотельные накопители</h2>
       <p class="lede part">Раскройте модель, чтобы увидеть условия для каждого объёма.</p>
     </div>
-    <div class="ssd-panel part">
+    <div class="ssd-panel panel-dark part">
       <div class="ssd-list">
       <details class="acc">
         <summary>
@@ -701,9 +762,9 @@ a.fl:hover{color:var(--ink)}
   <section class="section reveal" id="ram">
     <div class="section-head">
       <p class="kicker part">Оперативная память</p>
-      <h2 class="part">Работает, пока работает</h2>
+      <h2 class="part">Гарантия без срока</h2>
     </div>
-    <div class="ram-hero part">
+    <div class="ram-hero panel-dark part">
       <div class="ram-photo" aria-hidden="true">
         <img src="assets/ram-epic.jpg" alt="" width="1500" height="1020" loading="lazy">
       </div>
@@ -751,10 +812,10 @@ a.fl:hover{color:var(--ink)}
   <section class="section reveal" id="cards">
     <div class="section-head">
       <p class="kicker part">Карты памяти и флешки</p>
-      <h2 class="part">Память, которая всегда с собой</h2>
+      <h2 class="part">Память, которая всегда с тобой</h2>
     </div>
     <div class="duo">
-      <div class="duo-card part">
+      <div class="duo-card panel-dark part">
         <div class="cat">
           <h3>Карты microSD</h3>
           <p class="term">10 лет</p>
@@ -768,7 +829,7 @@ a.fl:hover{color:var(--ink)}
           </tbody>
         </table>
       </div>
-      <div class="duo-card part">
+      <div class="duo-card panel-dark part">
         <div class="cat">
           <h3>USB-накопители</h3>
           <p class="term">5 лет</p>
@@ -788,9 +849,9 @@ a.fl:hover{color:var(--ink)}
   <section class="section reveal" id="laptops">
     <div class="section-head">
       <p class="kicker part">Ноутбуки</p>
-      <h2 class="part">Честно по компонентам</h2>
+      <h2 class="part">Разбираем ноутбук по частям</h2>
     </div>
-    <div class="nb part">
+    <div class="nb panel-dark part">
       <div>
         <h3>QBOOK15</h3>
         <p class="conf">Все конфигурации: процессоры N100 и N5095, накопители от 128 ГБ до 2 ТБ.</p>
@@ -818,16 +879,19 @@ a.fl:hover{color:var(--ink)}
       <p class="kicker part">Как обратиться</p>
       <h2 class="part">Четыре шага до сервиса</h2>
     </div>
-    <div class="steps">
-      <div class="step part"><p><b>Найдите чек</b> или другой документ, подтверждающий дату покупки.</p></div>
-      <div class="step part"><p><b>Напишите в поддержку</b> QOPP любым удобным способом.</p></div>
-      <div class="step part"><p><b>Назовите серийный номер</b> продукта и опишите проблему.</p></div>
-      <div class="step part"><p><b>Отправьте продукт</b> в оригинальной или другой защитной упаковке.</p></div>
+    <div class="road panel-dark part">
+      <div class="road-top">
+        <p class="road-lede">Четыре шага, дальше вопрос решаем мы: здесь, в России.</p>
+        <a class="pbtn pbtn-gold" href="https://taplink.cc/qopp" target="_blank" rel="noopener">Написать в поддержку</a>
+      </div>
+      <div class="track">
+        <div class="stop"><b>Найдите чек</b><p>Или другой документ, подтверждающий дату покупки.</p></div>
+        <div class="stop"><b>Напишите нам</b><p>В поддержку QOPP любым удобным способом.</p></div>
+        <div class="stop"><b>Назовите номер</b><p>Серийный номер продукта и что случилось.</p></div>
+        <div class="stop"><b>Отправьте продукт</b><p>В оригинальной или другой защитной упаковке.</p></div>
+      </div>
     </div>
-    <div class="cta-row part">
-      <a class="btn" href="https://taplink.cc/qopp" target="_blank" rel="noopener">Написать в поддержку</a>
-      <p class="cta-fine">Откроется страница со всеми каналами связи QOPP.</p>
-    </div>
+    <p class="cta-fine part">Откроется страница со всеми каналами связи QOPP.</p>
   </section>
 
   <!-- Полные условия -->
