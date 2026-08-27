@@ -137,14 +137,8 @@ nav{
 .to-top:hover{background:#fff}
 .menu-pill{
   grid-column:2;display:flex;gap:4px;
-  background:
-    linear-gradient(168deg,rgba(255,255,255,.62),rgba(255,255,255,.34) 70%),
-    radial-gradient(120% 100% at 20% 0%,rgba(255,255,255,.75),transparent 60%);
-  border:1px solid rgba(255,255,255,.6);
-  border-radius:999px;padding:6px;
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(20,22,28,.06),0 8px 26px rgba(20,22,28,.1);
+  background:rgba(255,255,255,.5);border:1px solid rgba(20,22,28,.08);
+  border-radius:999px;padding:6px;backdrop-filter:blur(14px);
   transition:background .45s var(--ease),box-shadow .45s var(--ease);
 }
 nav{transition:transform .35s var(--ease),background .4s var(--ease)}
@@ -164,17 +158,18 @@ a.mi{cursor:pointer;text-decoration:none}
 .conf{
   position:relative;z-index:1;
   max-width:1260px;margin:0 auto;
-  padding:clamp(24px,3.4vh,40px) clamp(20px,4vw,56px) clamp(30px,4.4vh,52px);
-  display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(26px,4vw,56px);align-items:start;
+  min-height:calc(100svh - 138px);
+  padding:clamp(20px,3vh,38px) clamp(20px,4vw,56px) clamp(24px,3.6vh,44px);
+  display:grid;grid-template-columns:1.08fr 1fr;gap:clamp(26px,4vw,60px);align-items:center;
 }
 .gallery{display:flex;flex-direction:column;gap:12px;min-width:0}
-.g-main{background:#f2f2f3;border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin:0}
+.g-main{background:#f2f2f3;border-radius:18px;overflow:hidden;height:clamp(300px,54svh,620px);margin:0}
 .g-main img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s var(--ease)}
 .g-main img.contain{object-fit:contain}
 .g-main img.swap{opacity:0}
 .g-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
 .g-th{
-  flex:none;width:74px;height:74px;border:1px solid var(--hairline);border-radius:10px;
+  flex:none;width:clamp(66px,7.4svh,92px);height:clamp(66px,7.4svh,92px);border:1px solid var(--hairline);border-radius:10px;
   background-color:#f2f2f3;background-size:cover;background-position:center;
   cursor:pointer;padding:0;
   transition:border-color .25s var(--ease),transform .25s var(--ease);
@@ -185,18 +180,18 @@ a.mi{cursor:pointer;text-decoration:none}
 .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .conf-title{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(36px,4.6vw,62px);letter-spacing:.08em;line-height:1.05;
+  font-size:clamp(38px,5vw,72px);letter-spacing:.08em;line-height:1.05;
   margin-top:10px;white-space:nowrap;
 }
 .conf-title .alt{color:#c6c9ce}
 .conf-sub{font-size:clamp(15px,1.6vw,19px);letter-spacing:.14em;margin-top:8px}
-.rows{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.rows{margin-top:clamp(24px,3.4vh,38px);display:flex;flex-direction:column;gap:clamp(14px,1.8vh,20px)}
 .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.lab{flex:none;width:118px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.lab{flex:none;width:126px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .opt{
-  font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.02em;
-  color:var(--ink);background:#fff;border:1px solid var(--hairline);border-radius:10px;
-  padding:8px 14px;cursor:pointer;
+  font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.02em;
+  color:var(--ink);background:#fff;border:1px solid var(--hairline);border-radius:11px;
+  padding:11px 19px;cursor:pointer;
   transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),opacity .25s var(--ease);
 }
 .opt:hover{border-color:var(--ink)}
@@ -204,8 +199,21 @@ a.mi{cursor:pointer;text-decoration:none}
 .opt.dim{opacity:.4}
 .quick{margin-top:clamp(24px,4vh,38px);display:flex;flex-wrap:wrap;gap:0 clamp(22px,4vw,54px);border-top:1px solid var(--hairline);padding-top:16px}
 .quick div{padding:4px 0}
+.soon{
+  display:inline-flex;align-items:center;gap:13px;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border-radius:15px;padding:12px 22px;line-height:1.55;
+  background:
+    linear-gradient(168deg,rgba(255,255,255,.8),rgba(240,240,242,.5) 70%),
+    radial-gradient(120% 100% at 20% 0%,rgba(255,255,255,.9),transparent 60%);
+  border:1px solid rgba(255,255,255,.75);
+  backdrop-filter:blur(20px) saturate(170%);
+  -webkit-backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(20,22,28,.05),0 8px 24px rgba(20,22,28,.08);
+}
+.soon svg{flex:none;opacity:.55;color:var(--accent-deep)}
 .quick dt{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--silver)}
-.quick dd{font-family:var(--display);font-weight:700;font-size:clamp(15px,1.5vw,19px);margin-top:4px;letter-spacing:.01em}
+.quick dd{font-family:var(--display);font-weight:700;font-size:clamp(16px,1.7vw,21px);margin-top:5px;letter-spacing:.01em}
 .conf-acts{margin-top:26px;display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
 /* ============ кнопки: графит под стеклом, золотая обводка ============ */
 /* ============ кнопки: жидкое стекло, графит и синий ============ */
@@ -301,14 +309,16 @@ a.mi{cursor:pointer;text-decoration:none}
   transition:top .35s var(--ease);
 }
 body.nav-hidden .pbar{top:0}
-.pbar-top{
-  max-width:1260px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:10px clamp(16px,4vw,56px) 6px;
+.pbar-in{
+  max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;
+  gap:clamp(16px,3vw,40px);padding:0 clamp(16px,4vw,56px);
 }
+.pbar-top{padding:11px 0 6px}
+.pbar-in>div{min-width:0}
 .pbar-name{display:flex;align-items:baseline;gap:14px;min-width:0}
 .pbar-name b{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.06em}
 .pbar-name span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pbar-tabs{max-width:1260px;margin:0 auto;display:flex;gap:30px;padding:0 clamp(16px,4vw,56px);overflow-x:auto;scrollbar-width:none}
+.pbar-tabs{display:flex;gap:30px;overflow-x:auto;scrollbar-width:none}
 .pbar-tabs::-webkit-scrollbar,.g-thumbs::-webkit-scrollbar{display:none}
 .tab{
   flex:none;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;
@@ -320,7 +330,7 @@ body.nav-hidden .pbar{top:0}
 .tab.on{color:var(--ink);border-color:var(--ink)}
 .tab.dis{opacity:.45;cursor:default}
 .tab.dis:hover{color:var(--muted)}
-.pbar .pbtn{padding:10px 26px;font-size:12px;flex:none}
+.pbar .pbtn{padding:13px 34px;font-size:13px;justify-self:end}
 
 /* ============ кино-обзор ============ */
 .film{position:relative;z-index:1;background:#050505}
@@ -404,7 +414,8 @@ a.fl:hover{color:var(--ink)}
 
 /* ============ mobile ============ */
 @media (max-width:860px){
-  .conf{grid-template-columns:1fr;padding-top:10px}
+  .conf{grid-template-columns:1fr;padding-top:10px;min-height:auto}
+  .g-main{height:clamp(240px,42svh,420px)}
   .conf-title{white-space:normal;font-size:clamp(32px,9vw,44px)}
   .lab{width:100%}
   .spec{grid-template-columns:1fr;gap:2px}
@@ -413,7 +424,11 @@ a.fl:hover{color:var(--ink)}
   .pbar{top:58px;margin-top:58px}
   .pbar-name b{font-size:16px}
   .pbar-name span{font-size:10px}
-  .pbar .pbtn{padding:8px 18px;font-size:11px}
+  .pbar .pbtn{padding:9px 16px;font-size:10.5px;border-radius:11px}
+  .pbar-in{gap:10px}
+  .pbar-name b{font-size:15px}
+  .pbar-tabs{gap:16px}
+  .tab{font-size:12.5px}
   .pbar-tabs{gap:20px}
   .conf{min-height:auto}
   .g-th{width:58px;height:58px}
@@ -504,15 +519,19 @@ a.fl:hover{color:var(--ink)}
 </div>
 
 <div class="pbar" id="pbar">
-  <div class="pbar-top">
-    <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
+  <div class="pbar-in">
+    <div>
+      <div class="pbar-top">
+        <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
+      </div>
+      <div class="pbar-tabs">
+        <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
+        <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
+        <span class="tab dis">Отзывы</span>
+        <span class="tab dis">Купить</span>
+      </div>
+    </div>
     <span class="pbtn pbtn-blue" aria-disabled="true">Где купить</span>
-  </div>
-  <div class="pbar-tabs">
-    <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
-    <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
-    <span class="tab dis">Отзывы</span>
-    <span class="tab dis">Купить</span>
   </div>
 </div>
 
