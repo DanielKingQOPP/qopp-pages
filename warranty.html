@@ -375,16 +375,19 @@ main{position:relative;z-index:1}
 .nb-terms .none{color:var(--muted);font-weight:600;font-size:15px}
 
 /* ============ шаги и CTA ============ */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st}
-.step{background:#fff;border:1px solid var(--hairline);border-radius:18px;padding:24px}
-.step::before{
-  counter-increment:st;content:"0" counter(st);
-  display:block;font-family:var(--display);font-weight:800;font-size:26px;color:var(--accent-deep);
-  margin-bottom:12px;letter-spacing:.04em;
+.steps{display:flex;flex-direction:column;counter-reset:st;max-width:72ch}
+.step{
+  display:grid;grid-template-columns:34px 1fr;gap:clamp(12px,2vw,26px);align-items:baseline;
+  padding:15px 0;border-top:1px solid var(--hairline);
 }
-.step p{font-size:15px;color:var(--muted)}
+.step:last-of-type{border-bottom:1px solid var(--hairline)}
+.step::before{
+  counter-increment:st;content:counter(st);
+  font-family:var(--mono);font-weight:600;font-size:13px;color:var(--silver);letter-spacing:.04em;
+}
+.step p{font-size:15.5px;color:var(--muted)}
 .step p b{color:var(--ink);font-weight:600}
-.cta-row{margin-top:40px;text-align:center}
+.cta-row{margin-top:36px}
 .btn{
   display:inline-block;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.03em;
   background:var(--accent);color:#14161c;text-decoration:none;
@@ -428,7 +431,6 @@ a.fl:hover{color:var(--ink)}
   .ram-cols{grid-template-columns:1fr}
   .duo{grid-template-columns:1fr}
   .nb{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr 1fr}
 }
 @media (max-width:720px){
   nav{padding:12px 16px}
@@ -440,7 +442,6 @@ a.fl:hover{color:var(--ink)}
   .acc summary{flex-wrap:wrap;row-gap:2px}
   .acc .meta{margin-left:0;width:100%;order:3;text-align:left}
   .acc .chev{margin-left:auto;order:2}
-  .steps{grid-template-columns:1fr}
 }
 @media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
 @media (prefers-reduced-motion: reduce){

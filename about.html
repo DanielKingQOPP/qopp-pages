@@ -221,15 +221,16 @@ main{position:relative;z-index:1}
 .pull::after{content:"";display:block;width:52px;height:2px;background:var(--ink);margin-top:20px}
 
 /* ============ три обещания ============ */
-.vows{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vows{display:flex;flex-direction:column}
 .vow{
-  background:#fff;border:1px solid var(--hairline);border-radius:18px;
-  padding:clamp(24px,3vw,36px);position:relative;overflow:hidden;
+  display:grid;grid-template-columns:minmax(150px,24%) 1fr;
+  gap:clamp(14px,4vw,56px);align-items:baseline;
+  padding:clamp(16px,2.4vh,26px) 0;border-top:1px solid var(--hairline);
 }
+.vow:last-child{border-bottom:1px solid var(--hairline)}
 
-.vow .num{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;color:var(--accent-deep)}
-.vow h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);margin-top:12px}
-.vow p{color:var(--muted);font-size:15px;margin-top:10px}
+.vow h3{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1;letter-spacing:.01em}
+.vow p{color:var(--muted);font-size:15.5px;max-width:54ch}
 
 /* ============ тёмная полоса ============ */
 .dark-strip{
@@ -286,18 +287,19 @@ main{position:relative;z-index:1}
 .val p{color:var(--muted);font-size:14.5px;margin-top:10px}
 
 /* ============ цифры ============ */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.stat{background:#fff;border:1px solid var(--hairline);border-radius:18px;padding:clamp(22px,2.6vw,32px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--hairline);border-radius:18px;overflow:hidden}
+.stat{padding:clamp(20px,2.4vw,30px)}
+.stat+.stat{box-shadow:inset 1px 0 0 var(--hairline)}
 .stat .num{font-family:var(--display);font-weight:800;color:var(--accent-deep);font-size:clamp(24px,2.6vw,34px);line-height:1.1}
 .stat .lbl{font-weight:600;margin-top:8px;font-size:15px}
 .stat .fine{color:var(--muted);font-size:13.5px;margin-top:6px}
 
 /* ============ доказательства ============ */
-.proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.proof{border-top:1px solid var(--hairline);padding-top:18px}
-.proof h3{font-family:var(--display);font-weight:700;font-size:17px;display:flex;align-items:baseline;gap:10px}
-.proof h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;align-self:center}
-.proof p{color:var(--muted);font-size:14.5px;margin-top:8px}
+.proofs{columns:2;column-gap:clamp(30px,5vw,74px)}
+.proof{break-inside:avoid;padding:0 0 clamp(16px,2.4vh,24px)}
+.proof h3{font-family:var(--display);font-weight:700;font-size:16.5px;letter-spacing:.01em}
+.proof h3::after{content:"";display:block;width:26px;height:2px;background:var(--ink);margin:9px 0 10px}
+.proof p{color:var(--muted);font-size:14.5px}
 
 /* ============ люди ============ */
 .people{
@@ -354,8 +356,13 @@ a.fl:hover{color:var(--ink)}
 
 /* ============ mobile ============ */
 @media (max-width:860px){
-  .vows,.pillars,.vals,.proofs{grid-template-columns:1fr}
+  .pillars,.vals{grid-template-columns:1fr}
+  .proofs{columns:1}
+  .vow{grid-template-columns:1fr;gap:8px}
   .stats{grid-template-columns:1fr 1fr}
+  .stat+.stat{box-shadow:none}
+  .stat:nth-child(n+2){box-shadow:inset 0 1px 0 var(--hairline)}
+  .stat:nth-child(even){box-shadow:inset 1px 0 0 var(--hairline),inset 0 1px 0 var(--hairline)}
   .people{grid-template-columns:1fr}
   .q-mark{right:-16%;top:24%;width:60vw;opacity:.7}
   .a-hero{min-height:auto}
@@ -369,6 +376,7 @@ a.fl:hover{color:var(--ink)}
   .m-menu{display:flex}
   .foot-grid{grid-template-columns:1fr;gap:34px}
   .stats{grid-template-columns:1fr}
+  .stat:nth-child(even){box-shadow:inset 0 1px 0 var(--hairline)}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -468,17 +476,14 @@ a.fl:hover{color:var(--ink)}
     </div>
     <div class="vows">
       <div class="vow part">
-        <p class="num">01</p>
         <h3>Делать</h3>
         <p>Продукт, который работает так, как написано на упаковке. По цене, которая соответствует характеристикам.</p>
       </div>
       <div class="vow part">
-        <p class="num">02</p>
         <h3>Объяснять</h3>
         <p>Просто и на языке покупателя. Чтобы выбрать правильно можно было за минуту, а не за день.</p>
       </div>
       <div class="vow part">
-        <p class="num">03</p>
         <h3>Отвечать</h3>
         <p>За результат: гарантией, сервисом и поддержкой рядом с покупателем, а не у производителя где-то в мире.</p>
       </div>
