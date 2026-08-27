@@ -137,8 +137,14 @@ nav{
 .to-top:hover{background:#fff}
 .menu-pill{
   grid-column:2;display:flex;gap:4px;
-  background:rgba(255,255,255,.5);border:1px solid rgba(20,22,28,.08);
-  border-radius:999px;padding:6px;backdrop-filter:blur(14px);
+  background:
+    linear-gradient(168deg,rgba(255,255,255,.62),rgba(255,255,255,.34) 70%),
+    radial-gradient(120% 100% at 20% 0%,rgba(255,255,255,.75),transparent 60%);
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:999px;padding:6px;
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(20,22,28,.06),0 8px 26px rgba(20,22,28,.1);
   transition:background .45s var(--ease),box-shadow .45s var(--ease);
 }
 nav{transition:transform .35s var(--ease),background .4s var(--ease)}
@@ -158,16 +164,15 @@ a.mi{cursor:pointer;text-decoration:none}
 .conf{
   position:relative;z-index:1;
   max-width:1260px;margin:0 auto;
-  min-height:calc(100svh - 160px);
-  padding:clamp(20px,4vh,44px) clamp(20px,4vw,56px) clamp(26px,4vh,44px);
-  display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(26px,4vw,56px);align-items:center;
+  padding:clamp(24px,3.4vh,40px) clamp(20px,4vw,56px) clamp(30px,4.4vh,52px);
+  display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(26px,4vw,56px);align-items:start;
 }
 .gallery{display:flex;flex-direction:column;gap:12px;min-width:0}
 .g-main{background:#f2f2f3;border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin:0}
 .g-main img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s var(--ease)}
 .g-main img.contain{object-fit:contain}
 .g-main img.swap{opacity:0}
-.g-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
+.g-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
 .g-th{
   flex:none;width:74px;height:74px;border:1px solid var(--hairline);border-radius:10px;
   background-color:#f2f2f3;background-size:cover;background-position:center;
@@ -203,56 +208,96 @@ a.mi{cursor:pointer;text-decoration:none}
 .quick dd{font-family:var(--display);font-weight:700;font-size:clamp(15px,1.5vw,19px);margin-top:4px;letter-spacing:.01em}
 .conf-acts{margin-top:26px;display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
 /* ============ кнопки: графит под стеклом, золотая обводка ============ */
+/* ============ кнопки: жидкое стекло, графит и синий ============ */
 .pbtn{
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;isolation:isolate;
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-  color:#f4f2ec;text-decoration:none;white-space:nowrap;
-  padding:12px 28px;border-radius:13px;
-  background:rgba(20,22,28,.62);
-  border:1px solid rgba(244,242,236,.28);
-  backdrop-filter:blur(16px) saturate(150%);
-  -webkit-backdrop-filter:blur(16px) saturate(150%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.4),0 6px 20px rgba(20,22,28,.2);
-  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease),background .4s var(--ease);
+  color:#f6f5f1;text-decoration:none;white-space:nowrap;
+  padding:13px 30px;border-radius:15px;
+  background:
+    linear-gradient(168deg,rgba(52,58,72,.74),rgba(17,19,25,.9) 62%),
+    radial-gradient(120% 90% at 22% 0%,rgba(255,255,255,.3),transparent 58%);
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 -1px 0 rgba(0,0,0,.45),
+    inset 0 0 24px rgba(255,255,255,.07),
+    0 10px 26px rgba(16,18,22,.24);
+  transition:border-color .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease),background .45s var(--ease);
 }
 .pbtn::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(112deg,transparent 26%,rgba(255,255,255,.18) 46%,transparent 64%);
-  transform:translateX(-130%);
-  transition:transform .75s var(--ease);
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(108deg,transparent 24%,rgba(255,255,255,.28) 46%,transparent 66%);
+  transform:translateX(-135%);
+  transition:transform .85s var(--ease);
 }
-.pbtn:hover::before{transform:translateX(130%)}
-.pbtn svg{position:relative;transition:transform .4s var(--ease)}
+.pbtn:hover::before{transform:translateX(135%)}
+.pbtn svg{position:relative;transition:transform .45s var(--ease)}
 .pbtn:hover{
-  background:rgba(20,22,28,.74);border-color:rgba(244,242,236,.42);transform:translateY(-2px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(20,22,28,.26);
+  border-color:rgba(255,255,255,.4);transform:translateY(-2px);
+  background:
+    linear-gradient(168deg,rgba(68,76,92,.78),rgba(22,25,32,.92) 62%),
+    radial-gradient(120% 90% at 22% 0%,rgba(255,255,255,.36),transparent 58%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.46),
+    inset 0 -1px 0 rgba(0,0,0,.5),
+    inset 0 0 28px rgba(255,255,255,.1),
+    0 16px 34px rgba(16,18,22,.3);
 }
 .pbtn:hover svg{transform:translateX(4px)}
+/* синяя: каталог и товарные страницы */
+.pbtn-blue{
+  color:#fff;
+  border-color:rgba(150,196,255,.5);
+  background:
+    linear-gradient(168deg,rgba(86,158,255,.72),rgba(22,84,182,.88) 64%),
+    radial-gradient(120% 90% at 22% 0%,rgba(255,255,255,.36),transparent 58%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    inset 0 -1px 0 rgba(6,32,74,.55),
+    inset 0 0 26px rgba(255,255,255,.1),
+    0 10px 26px rgba(24,84,180,.28);
+}
+.pbtn-blue:hover{
+  border-color:rgba(190,220,255,.78);
+  background:
+    linear-gradient(168deg,rgba(104,174,255,.78),rgba(28,96,200,.9) 64%),
+    radial-gradient(120% 90% at 22% 0%,rgba(255,255,255,.44),transparent 58%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.58),
+    inset 0 -1px 0 rgba(6,32,74,.6),
+    inset 0 0 30px rgba(255,255,255,.14),
+    0 16px 36px rgba(30,110,230,.4);
+}
+/* золотая: акцент бренда на светлых страницах */
 .pbtn-gold{
   color:var(--accent);
-  border-color:rgba(227,169,79,.62);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(0,0,0,.4),0 6px 20px rgba(20,22,28,.2),0 0 0 0 rgba(227,169,79,0);
+  border-color:rgba(227,169,79,.55);
 }
 .pbtn-gold:hover{
-  border-color:var(--accent);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.45),0 12px 30px rgba(227,169,79,.3);
+  border-color:rgba(240,196,120,.85);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.46),
+    inset 0 -1px 0 rgba(0,0,0,.5),
+    inset 0 0 28px rgba(227,169,79,.16),
+    0 16px 34px rgba(227,169,79,.28);
 }
 .pbtn[aria-disabled="true"]{cursor:default}
-.soon{
-  display:inline-flex;align-items:center;gap:12px;
-  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--silver);border:1px solid var(--hairline);border-radius:14px;
-  padding:9px 18px;line-height:1.5;
-}
-.soon svg{flex:none;opacity:.5}
 @media (prefers-reduced-motion: reduce){.pbtn::before{display:none}}
 
 /* ============ прилипший бар вкладок ============ */
 .pbar{
   position:sticky;top:80px;z-index:55;margin-top:80px;
-  background:rgba(246,246,247,.97);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--hairline);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.72),rgba(246,246,247,.5)),
+    radial-gradient(120% 100% at 15% 0%,rgba(255,255,255,.8),transparent 60%);
+  backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,.6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 30px rgba(20,22,28,.07);
   transition:top .35s var(--ease);
 }
 body.nav-hidden .pbar{top:0}
@@ -263,7 +308,8 @@ body.nav-hidden .pbar{top:0}
 .pbar-name{display:flex;align-items:baseline;gap:14px;min-width:0}
 .pbar-name b{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.06em}
 .pbar-name span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pbar-tabs{max-width:1260px;margin:0 auto;display:flex;gap:30px;padding:0 clamp(16px,4vw,56px);overflow-x:auto}
+.pbar-tabs{max-width:1260px;margin:0 auto;display:flex;gap:30px;padding:0 clamp(16px,4vw,56px);overflow-x:auto;scrollbar-width:none}
+.pbar-tabs::-webkit-scrollbar,.g-thumbs::-webkit-scrollbar{display:none}
 .tab{
   flex:none;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;
   color:var(--muted);text-decoration:none;
@@ -460,7 +506,7 @@ a.fl:hover{color:var(--ink)}
 <div class="pbar" id="pbar">
   <div class="pbar-top">
     <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
-    <span class="pbtn pbtn-gold" aria-disabled="true">Где купить</span>
+    <span class="pbtn pbtn-blue" aria-disabled="true">Где купить</span>
   </div>
   <div class="pbar-tabs">
     <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
