@@ -346,26 +346,27 @@ a.mi{cursor:pointer;text-decoration:none}
 }
 body.nav-hidden .pbar{top:0}
 .pbar-in{
-  max-width:1920px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;
-  gap:clamp(24px,2vw,36px);padding:14px clamp(20px,1.7vw,32px);
+  width:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;
+  gap:clamp(16px,3vw,40px);padding:0 clamp(16px,4vw,56px);
 }
+.pbar-top{padding:11px 0 6px}
 .pbar-in>div{min-width:0}
 .pbar-name{display:flex;align-items:baseline;gap:14px;min-width:0}
 .pbar-name b{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.06em}
 .pbar-name span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pbar-tabs{display:flex;align-items:center;gap:24px;overflow-x:auto;scrollbar-width:none}
+.pbar-tabs{display:flex;gap:30px;overflow-x:auto;scrollbar-width:none}
 .pbar-tabs::-webkit-scrollbar,.g-thumbs::-webkit-scrollbar{display:none}
 .tab{
-  display:inline-flex;align-items:center;min-height:46px;flex:none;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;
+  flex:none;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;
   color:var(--muted);text-decoration:none;
-  padding:10px 0;border-bottom:2px solid transparent;
+  padding:8px 0 11px;border-bottom:2px solid transparent;
   transition:color .25s var(--ease),border-color .25s var(--ease);
 }
 .tab:hover{color:var(--ink)}
 .tab.on{color:var(--ink);border-color:var(--ink)}
 .tab.dis{opacity:.45;cursor:default}
 .tab.dis:hover{color:var(--muted)}
-.pbar .pbtn{min-height:46px;padding:13px 28px;font-size:13px;justify-self:end}
+.pbar .pbtn{padding:13px 34px;font-size:13px;justify-self:end}
 
 /* ============ кино-обзор ============ */
 .film{position:relative;z-index:1;background:#050505}
@@ -454,13 +455,6 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .reveal.done .part,.reveal.done .part:nth-child(2),.reveal.done .part:nth-child(3){transition-delay:0s}
 
 /* ============ mobile ============ */
-@media (max-width:1100px){
-  .pbar-in{grid-template-columns:minmax(0,1fr) auto;gap:4px 20px;padding-top:10px;padding-bottom:0}
-  .pbar-name{grid-column:1;grid-row:1;flex-direction:column;align-items:flex-start;gap:2px}
-  .pbar-name span{max-width:100%}
-  .pbar-tabs{grid-column:1 / -1;grid-row:2;justify-content:center;gap:28px}
-  .pbar .pbtn{grid-column:2;grid-row:1}
-}
 @media (max-width:860px){
   .conf{grid-template-columns:1fr;padding:20px clamp(20px,6vw,32px) 40px;gap:28px}
   .conf-details{padding:0}
@@ -471,13 +465,16 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   .spec{grid-template-columns:1fr;gap:2px}
 }
 @media (max-width:720px){
-  .film,.specs{scroll-margin-top:180px}
+  .film,.specs{scroll-margin-top:150px}
   .pbar{top:58px;margin-top:58px}
   .pbar-name b{font-size:16px}
-  .pbar .pbtn{padding:10px 16px;font-size:12px;border-radius:11px}
-  .pbar-in{column-gap:12px;padding-left:20px;padding-right:20px}
-  .pbar-tabs{justify-content:space-between;gap:8px}
-  .pbar .tab{font-size:13px}
+  .pbar-name span{font-size:10px}
+  .pbar .pbtn{padding:9px 16px;font-size:10.5px;border-radius:11px}
+  .pbar-in{gap:10px}
+  .pbar-name b{font-size:15px}
+  .pbar-tabs{gap:16px}
+  .tab{font-size:12.5px}
+  .pbar-tabs{gap:20px}
   nav{padding:12px 16px}
   .menu-pill{display:none}
   .logo img{height:34px}
@@ -485,12 +482,7 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   .m-menu{display:flex}
   .foot-grid{grid-template-columns:1fr;gap:34px}
 }
-@media (max-width:360px){
-  .pbar-in{padding-left:16px;padding-right:16px}
-  .pbar-tabs{gap:6px}
-  .pbar .tab{font-size:12px}
-  .g-th{width:58px;height:58px}
-}
+@media (max-width:360px){.g-th{width:58px;height:58px}}
 /* узкие экраны и планшеты в портрете: тексты обзора уходят под полосу, на тёмном фоне секции (с 01.10.2026 до 900px, раньше до 640px текст на картинке был 6-8 px) */
 @media (max-width:900px){
   .ovl{position:static;width:auto;text-align:left;padding:14px 20px 6px}
@@ -947,12 +939,16 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 
 <div class="pbar" id="pbar">
   <div class="pbar-in">
-    <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
-    <div class="pbar-tabs">
-      <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
-      <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
-      <span class="tab dis">Отзывы</span>
-      <span class="tab dis">Купить</span>
+    <div>
+      <div class="pbar-top">
+        <div class="pbar-name"><b id="bar-model">Q600S</b><span id="bar-sub">2.5" SATA III SSD · 128 ГБ</span></div>
+      </div>
+      <div class="pbar-tabs">
+        <a class="tab on" href="#overview" data-spy="overview">Обзор</a>
+        <a class="tab" href="#specs" data-spy="specs">Характеристики</a>
+        <span class="tab dis">Отзывы</span>
+        <span class="tab dis">Купить</span>
+      </div>
     </div>
     <a class="pbtn pbtn-buy" href="buy.html">Где купить</a>
   </div>
