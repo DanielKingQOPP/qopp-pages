@@ -1,6 +1,9 @@
 # QOPP: настройки для хостинга на Apache (Reg.ru). Файл лежит в site/ и правится руками, build.py его не трогает.
 # На GitHub Pages он не действует.
 
+# Адреса гарантии на упаковке, включая старый index.html.
+RedirectMatch 301 ^/wa(/(index\.html)?)?$ https://qopp.ru/warranty.html
+
 # своя страница «не найдено» (на GitHub Pages она подхватывается сама, здесь её нужно назвать)
 ErrorDocument 404 /404.html
 
