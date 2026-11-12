@@ -370,7 +370,7 @@ body.nav-hidden .pbar{top:0}
 
 /* ============ кино-обзор ============ */
 .film{position:relative;z-index:1;background:#050505}
-.film .strip{position:relative}
+.film .strip{position:relative;background:#050505}
 .film,.specs{scroll-margin-top:190px}
 .film .t-kick{letter-spacing:.22em}
 .film img{width:100%;height:auto;display:block}
@@ -485,6 +485,9 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 @media (max-width:360px){.g-th{width:58px;height:58px}}
 /* узкие экраны и планшеты в портрете: тексты обзора уходят под полосу, на тёмном фоне секции (с 01.10.2026 до 900px, раньше до 640px текст на картинке был 6-8 px) */
 @media (max-width:900px){
+  /* Обзор сохраняет исходные пропорции кадров, независимо от правил каталога. */
+  .film .strip>picture{display:block}
+  .film .strip>picture>img{height:auto;object-fit:contain}
   .ovl{position:static;width:auto;text-align:left;padding:14px 20px 6px}
   .ovl.ov-h{position:absolute;padding:0;text-align:center}
   .ov-e-tag{display:none!important}
