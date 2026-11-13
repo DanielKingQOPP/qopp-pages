@@ -232,8 +232,6 @@ a.mi{cursor:pointer;text-decoration:none}
 .opt:hover{border-color:var(--ink)}
 .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .opt.dim{opacity:.4}
-.quick{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 22px;border-top:1px solid var(--hairline);padding-top:16px}
-.quick div{padding:4px 0}
 .soon{
   display:inline-flex;align-items:center;gap:13px;
   font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
@@ -247,8 +245,6 @@ a.mi{cursor:pointer;text-decoration:none}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(20,22,28,.05),0 8px 24px rgba(20,22,28,.08);
 }
 .soon svg{flex:none;opacity:.55;color:var(--accent-deep)}
-.quick dt{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--silver)}
-.quick dd{font-family:var(--display);font-weight:700;font-size:clamp(16px,1.4vw,20px);margin-top:5px;letter-spacing:.01em}
 .conf-acts{margin-top:24px;display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
 /* ============ кнопки: графит под стеклом, золотая обводка ============ */
 /* ============ кнопки: жидкое стекло, графит и синий ============ */
@@ -511,6 +507,43 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
   .reveal .part{opacity:1;transform:none}
 }
+/* Shared product controls and headline specifications. */
+.product-page .opt,.product-page .nvme-opt,.product-page .pbar .pbtn,.product-page .soon{border-radius:6px}
+.product-page .conf-details .kicker,.product-page .nvme-kicker{color:#5b6068;font-size:12px;letter-spacing:.16em}
+.product-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:16px;margin-top:28px;border-top:1px solid var(--hairline);padding-top:22px}
+.product-stats>div{min-width:0;text-align:center;padding:0}
+.product-stats>div+div{border-left:1px solid var(--hairline)}
+.product-stats dt{font-size:12px;font-weight:600;line-height:1.5;letter-spacing:0;text-transform:none;color:#5b6068}
+.product-stats dd{display:flex;align-items:baseline;justify-content:center;gap:6px;font-family:var(--display);font-size:clamp(32px,3vw,46px);font-weight:800;line-height:1.2;letter-spacing:0;margin-top:10px;white-space:nowrap}
+.product-stats dd b{font-weight:800}
+.product-stats dd small{font-size:13px;font-weight:500}
+.nvme-intro .product-stats{margin-top:36px;padding-top:26px}
+.nvme-intro .product-stats dd{font-size:clamp(34px,4vw,58px)}
+.gallery .g-main{position:relative}
+.g-arrow,.g-auto{position:absolute;z-index:2;display:flex;align-items:center;justify-content:center;border:1px solid rgba(20,22,28,.14);background:rgba(255,255,255,.92);color:#14161c;cursor:pointer;opacity:0;transition:opacity .2s,background .2s;box-shadow:0 2px 10px rgba(20,22,28,.06)}
+.g-arrow{top:50%;transform:translateY(-50%);width:44px;height:48px;border-radius:6px}
+.g-prev{left:16px}.g-next{right:16px}
+.g-auto{bottom:12px;right:16px;width:44px;height:44px;border-radius:6px}
+.g-arrow:hover,.g-auto:hover{background:#fff}
+.g-main:hover .g-arrow,.g-main:hover .g-auto,.gallery:focus-within .g-arrow,.gallery:focus-within .g-auto{opacity:1}
+.g-arrow:focus-visible,.g-auto:focus-visible,.product-page .opt:focus-visible,.g-th:focus-visible{outline:2px solid #2672d5;outline-offset:3px}
+.g-auto .g-play{display:none}
+.g-auto[aria-pressed="true"] .g-play{display:block}
+.g-auto[aria-pressed="true"] .g-pause{display:none}
+@media(hover:none){.g-arrow,.g-auto{opacity:1}.g-auto{height:44px}}
+@media(max-width:860px){
+  .product-page .conf{padding:0 0 40px;gap:28px}
+  .product-page .conf-details{padding:0 clamp(20px,6vw,32px)}
+  .product-page .g-main{border-radius:0;width:100%}
+  .product-page .g-thumbs{padding-left:20px;padding-right:20px}
+  .product-page .conf-acts{justify-content:center}
+  .product-page .soon{text-align:center;max-width:100%;padding:12px 16px;letter-spacing:.08em}
+  .product-stats dd{font-size:38px}
+  .nvme-intro .product-stats{margin-top:24px;padding-top:20px}
+  .nvme-intro .product-stats dd{font-size:38px}
+}
+@media(max-width:360px){.product-stats dd{font-size:32px}.nvme-intro .product-stats dd{font-size:29px}.product-stats dd small{font-size:12px}.product-stats dt{min-height:3em}.g-prev{left:10px}.g-next,.g-auto{right:10px}}
+
 </style>
 <style id="mobile-fix">
 /* Прозрачная системная подсветка касания, включая сенсорные компьютеры.
@@ -876,7 +909,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 })();
 </script>
 </head>
-<body>
+<body class="product-page">
 <a class="skip" href="#main">К содержанию</a>
 <div class="env" aria-hidden="true"><div class="dust"></div></div>
 
@@ -961,6 +994,9 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
   <div class="gallery part">
     <figure class="g-main">
       <picture class="product-front"><source srcset="assets/sata-conf-25.webp" type="image/webp"><img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="676" decoding="async"></picture>
+      <button type="button" class="g-arrow g-prev" aria-label="Предыдущее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="g-arrow g-next" aria-label="Следующее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="g-auto" aria-label="Приостановить автоперелистывание" aria-pressed="false"><svg class="g-pause" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg><svg class="g-play" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
     </figure>
     <div class="g-thumbs" id="g-thumbs" aria-label="Фотографии продукта"></div>
   </div>
@@ -993,10 +1029,9 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         <button class="opt" data-cap="2 ТБ">2 ТБ</button>
       </div>
     </div>
-    <dl class="quick" aria-label="Коротко о модели">
-      <div><dt>Скорость</dt><dd id="q-spd">до 515 / 440 МБ/с</dd></div>
-      <div><dt>Ресурс</dt><dd id="q-tbw">60 TBW</dd></div>
-      <div><dt>Гарантия</dt><dd>5 лет</dd></div>
+    <dl class="product-stats" aria-label="Коротко о модели">
+      <div><dt>Скорость чтения, до</dt><dd><b id="q-spd">515</b><small>МБ/с</small></dd></div>
+      <div><dt>Гарантия</dt><dd><b>5</b><small>лет</small></dd></div>
     </dl>
     <div class="conf-acts">
       <span class="soon">
@@ -1212,37 +1247,79 @@ const GAL={
     {src:'assets/gal-m2-white.jpg',fit:'contain'}
   ]
 };
+/* Product gallery: wraparound controls and one 8-second autoplay timer. */
+const galleryEl=document.querySelector('.gallery');
 const thumbsEl=document.getElementById('g-thumbs');
-let galFF=null,galIx=0,galTimer;
+const autoButton=galleryEl.querySelector('.g-auto');
+let galFF=null,galIx=0,galTimer,galAutoTimer,galRequest=0;
+let galPaused=reduced.matches,galHover=false,galVisible=false;
+function scheduleGallery(){
+  clearTimeout(galAutoTimer);
+  if(!galFF||galPaused||galHover||!galVisible||document.hidden||galleryEl.contains(document.activeElement))return;
+  galAutoTimer=setTimeout(()=>showFrame(galIx+1),8000);
+}
+function updateGalleryPause(){
+  autoButton.setAttribute('aria-pressed',String(galPaused));
+  autoButton.setAttribute('aria-label',galPaused?'Включить автоперелистывание':'Приостановить автоперелистывание');
+  scheduleGallery();
+}
 function showFrame(i){
-  galIx=i;
-  const fr=GAL[galFF][i];
-  confImg.classList.add('swap');
+  clearTimeout(galAutoTimer);
+  const frames=GAL[galFF];
+  galIx=(i+frames.length)%frames.length;
+  const fr=frames[galIx],request=++galRequest;
   clearTimeout(galTimer);
-  galTimer=setTimeout(function(){
-    if(fr.webp)confSource.srcset=fr.webp;
-    else confSource.removeAttribute('srcset');
-    confImg.src=fr.src;
-    confPicture.classList.toggle('product-front',!!fr.front);
-    confImg.classList.toggle('contain',fr.fit==='contain');
-    confImg.classList.remove('swap');
-  },140);
-  Array.prototype.forEach.call(thumbsEl.children,function(b,n){b.classList.toggle('on',n===i)});
+  const loaded=new Image();loaded.src=fr.webp||fr.src;
+  loaded.decode().then(()=>{
+    if(request!==galRequest)return;
+    confImg.classList.add('swap');
+    galTimer=setTimeout(()=>{
+      if(request!==galRequest)return;
+      if(fr.webp)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+      confImg.src=fr.src;
+      confPicture.classList.toggle('product-front',!!fr.front);
+      confImg.classList.toggle('contain',fr.fit==='contain');
+      confImg.classList.remove('swap');
+      Array.from(thumbsEl.children).forEach((b,n)=>{
+        b.classList.toggle('on',n===galIx);
+        b.setAttribute('aria-pressed',String(n===galIx));
+      });
+      scheduleGallery();
+    },reduced.matches?0:140);
+  }).catch(()=>{if(request===galRequest){confImg.classList.remove('swap');scheduleGallery();}});
 }
 function setGallery(ff){
   if(galFF===ff)return;
-  galFF=ff;
-  thumbsEl.innerHTML='';
-  GAL[ff].forEach(function(fr,i){
+  galFF=ff;thumbsEl.replaceChildren();
+  GAL[ff].forEach((fr,i)=>{
     const b=document.createElement('button');
-    b.className='g-th'+(i===0?' on':'');
+    b.type='button';b.className='g-th'+(i===0?' on':'');
     b.style.backgroundImage="url('"+fr.src+"')";
-    b.setAttribute('aria-label','Фото '+(i+1));
-    b.addEventListener('click',function(){showFrame(i)});
+    b.setAttribute('aria-label','Фото '+(i+1));b.setAttribute('aria-pressed',String(i===0));
+    b.addEventListener('click',()=>showFrame(i));
     thumbsEl.appendChild(b);
   });
   showFrame(0);
 }
+galleryEl.querySelector('.g-prev').addEventListener('click',()=>showFrame(galIx-1));
+galleryEl.querySelector('.g-next').addEventListener('click',()=>showFrame(galIx+1));
+autoButton.addEventListener('click',()=>{galPaused=!galPaused;updateGalleryPause();});
+galleryEl.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+    e.preventDefault();showFrame(galIx+(e.key==='ArrowRight'?1:-1));
+  }
+});
+galleryEl.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){galHover=true;scheduleGallery();}});
+galleryEl.addEventListener('pointerleave',()=>{galHover=false;scheduleGallery();});
+galleryEl.addEventListener('focusin',scheduleGallery);
+galleryEl.addEventListener('focusout',()=>setTimeout(scheduleGallery,0));
+document.addEventListener('visibilitychange',scheduleGallery);
+reduced.addEventListener('change',e=>{if(e.matches){galPaused=true;updateGalleryPause();}});
+new IntersectionObserver(entries=>{
+  galVisible=entries[0].isIntersecting;scheduleGallery();
+},{threshold:.15}).observe(galleryEl);
+updateGalleryPause();
+
 
 function modelsOf(ff){return Object.keys(DATA).filter(m=>DATA[m].ff===ff)}
 function render(){
@@ -1275,10 +1352,9 @@ function render(){
   document.getElementById('s-cap').textContent=state.cap;
   document.getElementById('s-ff').textContent=FF[ff].ffName;
   document.getElementById('s-tbw').textContent=md.tbw[state.cap]+' TBW';
-  document.getElementById('q-tbw').textContent=md.tbw[state.cap]+' TBW';
   /* скорости выбранной модели и объёма: коротко у конфигуратора, в обзоре и в таблице характеристик */
   const sp=md.spd[state.cap];
-  document.getElementById('q-spd').textContent='до '+sp[0]+' / '+sp[1]+' МБ/с';
+  document.getElementById('q-spd').textContent=sp[0].toLocaleString('ru-RU');
   document.getElementById('f-read').textContent=sp[0];document.getElementById('f-write').textContent=sp[1];
   document.getElementById('s-read').textContent='до '+sp[0]+' МБ/с';document.getElementById('s-write').textContent='до '+sp[1]+' МБ/с';
   document.getElementById('s-size').textContent=FF[ff].size;
@@ -1396,7 +1472,8 @@ subToggle('mm-contacts');
 
 const toTop=document.getElementById('to-top');
 addEventListener('scroll',()=>{
-  const s=scrollY>innerHeight*1.2;
+  const maxScroll=document.documentElement.scrollHeight-innerHeight;
+  const s=scrollY>Math.min(innerHeight*1.2,Math.max(160,maxScroll*.35));
   if(s!==toTop.classList.contains('show'))toTop.classList.toggle('show',s);
 },{passive:true});
 toTop.addEventListener('click',()=>{
@@ -1411,6 +1488,164 @@ if(coopForm){
     coopForm.querySelector('.form-done').hidden=false;
   });
 }
+
+
+/* ============ fx: интерактив текстовых страниц (с 22 сентября 2026) ============
+   Приёмы, стили внедряет сам скрипт, разметке нужны только атрибуты:
+   0. Буква Q в шапке страницы (svg.q-mark): контур буквы Q из шрифта Montserrat QOPP (Bold, тот же, что отдан дизайнеру),
+      по кольцу бежит голубой импульс и уходит в хвост, внутри кольца медленно плывут деления; прокрутка разгоняет импульс.
+      Импульс и деления обрезаны по контуру буквы (clipPath), вспышка хвоста это сама буква за пределами кольца (mask):
+      ничего не выходит за букву и не заезжает внутрь кольца (замечание владельца 07.10.2026). До этого: кольцо и хвост
+      рисовались отдельно (05.10.2026), ещё раньше простая крутящаяся дуга.
+   1. Кнопка «наверх» становится той же буквой Q: кольцо наливается золотом по мере чтения, в конце загорается хвост.
+   2. Параллакс: [data-par] едет внутри своей рамки. Контурные слова на фоне (data-ghost) убраны 05.10.2026 по решению владельца.
+   3. [data-words] и .pull: ключевая фраза наливается по словам, пока проходит середину экрана. Одна на страницу.
+   4. Строки .vow, .chan, .mp, .pillar: золотая линия дорисовывается слева направо при наведении (родня ссылкам подвала).
+   5. Если на странице три и больше section[data-ch], справа появляется указатель глав.
+   Двигаются только transform и opacity. При prefers-reduced-motion приёмы 2 и 3 выключены. Откат: убрать со страницы плейсхолдер js:fx (стоит сразу после js:to-top). */
+(()=>{
+  const RM=matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const st=document.createElement('style');
+  st.textContent=`
+.to-top{overflow:visible}
+/* кнопка «наверх»: контур Q из шрифта вокруг кнопки, кольцо наливается золотом по мере чтения, хвост загорается в конце */
+.fx-q{position:absolute;left:-6px;top:-4px;width:65px;height:66px;pointer-events:none;overflow:visible}
+.fx-q .g{fill:rgba(20,22,28,.1)}
+.fx-q .p{fill:none;stroke:#2c83f5;stroke-width:170;transition:stroke-dashoffset .15s linear}
+.fx-q .tl{fill:#2c83f5;opacity:0;transition:opacity .5s ease}
+.fx-q.full .tl{opacity:1}
+@media (hover:hover){
+  .vow,.chan,.mp,.pillar{position:relative;transition:padding-left .45s cubic-bezier(.22,.61,.2,1)}
+  .vow::before,.chan::before,.mp::before,.pillar::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:#b8863b;
+    transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.22,.61,.2,1);pointer-events:none}
+  .vow:hover,.chan:hover,.mp:hover{padding-left:10px}
+  .vow:hover::before,.chan:hover::before,.mp:hover::before,.pillar:hover::before{transform:scaleX(1)}
+}
+.fx-par-wrap{overflow:hidden}
+.dark-strip .ds-photo[data-par]{height:124%;top:-12%;will-change:transform}
+/* буква Q в шапке: тело (контур из шрифта), деления, золотой импульс со шлейфом, вспышка хвоста.
+   Ход импульса и делений задан смещением штриха по эллипсу середины кольца (pathLength=1000), без вращения. */
+.q-mark.q2 .q2-body{opacity:0;animation:q2in 1.2s cubic-bezier(.22,.61,.2,1) .2s forwards}
+.q2-glyph{fill:#14161c;opacity:.08}
+.q2-cells{fill:none;stroke:#14161c;stroke-width:64;stroke-dasharray:4 16.83;opacity:.1;animation:q2back 120s linear infinite}
+.q2-orbit{opacity:0;animation:q2show .8s ease 1s forwards}
+.q2-orbit ellipse{fill:none;stroke:#2c83f5;stroke-width:180;animation:q2run 7s linear 1s infinite}
+.q2-glow{fill:#2c83f5;opacity:0;animation:q2flash 7s linear 1s infinite}
+@keyframes q2in{to{opacity:1}}
+@keyframes q2show{to{opacity:1}}
+@keyframes q2run{from{stroke-dashoffset:var(--o)}to{stroke-dashoffset:var(--end)}}
+@keyframes q2back{to{stroke-dashoffset:1000}}
+@keyframes q2flash{0%{opacity:.95}16%{opacity:0}97%{opacity:0}100%{opacity:.95}}
+@media (prefers-reduced-motion:reduce){.q-mark.q2 .q2-body{opacity:1}.q2-orbit,.q2-glow{display:none}}
+.fx-w{transition:opacity .25s linear}
+.fx-ch{position:fixed;z-index:57;left:auto;right:clamp(14px,1.6vw,26px);top:50%;bottom:auto;width:auto;transform:translateY(-50%);display:none;flex-direction:column;align-items:stretch;gap:2px;
+  opacity:0;pointer-events:none;transition:opacity .4s ease}
+.fx-ch.show{opacity:1;pointer-events:auto}
+@media (min-width:1400px){.fx-ch{display:flex}}
+.fx-ch button{position:relative;display:block;width:34px;height:22px;padding:0;background:none;border:0;cursor:pointer;
+  font-family:var(--body,'Montserrat',sans-serif);font-size:12px;font-weight:600;letter-spacing:.06em;color:#5b6068}
+.fx-ch button span{position:absolute;right:42px;top:50%;transform:translate(6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;
+  transition:opacity .3s ease,transform .3s ease;background:rgba(246,246,247,.9);padding:3px 8px;border-radius:6px}
+.fx-ch button i{position:absolute;right:0;top:10px;display:block;height:2px;width:14px;background:rgba(20,22,28,.28);
+  transition:width .35s cubic-bezier(.22,.61,.2,1),background .3s ease}
+.fx-ch button:hover span,.fx-ch button:focus-visible span,.fx-ch button[aria-current="true"] span{opacity:1;transform:translate(0,-50%)}
+.fx-ch button:hover i{width:22px}
+.fx-ch button[aria-current="true"]{color:#14161c}
+.fx-ch button[aria-current="true"] i{width:28px;background:#b8863b}
+`;
+  document.head.appendChild(st);
+
+  /* ---- 0. буква Q в шапке страницы ----
+     QD: контур буквы Q из MontserratQOPP-Bold.ttf (fontTools, y перевёрнут, viewBox 0 0 804 816). Кольцо буквы почти круг:
+     центр (383,362), внешние полуоси 383×362, просвет 219×224, середина кольца 301×293. Хвост выходит из кольца под 47°.
+     Импульс: три дуги одной головой, каждая длиннее и прозрачнее предыдущей, ход от хвоста по часовой; в начале цикла
+     голова стоит на основании хвоста, и хвост вспыхивает. Длины в тысячных периметра (pathLength=1000). */
+  const QD='M536 697Q466 724 383 724Q274 724 186.5 677Q99 630 49.5 547.5Q0 465 0 362Q0 259 49.5 176.5Q99 94 186.5 47Q274 0 383 0Q492 0 579 47Q666 94 716 176.5Q766 259 766 362Q766 465 716 547Q704 567 690 585L804 816ZM602 362Q602 297 573.5 246Q545 195 495 166.5Q445 138 383 138Q321 138 271 166.5Q221 195 192.5 246Q164 297 164 362Q164 427 192.5 478Q221 529 271 557.5Q321 586 383 586Q445 586 495 557.5Q545 529 573.5 478Q602 427 602 362Z',QCX=383,QCY=362,QRX=301,QRY=293,QTAIL=47;
+  const qm=document.querySelector('svg.q-mark');
+  let qAn=[],qV=0,qRaf=0,qY=scrollY;
+  if(qm){
+    const arc=(len,op)=>{const start=1000*QTAIL/360-len;
+      return '<ellipse cx="'+QCX+'" cy="'+QCY+'" rx="'+QRX+'" ry="'+QRY+'" pathLength="1000" stroke-dasharray="'+len+' '+(1000-len)+'" style="--o:'+(-start).toFixed(1)+'px;--end:'+(-start-1000).toFixed(1)+'px" opacity="'+op+'"/>'};
+    qm.setAttribute('viewBox','0 0 804 816');
+    qm.classList.add('q2');
+    /* второй клип по внешнему эллипсу кольца: импульс и деления не заезжают на хвост, хвост только вспыхивает
+       (владелец, 21.10.2026); цвет голубой, как кнопки */
+    qm.innerHTML='<defs><clipPath id="q2c"><path d="'+QD+'"/></clipPath><clipPath id="q2r"><ellipse cx="'+QCX+'" cy="'+QCY+'" rx="383" ry="362"/></clipPath>'+
+      '<mask id="q2m"><rect width="804" height="816" fill="#fff"/><ellipse cx="'+QCX+'" cy="'+QCY+'" rx="386" ry="365" fill="#000"/></mask></defs>'+
+      '<g class="q2-body"><path class="q2-glyph" d="'+QD+'"/><g clip-path="url(#q2c)"><g clip-path="url(#q2r)"><ellipse class="q2-cells" cx="'+QCX+'" cy="'+QCY+'" rx="'+QRX+'" ry="'+QRY+'" pathLength="1000"/></g></g></g>'+
+      '<path class="q2-glow" d="'+QD+'" mask="url(#q2m)"/>'+
+      '<g clip-path="url(#q2c)"><g clip-path="url(#q2r)"><g class="q2-orbit">'+arc(200,.16)+arc(140,.3)+arc(78,.95)+'</g></g></g>';
+    if(!RM.matches&&qm.getAnimations){
+      setTimeout(()=>{try{qAn=qm.getAnimations({subtree:true}).filter(a=>/q2run|q2flash|q2back/.test(a.animationName))}catch(e){}},1200);
+      /* прокрутка разгоняет импульс, потом он сам возвращается к обычному ходу */
+      const spin=()=>{qRaf=0;const r=1+qV;qAn.forEach(a=>{a.playbackRate=r});qV*=.93;if(qV>.03)qRaf=requestAnimationFrame(spin);else{qV=0;qAn.forEach(a=>{a.playbackRate=1})}};
+      addEventListener('scroll',()=>{const y=scrollY;qV=Math.min(7,qV+Math.abs(y-qY)/60);qY=y;if(!qRaf&&qAn.length)qRaf=requestAnimationFrame(spin)},{passive:true});
+    }
+  }
+
+  /* ---- 1. Q вокруг кнопки «наверх» ---- */
+  const tt=document.getElementById('to-top');
+  let qP=null,qS=null;const LEN=1000;
+  if(tt){
+    const NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('class','fx-q');svg.setAttribute('viewBox','0 0 804 816');svg.setAttribute('aria-hidden','true');
+    svg.innerHTML='<defs><clipPath id="fxc"><path d="'+QD+'"/></clipPath><clipPath id="fxr"><ellipse cx="'+QCX+'" cy="'+QCY+'" rx="383" ry="362"/></clipPath><mask id="fxm"><rect width="804" height="816" fill="#fff"/><ellipse cx="'+QCX+'" cy="'+QCY+'" rx="386" ry="365" fill="#000"/></mask></defs>'+
+      '<path class="g" d="'+QD+'"/><g clip-path="url(#fxc)"><g clip-path="url(#fxr)"><ellipse class="p" cx="'+QCX+'" cy="'+QCY+'" rx="'+QRX+'" ry="'+QRY+'" pathLength="1000" transform="rotate(-90 '+QCX+' '+QCY+')" stroke-dasharray="1000" stroke-dashoffset="1000"/></g></g>'+
+      '<path class="tl" d="'+QD+'" mask="url(#fxm)"/>';
+    tt.appendChild(svg);qS=svg;qP=svg.querySelector('.p');
+  }
+
+  /* ---- 2. параллакс ---- */
+  const pars=[...document.querySelectorAll('[data-par]')].map(el=>({el,box:el.closest('section,header')||el.parentElement,amp:parseFloat(el.dataset.par)||9,live:false}));
+
+  /* ---- 3. фраза по словам ---- */
+  const phrases=RM.matches?[]:[...document.querySelectorAll('[data-words],.pull')].slice(0,2).map(el=>{
+    const words=el.textContent.trim().split(/\s+/);el.setAttribute('aria-label',words.join(' '));el.textContent='';
+    const spans=words.map((w,i)=>{const s=document.createElement('span');s.className='fx-w';s.setAttribute('aria-hidden','true');
+      s.textContent=w+(i<words.length-1?' ':'');el.appendChild(s);return s});
+    return {el,spans,live:false};
+  });
+
+  /* ---- 5. указатель глав ---- */
+  const chSecs=[...document.querySelectorAll('section[data-ch]')];let chNav=null,chs=[];
+  if(chSecs.length>2){
+    /* div, а не nav: шапка сайта стилизована селектором по тегу nav, указатель унаследовал бы её раскладку (так и было, вставал по центру) */
+    chNav=document.createElement('div');chNav.className='fx-ch';chNav.setAttribute('role','navigation');chNav.setAttribute('aria-label','Разделы страницы');
+    chs=chSecs.map(sec=>{
+      const b=document.createElement('button');b.type='button';b.innerHTML='<span></span><i></i>';b.firstChild.textContent=sec.dataset.ch;
+      b.addEventListener('click',()=>{const y=sec.getBoundingClientRect().top+scrollY-Math.min(110,innerHeight*.14);scrollTo({top:y,behavior:RM.matches?'auto':'smooth'})});
+      chNav.appendChild(b);return {sec,b};
+    });
+    document.body.appendChild(chNav);
+  }
+
+  /* видимость: считаем только то, что на экране */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const o=e.target.__fx;if(o)o.live=e.isIntersecting}),{rootMargin:'20% 0px'});
+  pars.forEach(o=>{o.box.__fx=o;io.observe(o.box)});
+  phrases.forEach(o=>{o.el.__fx=o;io.observe(o.el)});
+
+  let raf=0;
+  function frame(){
+    raf=0;const vh=innerHeight,max=document.documentElement.scrollHeight-vh,pr=max>0?clamp(scrollY/max,0,1):0;
+    if(qP){qP.setAttribute('stroke-dashoffset',(LEN*(1-pr)).toFixed(1));qS.classList.toggle('full',pr>0.985)}
+    const small=innerWidth<861;
+    if(!RM.matches){
+      for(const o of pars){if(!o.live)continue;const r=o.box.getBoundingClientRect();const k=clamp((r.top+r.height/2-vh/2)/(vh/2+r.height/2),-1,1);
+        o.el.style.transform='translate3d(0,'+(k*o.amp*(small?.5:1)).toFixed(2)+'%,0)'}
+    }
+    for(const o of phrases){if(!o.live)continue;const r=o.el.getBoundingClientRect();const k=clamp((vh*.88-r.top)/(vh*.42),0,1),n=o.spans.length;
+      o.spans.forEach((s,i)=>{s.style.opacity=(0.2+0.8*clamp(k*(n+3)-i,0,1)/1).toFixed(2)})}
+    if(chNav){
+      chNav.classList.toggle('show',scrollY>vh*.6&&scrollY<max-vh*.35);
+      let cur=chs[0];for(const c of chs){if(c.sec.getBoundingClientRect().top<=vh*.4)cur=c}
+      chs.forEach(c=>c.b.setAttribute('aria-current',c===cur?'true':'false'));
+    }
+  }
+  const req=()=>{if(!raf)raf=requestAnimationFrame(frame)};
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+  setTimeout(frame,60);frame();
+})();
 
 
 /* ============ tilt: фото отзывается на указатель (с 01.10.2026) ============
