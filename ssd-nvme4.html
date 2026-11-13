@@ -26,6 +26,7 @@ img,video,canvas,picture{-webkit-user-drag:none;user-select:none;-webkit-user-se
 addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});
 addEventListener('dragstart',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});})();</script>
 
+<link rel="preload" as="image" href="assets/q7000mn-photo-01-20261113.webp" type="image/webp" fetchpriority="high">
 <style>
 /* фирменный Montserrat, свой хостинг: переменный шрифт Google, все веса 100-900, прямой и курсив.
    Латинские файлы с 05.10.2026 идут с фирменной Q (кольцо с хвостом из логотипа): MontserratQOPP-*, делает САЙТ РЕФЫ/make_font_qopp.py */
@@ -391,6 +392,37 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   .foot-grid{grid-template-columns:1fr;gap:34px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+/* Shared owner-photo gallery; scale only trims blank margins around the product. */
+.gallery{display:flex;flex-direction:column;min-width:0}
+.g-main{background:#fff;border-radius:18px;overflow:hidden;aspect-ratio:1400 / 676;margin:0}
+.g-main picture{display:block;width:100%;height:100%}
+.g-main img{width:100%;height:100%;display:block;object-fit:contain;transform:scale(var(--image-scale,1));transition:opacity .25s var(--ease)}
+.g-main img.swap{opacity:0}
+.g-thumbs{display:flex;justify-content:flex-start;gap:12px;overflow-x:auto;padding:20px 0 2px;scrollbar-width:none;overscroll-behavior-x:contain}
+.g-thumbs::-webkit-scrollbar{display:none}
+.g-th{flex:none;width:clamp(76px,6vw,104px);height:clamp(76px,6vw,104px);border:1px solid var(--hairline,#ddd);border-radius:10px;background:#fff;overflow:hidden;cursor:pointer;padding:0;transition:border-color .25s var(--ease)}
+.g-th:first-child{margin-left:auto}.g-th:last-child{margin-right:auto}
+.g-th img{display:block;width:100%;height:100%;object-fit:contain}
+.g-th:hover{border-color:rgba(20,22,28,.45)}
+.g-th.on{border:2px solid var(--ink)}
+.g-th:focus-visible{outline:2px solid #2672d5;outline-offset:-4px}
+.nvme-overview.has-gallery{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(28px,3.1vw,60px);align-items:start;padding:clamp(28px,3.2vw,48px) clamp(20px,1.7vw,32px) 48px}
+.has-gallery .nvme-intro{padding:0 0 28px}
+.has-gallery .nvme-title{font-size:clamp(28px,2.6vw,40px);margin:12px 0 8px}
+.has-gallery .nvme-subtitle{font-size:14px}
+@media(max-width:860px){
+  .g-main{aspect-ratio:1.04}
+  .g-main img{transform:scale(var(--image-scale-mobile,1))}
+  .g-thumbs{padding:16px 20px 2px;gap:10px}
+  .g-th{width:64px;height:64px}
+  .nvme-overview.has-gallery{grid-template-columns:1fr;padding:0 0 40px;gap:28px}
+  .has-gallery .g-main{width:100%;border-radius:0}
+  .has-gallery .nvme-details{padding:0 clamp(20px,6vw,32px)}
+}
+@media(max-width:360px){.g-th{width:58px;height:58px}}
+
+.gallery{position:relative}
+.gallery[hidden],.gallery [hidden]{display:none!important}
 /* Shared product controls and headline specifications. */
 .product-page .opt,.product-page .nvme-opt,.product-page .pbar .pbtn,.product-page .soon{border-radius:6px}
 .product-page .conf-details .kicker,.product-page .nvme-kicker{color:#5b6068;font-size:12px;letter-spacing:.16em}
@@ -427,6 +459,18 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   .nvme-intro .product-stats dd{font-size:38px}
 }
 @media(max-width:360px){.product-stats dd{font-size:32px}.nvme-intro .product-stats dd{font-size:29px}.product-stats dd small{font-size:12px}.product-stats dt{min-height:3em}.g-prev{left:10px}.g-next,.g-auto{right:10px}}
+.video-peek{position:absolute;left:16px;top:16px;z-index:6;width:76px;height:76px}
+.video-peek-button{position:relative;display:block;width:100%;height:100%;padding:0;border:2px solid #fff;border-radius:50%;background:#111;color:#fff;cursor:pointer;box-shadow:0 0 0 1px #c5b08d,0 5px 18px #0002}
+.video-peek-button:focus-visible,.video-close:focus-visible{outline:2px solid #2672d5;outline-offset:4px}
+.video-teaser{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;pointer-events:none}
+.video-peek-label{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);padding:3px 9px;border-radius:10px;background:#17191d;color:#fff;font:600 10px var(--body);letter-spacing:.02em;line-height:1.4}
+.video-popover{position:absolute;left:0;top:calc(100% + 12px);width:min(360px,calc(100vw - 32px));padding:8px;background:#15171b;border:1px solid #ffffff1a;border-radius:14px;box-shadow:0 18px 48px #0005;overflow:visible}
+.video-popover::before{content:'';position:absolute;left:0;top:-14px;width:100%;height:14px}
+.video-popover-head{display:flex;justify-content:space-between;align-items:center;min-height:36px;padding:0 0 4px 9px;color:#fff;font:600 12px var(--body);letter-spacing:.05em}
+.video-close{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:6px;background:transparent;color:#fff;cursor:pointer}
+.video-close:hover{background:#ffffff1a}
+.video-full{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#050505;border-radius:8px}
+@media(max-width:860px){.video-peek{width:64px;height:64px}.video-popover{width:min(320px,calc(100vw - 32px))}}
 
 </style>
 <style id="mobile-fix">
@@ -869,18 +913,35 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
   </div>
 </div>
 <main id="main" tabindex="-1">
-  <section class="nvme-overview" id="overview" aria-labelledby="nvme-title">
-    <!-- Product gallery and landing images will be supplied by the owner. -->
+  <section class="nvme-overview has-gallery" id="overview" aria-labelledby="nvme-title">
+    <div class="gallery">
+      <figure class="g-main">
+        <picture><source srcset="assets/q7000mn-photo-01-20261113.webp" type="image/webp"><img id="conf-img" src="assets/q7000mn-photo-01-20261113.jpg" alt="QOPP Q7000MN, на фото версия 2 ТБ" width="2048" height="1152" fetchpriority="high" decoding="async"></picture>
+      <button type="button" class="g-arrow g-prev" aria-label="Предыдущее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="g-arrow g-next" aria-label="Следующее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="g-auto" aria-label="Приостановить автоперелистывание" aria-pressed="false"><svg class="g-pause" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg><svg class="g-play" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
+
+      </figure>
+      <div class="video-peek" id="product-video">
+        <button type="button" class="video-peek-button" aria-label="Открыть видео Q7000MN" aria-expanded="false" aria-controls="product-video-popover">
+          <video class="video-teaser" src="assets/q7000mn-teaser-20261113.mp4" poster="assets/q7000mn-photo-01-20261113.webp" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <span class="video-peek-label">Видео</span>
+        </button>
+        <div class="video-popover" id="product-video-popover" role="region" aria-label="Видео QOPP Q7000MN" hidden>
+          <div class="video-popover-head"><span>Q7000MN</span><button type="button" class="video-close" aria-label="Закрыть видео"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+          <video class="video-full" data-src="assets/q7000mn-video-20261113.mp4" poster="assets/q7000mn-photo-01-20261113.webp" muted loop playsinline controls preload="none" aria-label="Видеопрезентация QOPP Q7000MN"></video>
+        </div>
+      </div>
+
+      <div class="g-thumbs" id="g-thumbs" aria-label="Фотографии продукта"></div>
+    </div>
+    <div class="nvme-details">
     <div class="nvme-intro">
       <p class="nvme-kicker">Внутренний SSD · NVMe 4.0</p>
       <h1 class="nvme-title" id="nvme-title">Q7000MN</h1>
       <p class="nvme-subtitle" id="nvme-subtitle">M.2 2280 · PCIe 4.0 ×4 · 1 ТБ</p>
-      <dl class="product-stats">
-        <div><dt>Скорость чтения, до</dt><dd><b id="nvme-read">7 000</b><small>МБ/с</small></dd></div>
-        <div><dt>Гарантия</dt><dd><b>5</b><small>лет</small></dd></div>
-      </dl>
+
     </div>
-    <div class="nvme-details">
       <fieldset class="nvme-options"><legend>Модель</legend><div>
         <button type="button" class="nvme-opt" data-nvme-model="Q4000MN" aria-pressed="false">Q4000MN</button>
         <button type="button" class="nvme-opt" data-nvme-model="Q7000MN" aria-pressed="true">Q7000MN</button>
@@ -890,6 +951,10 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         <button type="button" class="nvme-opt" data-nvme-cap="1 ТБ" aria-pressed="true">1 ТБ</button>
         <button type="button" class="nvme-opt" data-nvme-cap="2 ТБ" aria-pressed="false">2 ТБ</button>
       </div></fieldset>
+      <dl class="product-stats">
+        <div><dt>Скорость чтения, до</dt><dd><b id="nvme-read">7 000</b><small>МБ/с</small></dd></div>
+        <div><dt>Гарантия</dt><dd><b>5</b><small>лет</small></dd></div>
+      </dl>
       <p class="nvme-terms">5 лет или до достижения ресурса TBW, смотря что наступит раньше. <a href="warranty.html">Условия гарантии</a></p>
       <p id="nvme-status" class="sr" role="status" aria-live="polite" aria-atomic="true"></p>
     </div>
@@ -1067,6 +1132,151 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   }
 }
 
+/* Photo supplied by the owner; see tools/prepare_ssd_photos.py. */
+const GAL={
+  "Q7000MN": [
+    {
+      "src": "assets/q7000mn-photo-01-20261113.jpg",
+      "webp": "assets/q7000mn-photo-01-20261113.webp",
+      "thumb": "assets/q7000mn-photo-01-20261113-thumb.webp",
+      "alt": "QOPP Q7000MN, на фото версия 2 ТБ",
+      "scale": 1,
+      "mobile": 1
+    }
+  ]
+};
+
+/* Product gallery: wraparound controls and one 8-second autoplay timer. */
+const galleryEl=document.querySelector('.gallery');
+const confImg=document.getElementById('conf-img');
+const confPicture=confImg.closest('picture');
+const confSource=confPicture.querySelector('source');
+const thumbsEl=document.getElementById('g-thumbs');
+const autoButton=galleryEl.querySelector('.g-auto');
+let galKey=null,galIx=0,galTimer,galAutoTimer,galRequest=0;
+let galPaused=reduced.matches,galHover=false,galVisible=false;
+function scheduleGallery(){
+  clearTimeout(galAutoTimer);
+  if(!galKey||GAL[galKey].length<2||galPaused||galHover||!galVisible||document.hidden||galleryEl.contains(document.activeElement))return;
+  galAutoTimer=setTimeout(()=>showFrame(galIx+1),8000);
+}
+function updateGalleryPause(){
+  autoButton.setAttribute('aria-pressed',String(galPaused));
+  autoButton.setAttribute('aria-label',galPaused?'Включить автоперелистывание':'Приостановить автоперелистывание');
+  scheduleGallery();
+}
+function showFrame(i){
+  clearTimeout(galAutoTimer);
+  const frames=GAL[galKey];
+  galIx=(i+frames.length)%frames.length;
+  const fr=frames[galIx],request=++galRequest;
+  clearTimeout(galTimer);
+  const loaded=new Image();let useWebP=!!fr.webp;loaded.src=fr.webp||fr.src;
+  loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();}).then(()=>{
+    if(request!==galRequest)return;
+    confImg.classList.add('swap');
+    galTimer=setTimeout(()=>{
+      if(request!==galRequest)return;
+      if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+      confImg.src=fr.src;
+      confImg.alt=fr.alt;
+      confPicture.style.setProperty('--image-scale',fr.scale||1);
+      confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
+      confImg.classList.remove('swap');
+      Array.from(thumbsEl.children).forEach((b,n)=>{
+        b.classList.toggle('on',n===galIx);
+        b.setAttribute('aria-pressed',String(n===galIx));
+      });
+      const active=thumbsEl.children[galIx];
+      if(active){
+        const strip=thumbsEl.getBoundingClientRect(),thumb=active.getBoundingClientRect();
+        thumbsEl.scrollTo({left:thumbsEl.scrollLeft+thumb.left-strip.left-(strip.width-thumb.width)/2,behavior:reduced.matches?'auto':'smooth'});
+      }
+      scheduleGallery();
+    },reduced.matches?0:140);
+  }).catch(()=>{if(request===galRequest){confImg.classList.remove('swap');scheduleGallery();}});
+}
+function setGallery(key){
+  if(galKey===key||!GAL[key]?.length)return;
+  galKey=key;thumbsEl.replaceChildren();
+  const single=GAL[key].length<2;
+  galleryEl.querySelectorAll('.g-arrow,.g-auto').forEach(b=>b.hidden=single);
+  thumbsEl.hidden=single;
+  GAL[key].forEach((fr,i)=>{
+    const b=document.createElement('button');
+    b.type='button';b.className='g-th'+(i===0?' on':'');
+    const preview=document.createElement('img');
+    preview.src=fr.thumb||fr.webp||fr.src;preview.alt='';preview.width=240;preview.height=240;
+    preview.loading='lazy';preview.decoding='async';b.appendChild(preview);
+    b.setAttribute('aria-label',fr.alt);b.setAttribute('aria-pressed',String(i===0));
+    b.addEventListener('click',()=>showFrame(i));
+    thumbsEl.appendChild(b);
+  });
+  showFrame(0);
+}
+galleryEl.querySelector('.g-prev').addEventListener('click',()=>showFrame(galIx-1));
+galleryEl.querySelector('.g-next').addEventListener('click',()=>showFrame(galIx+1));
+autoButton.addEventListener('click',()=>{galPaused=!galPaused;updateGalleryPause();});
+galleryEl.addEventListener('keydown',e=>{
+  if(!galKey||GAL[galKey].length<2||e.target.closest('.video-peek'))return;
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+    e.preventDefault();showFrame(galIx+(e.key==='ArrowRight'?1:-1));
+  }
+});
+galleryEl.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){galHover=true;scheduleGallery();}});
+galleryEl.addEventListener('pointerleave',()=>{galHover=false;scheduleGallery();});
+galleryEl.addEventListener('focusin',scheduleGallery);
+galleryEl.addEventListener('focusout',()=>setTimeout(scheduleGallery,0));
+document.addEventListener('visibilitychange',scheduleGallery);
+reduced.addEventListener('change',e=>{if(e.matches){galPaused=true;updateGalleryPause();}});
+new IntersectionObserver(entries=>{
+  galVisible=entries[0].isIntersecting;scheduleGallery();
+},{threshold:.15}).observe(galleryEl);
+updateGalleryPause();
+
+/* A small silent loop opens the owner's full video on hover or tap. */
+const videoPeek=document.getElementById('product-video');
+const videoButton=videoPeek.querySelector('.video-peek-button');
+const videoPopover=videoPeek.querySelector('.video-popover');
+const videoTeaser=videoPeek.querySelector('.video-teaser');
+const videoFull=videoPeek.querySelector('.video-full');
+let videoOpen=false,videoEnabled=true,videoInView=false,videoHoverTimer;
+function playProductVideo(video){video.play().catch(()=>{});}
+function syncProductVideo(){
+  if(!videoEnabled||!videoInView||document.hidden){videoTeaser.pause();videoFull.pause();return;}
+  if(videoOpen){videoTeaser.pause();playProductVideo(videoFull);}
+  else{videoFull.pause();if(!reduced.matches)playProductVideo(videoTeaser);else videoTeaser.pause();}
+}
+function openProductVideo(open){
+  clearTimeout(videoHoverTimer);
+  videoOpen=!!open&&videoEnabled;
+  videoPopover.hidden=!videoOpen;
+  videoButton.setAttribute('aria-expanded',String(videoOpen));
+  videoButton.setAttribute('aria-label',videoOpen?'Скрыть видео Q7000MN':'Открыть видео Q7000MN');
+  if(videoOpen&&!videoFull.getAttribute('src'))videoFull.src=videoFull.dataset.src;
+  syncProductVideo();
+}
+function setProductVideo(enabled){
+  videoEnabled=enabled;videoPeek.hidden=!enabled;
+  if(!enabled)openProductVideo(false);
+  syncProductVideo();
+}
+videoPeek.addEventListener('pointerenter',e=>{
+  if(e.pointerType==='mouse')videoHoverTimer=setTimeout(()=>openProductVideo(true),160);
+});
+videoPeek.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')openProductVideo(false);});
+videoButton.addEventListener('click',()=>openProductVideo(!videoOpen));
+videoPeek.querySelector('.video-close').addEventListener('click',()=>{openProductVideo(false);videoButton.focus();});
+videoPeek.addEventListener('keydown',e=>{if(e.key==='Escape'){openProductVideo(false);videoButton.focus();}});
+videoPeek.addEventListener('focusout',e=>{if(!videoPeek.contains(e.relatedTarget))openProductVideo(false);});
+document.addEventListener('pointerdown',e=>{if(videoOpen&&!videoPeek.contains(e.target))openProductVideo(false);});
+document.addEventListener('visibilitychange',syncProductVideo);
+reduced.addEventListener('change',syncProductVideo);
+new IntersectionObserver(entries=>{
+  videoInView=entries[0].isIntersecting;
+  if(!videoInView)openProductVideo(false);else syncProductVideo();
+},{threshold:.1}).observe(videoPeek);
+
 /* Speeds and NAND: QOPP Product Tech List.xlsx, checked 12.11.2026.
    Dimensions, M key, MTBF, weight: Технические характеристики для МП, SSD tab.
    TBW and warranty: src/pages/warranty.html. Only documented capacities are selectable. */
@@ -1076,6 +1286,19 @@ const nvmeNumber=n=>n.toLocaleString('ru-RU');
 function renderNvme(){
   const model=nvmeData.models[nvmeState.model],variant=model.variants[nvmeState.cap];
   const text=(id,value)=>{document.getElementById(id).textContent=value};
+  if(typeof setGallery==='function'){
+    const key=GAL[nvmeState.model+'-'+nvmeState.cap]?nvmeState.model+'-'+nvmeState.cap:nvmeState.model;
+    const hasPhotos=!!GAL[key],overview=document.querySelector('.nvme-overview');
+    const intro=overview.querySelector('.nvme-intro'),details=overview.querySelector('.nvme-details'),stats=overview.querySelector('.product-stats');
+    galleryEl.hidden=!hasPhotos;
+    overview.classList.toggle('has-gallery',hasPhotos);
+    if(hasPhotos){
+      details.prepend(intro);details.insertBefore(stats,details.querySelector('.nvme-terms'));setGallery(key);
+    }else{
+      overview.insertBefore(intro,details);intro.appendChild(stats);
+    }
+    if(typeof setProductVideo==='function')setProductVideo(nvmeState.model==='Q7000MN');
+  }
   text('nvme-title',nvmeState.model);
   text('nvme-subtitle','M.2 2280 · PCIe '+nvmeData.generation+'.0 ×4 · '+nvmeState.cap);
   text('bar-model',nvmeState.model);

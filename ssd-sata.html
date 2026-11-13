@@ -26,7 +26,7 @@ img,video,canvas,picture{-webkit-user-drag:none;user-select:none;-webkit-user-se
 (()=>{const M='img,video,canvas,picture,.poster';
 addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});
 addEventListener('dragstart',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});})();</script>
-<link rel="preload" as="image" href="assets/sata-hero.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/q600s-photo-01-20261113.webp" type="image/webp" fetchpriority="high">
 <style>
 /* фирменный Montserrat, свой хостинг: переменный шрифт Google, все веса 100-900, прямой и курсив.
    Латинские файлы с 05.10.2026 идут с фирменной Q (кольцо с хвостом из логотипа): MontserratQOPP-*, делает САЙТ РЕФЫ/make_font_qopp.py */
@@ -193,23 +193,6 @@ a.mi{cursor:pointer;text-decoration:none}
   padding:clamp(28px,3.2vw,48px) clamp(20px,1.7vw,32px) 48px;
   display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(28px,3.1vw,60px);align-items:start;
 }
-.gallery{display:flex;flex-direction:column;min-width:0}
-.g-main{--front-zoom:1.6;background:#f2f2f3;border-radius:18px;overflow:hidden;aspect-ratio:1400 / 676;margin:0}
-.g-main picture{display:block;width:100%;height:100%;transform-origin:50% 39%}
-/* У первого кадра широкие пустые поля: приближаем товар, сохраняя его целиком. */
-.g-main picture.product-front{transform:scale(var(--front-zoom))}
-.g-main img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s var(--ease)}
-.g-main img.contain{object-fit:contain}
-.g-main img.swap{opacity:0}
-.g-thumbs{display:flex;justify-content:center;gap:12px;overflow-x:auto;padding:20px 0 2px;scrollbar-width:none}
-.g-th{
-  flex:none;width:clamp(76px,6vw,104px);height:clamp(76px,6vw,104px);border:1px solid var(--hairline);border-radius:10px;
-  background-color:#f2f2f3;background-size:cover;background-position:center;
-  cursor:pointer;padding:0;
-  transition:border-color .25s var(--ease),transform .25s var(--ease);
-}
-.g-th:hover{border-color:rgba(20,22,28,.45)}
-.g-th.on{border:2px solid var(--ink)}
 .conf-photo img.swap{opacity:0}
 .conf-details{min-width:0;padding-right:clamp(0px,1vw,16px)}
 .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
@@ -454,7 +437,7 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 @media (max-width:860px){
   .conf{grid-template-columns:1fr;padding:20px clamp(20px,6vw,32px) 40px;gap:28px}
   .conf-details{padding:0}
-  .g-main{--front-zoom:1.1;aspect-ratio:1.04}
+  .g-main{aspect-ratio:1.04}
   .g-thumbs{padding-top:16px;gap:10px}
   .g-th{width:64px;height:64px}
   .conf-title{font-size:clamp(28px,8vw,34px)}
@@ -507,6 +490,37 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
   *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
   .reveal .part{opacity:1;transform:none}
 }
+/* Shared owner-photo gallery; scale only trims blank margins around the product. */
+.gallery{display:flex;flex-direction:column;min-width:0}
+.g-main{background:#fff;border-radius:18px;overflow:hidden;aspect-ratio:1400 / 676;margin:0}
+.g-main picture{display:block;width:100%;height:100%}
+.g-main img{width:100%;height:100%;display:block;object-fit:contain;transform:scale(var(--image-scale,1));transition:opacity .25s var(--ease)}
+.g-main img.swap{opacity:0}
+.g-thumbs{display:flex;justify-content:flex-start;gap:12px;overflow-x:auto;padding:20px 0 2px;scrollbar-width:none;overscroll-behavior-x:contain}
+.g-thumbs::-webkit-scrollbar{display:none}
+.g-th{flex:none;width:clamp(76px,6vw,104px);height:clamp(76px,6vw,104px);border:1px solid var(--hairline,#ddd);border-radius:10px;background:#fff;overflow:hidden;cursor:pointer;padding:0;transition:border-color .25s var(--ease)}
+.g-th:first-child{margin-left:auto}.g-th:last-child{margin-right:auto}
+.g-th img{display:block;width:100%;height:100%;object-fit:contain}
+.g-th:hover{border-color:rgba(20,22,28,.45)}
+.g-th.on{border:2px solid var(--ink)}
+.g-th:focus-visible{outline:2px solid #2672d5;outline-offset:-4px}
+.nvme-overview.has-gallery{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(28px,3.1vw,60px);align-items:start;padding:clamp(28px,3.2vw,48px) clamp(20px,1.7vw,32px) 48px}
+.has-gallery .nvme-intro{padding:0 0 28px}
+.has-gallery .nvme-title{font-size:clamp(28px,2.6vw,40px);margin:12px 0 8px}
+.has-gallery .nvme-subtitle{font-size:14px}
+@media(max-width:860px){
+  .g-main{aspect-ratio:1.04}
+  .g-main img{transform:scale(var(--image-scale-mobile,1))}
+  .g-thumbs{padding:16px 20px 2px;gap:10px}
+  .g-th{width:64px;height:64px}
+  .nvme-overview.has-gallery{grid-template-columns:1fr;padding:0 0 40px;gap:28px}
+  .has-gallery .g-main{width:100%;border-radius:0}
+  .has-gallery .nvme-details{padding:0 clamp(20px,6vw,32px)}
+}
+@media(max-width:360px){.g-th{width:58px;height:58px}}
+
+.gallery{position:relative}
+.gallery[hidden],.gallery [hidden]{display:none!important}
 /* Shared product controls and headline specifications. */
 .product-page .opt,.product-page .nvme-opt,.product-page .pbar .pbtn,.product-page .soon{border-radius:6px}
 .product-page .conf-details .kicker,.product-page .nvme-kicker{color:#5b6068;font-size:12px;letter-spacing:.16em}
@@ -993,10 +1007,11 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 <header class="conf reveal" id="top">
   <div class="gallery part">
     <figure class="g-main">
-      <picture class="product-front"><source srcset="assets/sata-conf-25.webp" type="image/webp"><img id="conf-img" src="assets/sata-conf-25.jpg" alt="QOPP Q600S, внутренний SSD 2.5 SATA" width="1400" height="676" decoding="async"></picture>
+      <picture style="--image-scale:2.25;--image-scale-mobile:1.3"><source srcset="assets/q600s-photo-01-20261113.webp" type="image/webp"><img id="conf-img" src="assets/q600s-photo-01-20261113.jpg" alt="QOPP Q600S, фото 1" width="1650" height="2200" fetchpriority="high" decoding="async"></picture>
       <button type="button" class="g-arrow g-prev" aria-label="Предыдущее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button type="button" class="g-arrow g-next" aria-label="Следующее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button type="button" class="g-auto" aria-label="Приостановить автоперелистывание" aria-pressed="false"><svg class="g-pause" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg><svg class="g-play" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
+
     </figure>
     <div class="g-thumbs" id="g-thumbs" aria-label="Фотографии продукта"></div>
   </div>
@@ -1227,35 +1242,264 @@ const DATA={
            spd:{'128 ГБ':[510,440],'256 ГБ':[540,490],'512 ГБ':[540,490],'1 ТБ':[560,520],'2 ТБ':[540,500]}}
 };
 const FF={
-  '25':{label:'2.5" SATA III SSD',ffName:'2.5"',img:'assets/sata-conf-25.jpg',alt25:'QOPP Q600S, внутренний SSD 2.5 SATA',size:'100 × 70 × 7 мм',weight:'59 г'},
-  'm2':{label:'M2 SATA III SSD',ffName:'M2 2280',img:'assets/sata-conf-m2.jpg',alt25:'QOPP Q600MS, SSD M2 SATA',size:'80 × 22 мм',weight:''}
+  '25':{label:'2.5" SATA III SSD',ffName:'2.5"',size:'100 × 70 × 7 мм',weight:'59 г'},
+  'm2':{label:'M2 SATA III SSD',ffName:'M2 2280',size:'80 × 22 мм',weight:''}
 };
 const state={model:'Q600S',cap:'128 ГБ'};
+/* Photos supplied by the owner; see tools/prepare_ssd_photos.py. */
+const GAL={
+  "Q500S": [
+    {
+      "src": "assets/q500s-photo-01-20261113.jpg",
+      "webp": "assets/q500s-photo-01-20261113.webp",
+      "thumb": "assets/q500s-photo-01-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 1",
+      "scale": 1.95,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q500s-photo-02-20261113.jpg",
+      "webp": "assets/q500s-photo-02-20261113.webp",
+      "thumb": "assets/q500s-photo-02-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 2",
+      "scale": 1.85,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q500s-photo-03-20261113.jpg",
+      "webp": "assets/q500s-photo-03-20261113.webp",
+      "thumb": "assets/q500s-photo-03-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 3",
+      "scale": 1.85,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q500s-photo-04-20261113.jpg",
+      "webp": "assets/q500s-photo-04-20261113.webp",
+      "thumb": "assets/q500s-photo-04-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 4",
+      "scale": 1.8,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q500s-photo-05-20261113.jpg",
+      "webp": "assets/q500s-photo-05-20261113.webp",
+      "thumb": "assets/q500s-photo-05-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 5",
+      "scale": 1.7,
+      "mobile": 1.2
+    },
+    {
+      "src": "assets/q500s-photo-06-20261113.jpg",
+      "webp": "assets/q500s-photo-06-20261113.webp",
+      "thumb": "assets/q500s-photo-06-20261113-thumb.webp",
+      "alt": "QOPP Q500S, фото 6",
+      "scale": 2,
+      "mobile": 1.25
+    }
+  ],
+  "Q600S": [
+    {
+      "src": "assets/q600s-photo-01-20261113.jpg",
+      "webp": "assets/q600s-photo-01-20261113.webp",
+      "thumb": "assets/q600s-photo-01-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 1",
+      "scale": 2.25,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q600s-photo-02-20261113.jpg",
+      "webp": "assets/q600s-photo-02-20261113.webp",
+      "thumb": "assets/q600s-photo-02-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 2",
+      "scale": 2.1,
+      "mobile": 1.3
+    },
+    {
+      "src": "assets/q600s-photo-03-20261113.jpg",
+      "webp": "assets/q600s-photo-03-20261113.webp",
+      "thumb": "assets/q600s-photo-03-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 3",
+      "scale": 1.65,
+      "mobile": 1.2
+    },
+    {
+      "src": "assets/q600s-photo-04-20261113.jpg",
+      "webp": "assets/q600s-photo-04-20261113.webp",
+      "thumb": "assets/q600s-photo-04-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 4",
+      "scale": 1.7,
+      "mobile": 1.2
+    },
+    {
+      "src": "assets/q600s-photo-05-20261113.jpg",
+      "webp": "assets/q600s-photo-05-20261113.webp",
+      "thumb": "assets/q600s-photo-05-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 5",
+      "scale": 1.05,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-06-20261113.jpg",
+      "webp": "assets/q600s-photo-06-20261113.webp",
+      "thumb": "assets/q600s-photo-06-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 6",
+      "scale": 1.05,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-07-20261113.jpg",
+      "webp": "assets/q600s-photo-07-20261113.webp",
+      "thumb": "assets/q600s-photo-07-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 7",
+      "scale": 2,
+      "mobile": 1.2
+    },
+    {
+      "src": "assets/q600s-photo-08-20261113.jpg",
+      "webp": "assets/q600s-photo-08-20261113.webp",
+      "thumb": "assets/q600s-photo-08-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 8",
+      "scale": 1,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-09-20261113.jpg",
+      "webp": "assets/q600s-photo-09-20261113.webp",
+      "thumb": "assets/q600s-photo-09-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 9",
+      "scale": 1,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-10-20261113.jpg",
+      "webp": "assets/q600s-photo-10-20261113.webp",
+      "thumb": "assets/q600s-photo-10-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 10",
+      "scale": 1,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-11-20261113.jpg",
+      "webp": "assets/q600s-photo-11-20261113.webp",
+      "thumb": "assets/q600s-photo-11-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 11",
+      "scale": 1,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600s-photo-12-20261113.jpg",
+      "webp": "assets/q600s-photo-12-20261113.webp",
+      "thumb": "assets/q600s-photo-12-20261113-thumb.webp",
+      "alt": "QOPP Q600S, фото 12",
+      "scale": 1,
+      "mobile": 1
+    }
+  ],
+  "Q600MS-128 ГБ": [
+    {
+      "src": "assets/q600ms-128gb-device-20261113.jpg",
+      "webp": "assets/q600ms-128gb-device-20261113.webp",
+      "thumb": "assets/q600ms-128gb-device-20261113-thumb.webp",
+      "alt": "QOPP Q600MS, 128 ГБ",
+      "scale": 1.9,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600ms-128gb-package-20261113.jpg",
+      "webp": "assets/q600ms-128gb-package-20261113.webp",
+      "thumb": "assets/q600ms-128gb-package-20261113-thumb.webp",
+      "alt": "Упаковка QOPP Q600MS, 128 ГБ",
+      "scale": 1.25,
+      "mobile": 1.15
+    }
+  ],
+  "Q600MS-256 ГБ": [
+    {
+      "src": "assets/q600ms-256gb-device-20261113.jpg",
+      "webp": "assets/q600ms-256gb-device-20261113.webp",
+      "thumb": "assets/q600ms-256gb-device-20261113-thumb.webp",
+      "alt": "QOPP Q600MS, 256 ГБ",
+      "scale": 1.9,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600ms-256gb-package-20261113.jpg",
+      "webp": "assets/q600ms-256gb-package-20261113.webp",
+      "thumb": "assets/q600ms-256gb-package-20261113-thumb.webp",
+      "alt": "Упаковка QOPP Q600MS, 256 ГБ",
+      "scale": 1.25,
+      "mobile": 1.15
+    }
+  ],
+  "Q600MS-512 ГБ": [
+    {
+      "src": "assets/q600ms-512gb-device-20261113.jpg",
+      "webp": "assets/q600ms-512gb-device-20261113.webp",
+      "thumb": "assets/q600ms-512gb-device-20261113-thumb.webp",
+      "alt": "QOPP Q600MS, 512 ГБ",
+      "scale": 1.9,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600ms-512gb-package-20261113.jpg",
+      "webp": "assets/q600ms-512gb-package-20261113.webp",
+      "thumb": "assets/q600ms-512gb-package-20261113-thumb.webp",
+      "alt": "Упаковка QOPP Q600MS, 512 ГБ",
+      "scale": 1.25,
+      "mobile": 1.15
+    }
+  ],
+  "Q600MS-1 ТБ": [
+    {
+      "src": "assets/q600ms-1tb-device-20261113.jpg",
+      "webp": "assets/q600ms-1tb-device-20261113.webp",
+      "thumb": "assets/q600ms-1tb-device-20261113-thumb.webp",
+      "alt": "QOPP Q600MS, 1 ТБ",
+      "scale": 1.9,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600ms-1tb-package-20261113.jpg",
+      "webp": "assets/q600ms-1tb-package-20261113.webp",
+      "thumb": "assets/q600ms-1tb-package-20261113-thumb.webp",
+      "alt": "Упаковка QOPP Q600MS, 1 ТБ",
+      "scale": 1.25,
+      "mobile": 1.15
+    }
+  ],
+  "Q600MS-2 ТБ": [
+    {
+      "src": "assets/q600ms-2tb-device-20261113.jpg",
+      "webp": "assets/q600ms-2tb-device-20261113.webp",
+      "thumb": "assets/q600ms-2tb-device-20261113-thumb.webp",
+      "alt": "QOPP Q600MS, 2 ТБ",
+      "scale": 1.9,
+      "mobile": 1
+    },
+    {
+      "src": "assets/q600ms-2tb-package-20261113.jpg",
+      "webp": "assets/q600ms-2tb-package-20261113.webp",
+      "thumb": "assets/q600ms-2tb-package-20261113-thumb.webp",
+      "alt": "Упаковка QOPP Q600MS, 2 ТБ",
+      "scale": 1.25,
+      "mobile": 1.15
+    }
+  ]
+};
+
+/* Product gallery: wraparound controls and one 8-second autoplay timer. */
+const galleryEl=document.querySelector('.gallery');
 const confImg=document.getElementById('conf-img');
 const confPicture=confImg.closest('picture');
 const confSource=confPicture.querySelector('source');
-/* галерея: наборы кадров по разъёму */
-const GAL={
-  '25':[
-    {src:'assets/sata-conf-25.jpg',webp:'assets/sata-conf-25.webp',fit:'cover',front:true},
-    {src:'assets/gal-25-white.jpg',fit:'contain'},
-    {src:'assets/gal-25-blue.jpg',fit:'contain'},
-    {src:'assets/gal-25-key.jpg',fit:'contain'}
-  ],
-  'm2':[
-    {src:'assets/sata-conf-m2.jpg',fit:'contain'},
-    {src:'assets/gal-m2-white.jpg',fit:'contain'}
-  ]
-};
-/* Product gallery: wraparound controls and one 8-second autoplay timer. */
-const galleryEl=document.querySelector('.gallery');
 const thumbsEl=document.getElementById('g-thumbs');
 const autoButton=galleryEl.querySelector('.g-auto');
-let galFF=null,galIx=0,galTimer,galAutoTimer,galRequest=0;
+let galKey=null,galIx=0,galTimer,galAutoTimer,galRequest=0;
 let galPaused=reduced.matches,galHover=false,galVisible=false;
 function scheduleGallery(){
   clearTimeout(galAutoTimer);
-  if(!galFF||galPaused||galHover||!galVisible||document.hidden||galleryEl.contains(document.activeElement))return;
+  if(!galKey||GAL[galKey].length<2||galPaused||galHover||!galVisible||document.hidden||galleryEl.contains(document.activeElement))return;
   galAutoTimer=setTimeout(()=>showFrame(galIx+1),8000);
 }
 function updateGalleryPause(){
@@ -1265,37 +1509,48 @@ function updateGalleryPause(){
 }
 function showFrame(i){
   clearTimeout(galAutoTimer);
-  const frames=GAL[galFF];
+  const frames=GAL[galKey];
   galIx=(i+frames.length)%frames.length;
   const fr=frames[galIx],request=++galRequest;
   clearTimeout(galTimer);
-  const loaded=new Image();loaded.src=fr.webp||fr.src;
-  loaded.decode().then(()=>{
+  const loaded=new Image();let useWebP=!!fr.webp;loaded.src=fr.webp||fr.src;
+  loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();}).then(()=>{
     if(request!==galRequest)return;
     confImg.classList.add('swap');
     galTimer=setTimeout(()=>{
       if(request!==galRequest)return;
-      if(fr.webp)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+      if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
       confImg.src=fr.src;
-      confPicture.classList.toggle('product-front',!!fr.front);
-      confImg.classList.toggle('contain',fr.fit==='contain');
+      confImg.alt=fr.alt;
+      confPicture.style.setProperty('--image-scale',fr.scale||1);
+      confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
       confImg.classList.remove('swap');
       Array.from(thumbsEl.children).forEach((b,n)=>{
         b.classList.toggle('on',n===galIx);
         b.setAttribute('aria-pressed',String(n===galIx));
       });
+      const active=thumbsEl.children[galIx];
+      if(active){
+        const strip=thumbsEl.getBoundingClientRect(),thumb=active.getBoundingClientRect();
+        thumbsEl.scrollTo({left:thumbsEl.scrollLeft+thumb.left-strip.left-(strip.width-thumb.width)/2,behavior:reduced.matches?'auto':'smooth'});
+      }
       scheduleGallery();
     },reduced.matches?0:140);
   }).catch(()=>{if(request===galRequest){confImg.classList.remove('swap');scheduleGallery();}});
 }
-function setGallery(ff){
-  if(galFF===ff)return;
-  galFF=ff;thumbsEl.replaceChildren();
-  GAL[ff].forEach((fr,i)=>{
+function setGallery(key){
+  if(galKey===key||!GAL[key]?.length)return;
+  galKey=key;thumbsEl.replaceChildren();
+  const single=GAL[key].length<2;
+  galleryEl.querySelectorAll('.g-arrow,.g-auto').forEach(b=>b.hidden=single);
+  thumbsEl.hidden=single;
+  GAL[key].forEach((fr,i)=>{
     const b=document.createElement('button');
     b.type='button';b.className='g-th'+(i===0?' on':'');
-    b.style.backgroundImage="url('"+fr.src+"')";
-    b.setAttribute('aria-label','Фото '+(i+1));b.setAttribute('aria-pressed',String(i===0));
+    const preview=document.createElement('img');
+    preview.src=fr.thumb||fr.webp||fr.src;preview.alt='';preview.width=240;preview.height=240;
+    preview.loading='lazy';preview.decoding='async';b.appendChild(preview);
+    b.setAttribute('aria-label',fr.alt);b.setAttribute('aria-pressed',String(i===0));
     b.addEventListener('click',()=>showFrame(i));
     thumbsEl.appendChild(b);
   });
@@ -1305,6 +1560,7 @@ galleryEl.querySelector('.g-prev').addEventListener('click',()=>showFrame(galIx-
 galleryEl.querySelector('.g-next').addEventListener('click',()=>showFrame(galIx+1));
 autoButton.addEventListener('click',()=>{galPaused=!galPaused;updateGalleryPause();});
 galleryEl.addEventListener('keydown',e=>{
+  if(!galKey||GAL[galKey].length<2||e.target.closest('.video-peek'))return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
     e.preventDefault();showFrame(galIx+(e.key==='ArrowRight'?1:-1));
   }
@@ -1341,9 +1597,8 @@ function render(){
   const others=modelsOf(ff).filter(m=>m!==state.model);
   document.getElementById('t-alt').textContent=others.length?('| '+others.join(' | ')):'';
   document.getElementById('conf-sub').textContent=FF[ff].label;
-  /* галерея со сменой разъёма */
-  setGallery(ff);
-  confImg.alt=FF[ff].alt25;
+  /* Photos belong to the selected model and, for M.2, capacity. */
+  setGallery(state.model==='Q600MS'?state.model+'-'+state.cap:state.model);
   /* бар товара */
   document.getElementById('bar-model').textContent=state.model;
   document.getElementById('bar-sub').textContent=FF[ff].label+' · '+state.cap;
