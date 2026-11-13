@@ -477,6 +477,10 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 
 .nvme-overview.video-open{z-index:3}
 
+.video-start{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;display:grid;place-items:center;width:64px;height:64px;padding:0;border:1px solid #ffffffa6;border-radius:50%;background:#14161cb3;color:#fff;cursor:pointer;backdrop-filter:blur(6px)}
+.video-start:hover{background:#14161ce6}
+.video-start:focus-visible{outline:2px solid #8dbaff;outline-offset:4px}
+
 </style>
 <style id="mobile-fix">
 /* Прозрачная системная подсветка касания, включая сенсорные компьютеры.
@@ -936,7 +940,8 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 
           <video class="video-full" data-src="assets/q7000mn-video-large-20261114.mp4" poster="assets/q7000mn-photo-01-20261113.webp" loop playsinline controls preload="none" aria-label="Видеопрезентация QOPP Q7000MN"></video>
           <button type="button" class="video-close" aria-label="Закрыть видео"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-          <button type="button" class="video-sound" hidden>Включить звук</button>
+          <button type="button" class="video-sound">Выключить звук</button>
+          <button type="button" class="video-start" aria-label="Воспроизвести видео" hidden><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 4 12 8-12 8z"/></svg></button>
         </div>
       </div>
 
@@ -1264,6 +1269,7 @@ const videoPopover=videoPeek.querySelector('.video-popover');
 const videoTeaser=videoPeek.querySelector('.video-teaser');
 const videoFull=videoPeek.querySelector('.video-full');
 const videoSound=videoPeek.querySelector('.video-sound');
+const videoStart=videoPeek.querySelector('.video-start');
 let videoOpen=false,videoEnabled=true,videoInView=false,videoHoverTimer,videoPlayRequest=0;
 function positionProductVideo(){
   if(!videoOpen)return;
@@ -1279,18 +1285,18 @@ function positionProductVideo(){
   videoPopover.style.width=Math.max(120,size)+'px';
 }
 function playProductVideo(video){video.play().catch(()=>{});}
+function updateProductSound(){
+  videoSound.textContent=videoFull.muted||videoFull.volume===0?'Включить звук':'Выключить звук';
+}
 async function playExpandedVideo(){
   const request=++videoPlayRequest;
   try{
     await videoFull.play();
-    if(request===videoPlayRequest&&!videoFull.muted)videoSound.hidden=true;
+    if(request===videoPlayRequest)videoStart.hidden=true;
   }catch(error){
     if(request!==videoPlayRequest||!videoOpen||!videoEnabled||!videoInView||document.hidden)return;
-    // A hover is not a user activation in browsers that block audible autoplay.
-    if(error.name==='NotAllowedError'&&!videoFull.muted){
-      videoFull.muted=true;videoSound.hidden=false;
-      playProductVideo(videoFull);
-    }
+    // Keep sound enabled when a browser requires a click before playback.
+    if(error.name==='NotAllowedError')videoStart.hidden=false;
   }
 }
 function syncProductVideo(){
@@ -1303,12 +1309,14 @@ function openProductVideo(open){
   const wasOpen=videoOpen;
   videoOpen=!!open&&videoEnabled;
   videoPopover.hidden=!videoOpen;
+  if(!videoOpen)videoStart.hidden=true;
   videoPeek.closest('.nvme-overview').classList.toggle('video-open',videoOpen);
   videoButton.setAttribute('aria-expanded',String(videoOpen));
   videoButton.setAttribute('aria-label',videoOpen?'Скрыть видео Q7000MN':'Открыть видео Q7000MN');
   if(videoOpen){
     if(!videoFull.getAttribute('src'))videoFull.src=videoFull.dataset.src;
-    if(!wasOpen){videoFull.muted=false;videoSound.hidden=true;if(videoFull.volume===0)videoFull.volume=1;}
+    if(!wasOpen){videoFull.muted=false;videoStart.hidden=true;if(videoFull.volume===0)videoFull.volume=1;}
+    updateProductSound();
     positionProductVideo();
   }
   syncProductVideo();
@@ -1318,8 +1326,15 @@ function setProductVideo(enabled){
   if(!enabled)openProductVideo(false);
   syncProductVideo();
 }
-videoSound.addEventListener('click',()=>{videoFull.muted=false;if(videoFull.volume===0)videoFull.volume=1;playExpandedVideo();});
-videoFull.addEventListener('volumechange',()=>{if(!videoFull.muted)videoSound.hidden=true;});
+videoSound.addEventListener('click',()=>{
+  const silent=videoFull.muted||videoFull.volume===0;
+  videoFull.muted=!silent;
+  if(silent&&videoFull.volume===0)videoFull.volume=1;
+  updateProductSound();playExpandedVideo();
+});
+videoStart.addEventListener('click',playExpandedVideo);
+videoFull.addEventListener('volumechange',updateProductSound);
+videoFull.addEventListener('play',()=>{videoStart.hidden=true;});
 videoPeek.addEventListener('pointerenter',e=>{
   if(e.pointerType==='mouse')videoHoverTimer=setTimeout(()=>openProductVideo(true),160);
 });
