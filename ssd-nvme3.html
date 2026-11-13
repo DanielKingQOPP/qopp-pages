@@ -396,8 +396,8 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .gallery{display:flex;flex-direction:column;min-width:0}
 .g-main{background:#fff;border-radius:18px;overflow:hidden;aspect-ratio:1400 / 676;margin:0}
 .g-main picture{display:block;width:100%;height:100%}
-.g-main img{width:100%;height:100%;display:block;object-fit:contain;transform:scale(var(--image-scale,1));transition:opacity .25s var(--ease)}
-.g-main img.swap{opacity:0}
+.g-main img{width:100%;height:100%;display:block;object-fit:contain;transform:scale(var(--image-scale,1))}
+.g-main picture.g-previous{position:absolute;inset:0;z-index:1;background:#fff;pointer-events:none;will-change:opacity}
 .g-thumbs{display:flex;justify-content:flex-start;gap:12px;overflow-x:auto;padding:20px 0 2px;scrollbar-width:none;overscroll-behavior-x:contain}
 .g-thumbs::-webkit-scrollbar{display:none}
 .g-th{flex:none;width:clamp(76px,6vw,104px);height:clamp(76px,6vw,104px);border:1px solid var(--hairline,#ddd);border-radius:10px;background:#fff;overflow:hidden;cursor:pointer;padding:0;transition:border-color .25s var(--ease)}
@@ -1167,55 +1167,71 @@ const GAL={
   ]
 };
 
-/* Product gallery: wraparound controls and one 8-second autoplay timer. */
+/* Product gallery: wraparound controls and a 5-second autoplay timer and decoded-image crossfades. */
 const galleryEl=document.querySelector('.gallery');
 const confImg=document.getElementById('conf-img');
 const confPicture=confImg.closest('picture');
 const confSource=confPicture.querySelector('source');
 const thumbsEl=document.getElementById('g-thumbs');
 const autoButton=galleryEl.querySelector('.g-auto');
-let galKey=null,galIx=0,galTimer,galAutoTimer,galRequest=0;
+let galKey=null,galIx=0,galAutoTimer,galRequest=0,galTransition=null,galPreload;
 let galPaused=reduced.matches,galHover=false,galVisible=false;
 function scheduleGallery(){
   clearTimeout(galAutoTimer);
   if(!galKey||GAL[galKey].length<2||galPaused||galHover||!galVisible||document.hidden||galleryEl.contains(document.activeElement))return;
-  galAutoTimer=setTimeout(()=>showFrame(galIx+1),8000);
+  galAutoTimer=setTimeout(()=>showFrame(galIx+1),5000);
 }
 function updateGalleryPause(){
   autoButton.setAttribute('aria-pressed',String(galPaused));
   autoButton.setAttribute('aria-label',galPaused?'Включить автоперелистывание':'Приостановить автоперелистывание');
   scheduleGallery();
 }
-function showFrame(i){
+async function showFrame(i){
   clearTimeout(galAutoTimer);
   const frames=GAL[galKey];
   galIx=(i+frames.length)%frames.length;
   const fr=frames[galIx],request=++galRequest;
-  clearTimeout(galTimer);
   const loaded=new Image();let useWebP=!!fr.webp;loaded.src=fr.webp||fr.src;
-  loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();}).then(()=>{
+  try{
+    await loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();});
     if(request!==galRequest)return;
-    confImg.classList.add('swap');
-    galTimer=setTimeout(()=>{
-      if(request!==galRequest)return;
-      if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
-      confImg.src=fr.src;
-      confImg.alt=fr.alt;
-      confPicture.style.setProperty('--image-scale',fr.scale||1);
-      confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
-      confImg.classList.remove('swap');
-      Array.from(thumbsEl.children).forEach((b,n)=>{
-        b.classList.toggle('on',n===galIx);
-        b.setAttribute('aria-pressed',String(n===galIx));
-      });
-      const active=thumbsEl.children[galIx];
-      if(active){
-        const strip=thumbsEl.getBoundingClientRect(),thumb=active.getBoundingClientRect();
-        thumbsEl.scrollTo({left:thumbsEl.scrollLeft+thumb.left-strip.left-(strip.width-thumb.width)/2,behavior:reduced.matches?'auto':'smooth'});
-      }
-      scheduleGallery();
-    },reduced.matches?0:140);
-  }).catch(()=>{if(request===galRequest){confImg.classList.remove('swap');scheduleGallery();}});
+    // Finish the visible blend before starting the latest requested frame.
+    if(galTransition)await galTransition.finished.catch(()=>{});
+    if(request!==galRequest)return;
+    let previous=null;
+    if(!reduced.matches&&confImg.getAttribute('src')!==fr.src){
+      previous=confPicture.cloneNode(true);
+      previous.removeAttribute('id');
+      previous.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+      previous.setAttribute('aria-hidden','true');previous.classList.add('g-previous');
+      previous.querySelector('img').alt='';
+      confPicture.after(previous);
+    }
+    if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+    confImg.src=fr.src;confImg.alt=fr.alt;
+    confPicture.style.setProperty('--image-scale',fr.scale||1);
+    confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
+    if(previous){
+      const blend=previous.animate([{opacity:1},{opacity:0}],{duration:750,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+      galTransition=blend;
+      blend.finished.catch(()=>{}).then(()=>{previous.remove();if(galTransition===blend)galTransition=null;});
+    }
+    Array.from(thumbsEl.children).forEach((b,n)=>{
+      b.classList.toggle('on',n===galIx);
+      b.setAttribute('aria-pressed',String(n===galIx));
+    });
+    const active=thumbsEl.children[galIx];
+    if(active){
+      const strip=thumbsEl.getBoundingClientRect(),thumb=active.getBoundingClientRect();
+      thumbsEl.scrollTo({left:thumbsEl.scrollLeft+thumb.left-strip.left-(strip.width-thumb.width)/2,behavior:reduced.matches?'auto':'smooth'});
+    }
+    // Decode ahead of the next tick so the photo does not wait on the network.
+    if(frames.length>1){
+      const next=frames[(galIx+1)%frames.length];galPreload=new Image();
+      galPreload.src=next.webp||next.src;galPreload.decode().catch(()=>{});
+    }
+    scheduleGallery();
+  }catch{if(request===galRequest)scheduleGallery();}
 }
 function setGallery(key){
   if(galKey===key||!GAL[key]?.length)return;
@@ -1249,7 +1265,7 @@ galleryEl.addEventListener('pointerleave',()=>{galHover=false;scheduleGallery();
 galleryEl.addEventListener('focusin',scheduleGallery);
 galleryEl.addEventListener('focusout',()=>setTimeout(scheduleGallery,0));
 document.addEventListener('visibilitychange',scheduleGallery);
-reduced.addEventListener('change',e=>{if(e.matches){galPaused=true;updateGalleryPause();}});
+reduced.addEventListener('change',e=>{if(e.matches){galPaused=true;if(galTransition)galTransition.finish();updateGalleryPause();}});
 new IntersectionObserver(entries=>{
   galVisible=entries[0].isIntersecting;scheduleGallery();
 },{threshold:.15}).observe(galleryEl);
