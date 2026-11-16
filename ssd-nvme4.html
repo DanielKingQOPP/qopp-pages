@@ -480,66 +480,13 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .video-start{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;display:grid;place-items:center;width:64px;height:64px;padding:0;border:1px solid #ffffffa6;border-radius:50%;background:#14161cb3;color:#fff;cursor:pointer;backdrop-filter:blur(6px)}
 .video-start:hover{background:#14161ce6}
 .video-start:focus-visible{outline:2px solid #8dbaff;outline-offset:4px}
-/* Owner-supplied photography with live specifications and readable mobile text. */
+/* Keep every owner-supplied banner whole, in its original order and proportions. */
 .q7-landing{position:relative;z-index:1;background:#000;color:#f4f3ef}
 .q7-landing[hidden]{display:none!important}
-.q7-landing h2,.q7-landing h3,.q7-landing p,.q7-landing figure,.q7-landing dl,.q7-landing dd{margin:0}
-.q7-landing h2,.q7-landing h3{font-family:var(--display);font-weight:600;line-height:1.35;text-transform:uppercase;letter-spacing:.12em}
-.q7-landing h3{font-size:clamp(22px,2.3vw,42px)}
-.q7-landing p{font:400 clamp(14px,1.15vw,19px)/1.8 var(--body);color:#c5c7cc}
-.q7-landing a{color:inherit;text-underline-offset:4px}
-.q7-hero{max-width:1920px;margin:auto;text-align:center;padding-top:clamp(38px,5vw,80px)}
-.q7-hero h2{font-size:clamp(34px,5.4vw,86px);font-weight:800;margin:10px 0}
-.q7-hero .q7-eyebrow{font-size:clamp(11px,1vw,16px);letter-spacing:.2em;text-transform:uppercase}
-.q7-art{position:relative;overflow:hidden;min-width:0;background:#000}
-.q7-art picture{display:block}
-.q7-art img{position:absolute;display:block;width:var(--q7-image-width,100%);max-width:none;height:auto;top:var(--q7-image-top,0);left:0}
-.q7-art--hero{aspect-ratio:4479/1340;--q7-image-top:-43.2836%}
-.q7-art--speed{aspect-ratio:2450/2526;--q7-image-width:182.9388%}
-.q7-art--capacity{aspect-ratio:2880/1600;--q7-image-width:155.625%;--q7-image-top:-7.5%}
-.q7-art--endurance{aspect-ratio:2250/2179;--q7-image-width:199.2%}
-.q7-art--compat{aspect-ratio:2500/2179;--q7-image-width:179.28%}
-.q7-art--console{aspect-ratio:4483/1339;--q7-image-top:-62.7334%}
-.q7-scene{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;max-width:1920px;margin:auto}
-.q7-copy{padding:clamp(28px,4.5vw,80px)}
-.q7-copy>p{margin-top:22px;max-width:43ch}
-.q7-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:clamp(24px,3vw,50px)!important}
-.q7-metrics dt{font:500 clamp(11px,.95vw,16px)/1.5 var(--body);color:#c5c7cc}
-.q7-metrics dd{margin-top:10px;font:800 clamp(30px,3.5vw,64px)/1.15 var(--display);white-space:nowrap}
-.q7-metrics small{font:500 clamp(11px,.95vw,16px)/1.5 var(--body);margin-left:6px;color:#c5c7cc}
-.q7-capacity{grid-template-columns:1.45fr 1fr;padding:clamp(25px,3vw,56px) 0}
-.q7-capacity .q7-copy{padding-left:clamp(20px,3vw,56px)}
-.q7-capacity .q7-volume{font:800 clamp(40px,6vw,100px)/1.2 var(--display);color:#f4f3ef;margin-top:24px}
-.q7-endurance .q7-metrics{grid-template-columns:1fr;gap:30px}
-.q7-endurance .q7-metrics dd{font-size:clamp(34px,3.2vw,60px)}
-.q7-compat .q7-copy{grid-column:1;grid-row:1}
-.q7-compat .q7-art{grid-column:2;grid-row:1}
-.q7-console{max-width:1920px;margin:auto}
-.q7-console .q7-copy{text-align:center;padding-bottom:30px}
-.q7-console .q7-copy p{max-width:65ch;margin-left:auto;margin-right:auto}
-.q7-note{padding:24px clamp(20px,5vw,80px) 40px;text-align:center;font-size:12px!important;max-width:1200px;margin:auto!important}
-@media(max-width:860px){
-  .q7-hero{padding-top:36px}
-  .q7-hero h2{font-size:34px}
-  .q7-hero p{padding:0 20px}
-  .q7-scene{display:flex;flex-direction:column;align-items:stretch}
-  .q7-copy,.q7-capacity .q7-copy{padding:30px 22px 38px;order:0}
-  .q7-art{order:1;width:100%}
-  .q7-art--hero{margin-top:20px!important}
-  .q7-art--speed,.q7-art--endurance,.q7-art--compat{max-height:none}
-  .q7-landing h3{font-size:22px;letter-spacing:.08em}
-  .q7-landing p{font-size:14px;line-height:1.8}
-  .q7-metrics{gap:16px;margin-top:24px!important}
-  .q7-metrics dd{font-size:34px}
-  .q7-metrics dt,.q7-metrics small{font-size:11px}
-  .q7-capacity{padding:0}
-  .q7-capacity .q7-volume{font-size:52px;margin-top:16px}
-  .q7-endurance .q7-metrics{grid-template-columns:1fr 1fr;gap:20px}
-  .q7-endurance .q7-metrics dd{font-size:26px}
-  .q7-endurance .q7-metrics small{display:block;margin:4px 0 0}
-  .q7-console .q7-copy{text-align:left;padding:30px 22px}
-  .q7-note{text-align:left;padding:24px 22px 32px}
-}
+.q7-slide{margin:0;padding:0}
+.q7-slide picture{display:block}
+.q7-slide img{display:block;width:100%;height:auto;max-width:100%}
+.q7-note{margin:0;padding:20px clamp(20px,4vw,56px) 28px;font:400 12px/1.8 var(--body);color:#c5c7cc;text-align:center}
 
 </style>
 <style id="mobile-fix">
@@ -1031,71 +978,14 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
       <p id="nvme-status" class="sr" role="status" aria-live="polite" aria-atomic="true"></p>
     </div>
   </section>
-  <section class="q7-landing" id="q7000-landing" aria-labelledby="q7-title">
-    <div class="q7-hero">
-      <p class="q7-eyebrow">Внутренний SSD · NVMe PCIe 4.0 ×4</p>
-      <h2 id="q7-title">Q7000MN</h2>
-      <p>M.2 2280 · <span data-q7-value="capacity">1 ТБ</span></p>
-      <figure class="q7-art q7-art--hero">
-        <picture><source srcset="assets/q7000mn-landing-01-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-01-20261116.jpg" alt="QOPP Q7000MN в красной подсветке" width="2400" height="1094" loading="lazy" decoding="async"></picture>
-      </figure>
-    </div>
-    <div class="q7-scene q7-speed">
-      <figure class="q7-art q7-art--speed">
-        <picture><source srcset="assets/q7000mn-landing-02-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-02-20261116.jpg" alt="Q7000MN рядом с ноутбуком, на фото версия 512 ГБ" width="2400" height="1353" loading="lazy" decoding="async"></picture>
-      </figure>
-      <div class="q7-copy">
-        <h3>Быстрая загрузка<br>и работа системы</h3>
-        <p>PCIe 4.0 ×4 для работы с приложениями, играми и большими файлами</p>
-        <dl class="q7-metrics">
-          <div><dt>Скорость чтения, до</dt><dd><span data-q7-value="read">7 000</span><small>МБ/с</small></dd></div>
-          <div><dt>Скорость записи, до</dt><dd><span data-q7-value="write">6 500</span><small>МБ/с</small></dd></div>
-        </dl>
-      </div>
-    </div>
-    <div class="q7-scene q7-capacity">
-      <figure class="q7-art q7-art--capacity">
-        <picture><source srcset="assets/q7000mn-landing-03-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-03-20261116.jpg" alt="Плата Q7000MN крупным планом, версия 512 ГБ" width="2400" height="1353" loading="lazy" decoding="async"></picture>
-      </figure>
-      <div class="q7-copy">
-        <h3>Место для<br>ваших задач</h3>
-        <p class="q7-volume" data-q7-value="capacity">1 ТБ</p>
-        <p>Флеш-память TLC, 232 слоя<br>Форм-фактор M.2 2280</p>
-      </div>
-    </div>
-    <div class="q7-scene q7-endurance">
-      <figure class="q7-art q7-art--endurance">
-        <picture><source srcset="assets/q7000mn-landing-04-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-04-20261116.jpg" alt="Q7000MN на тёмной поверхности, версия 512 ГБ" width="2400" height="1167" loading="lazy" decoding="async"></picture>
-      </figure>
-      <div class="q7-copy">
-        <h3>Апгрейд для<br>вашего устройства</h3>
-        <dl class="q7-metrics">
-          <div><dt>Время наработки на отказ</dt><dd>2 000 000<small>ч</small></dd></div>
-          <div><dt>Ресурс записи</dt><dd><span data-q7-value="tbw">780</span><small>TBW</small></dd></div>
-        </dl>
-        <p>Гарантия 5 лет или до достижения ресурса записи. <a href="warranty.html">Условия гарантии</a></p>
-      </div>
-    </div>
-    <div class="q7-scene q7-compat">
-      <figure class="q7-art q7-art--compat">
-        <picture><source srcset="assets/q7000mn-landing-05-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-05-20261116.jpg" alt="Q7000MN на ноутбуке, версия 512 ГБ" width="2400" height="1167" loading="lazy" decoding="async"></picture>
-      </figure>
-      <div class="q7-copy">
-        <h3>Совместимость</h3>
-        <p>Для устройств со слотом M.2 2280 с поддержкой NVMe</p>
-        <p>Обратная совместимость с PCIe 3.0. Скорость ограничивается возможностями интерфейса устройства</p>
-      </div>
-    </div>
-    <div class="q7-console">
-      <div class="q7-copy">
-        <h3>Больше места для игр на PS5</h3>
-        <p>Для установки в PS5 необходим радиатор подходящего размера. Перед установкой проверьте <a href="https://www.playstation.com/en-us/support/hardware/ps5-install-m2-ssd/" target="_blank" rel="noopener noreferrer">требования PlayStation к SSD и охлаждению</a></p>
-      </div>
-      <figure class="q7-art q7-art--console">
-        <picture><source srcset="assets/q7000mn-landing-06-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-06-20261116.jpg" alt="Q7000MN рядом с PlayStation 5, на фото накопитель 512 ГБ" width="2400" height="1167" loading="lazy" decoding="async"></picture>
-      </figure>
-    </div>
-    <p class="q7-note">На иллюстрациях показана версия 512 ГБ. Значения скорости и ресурса указаны для выбранного объёма <span data-q7-value="capacity">1 ТБ</span>. Фактическая скорость зависит от устройства и условий использования</p>
+  <section class="q7-landing" id="q7000-landing" aria-label="Обзор Q7000MN">
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-01-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-01-20261116.jpg" alt="Q7000MN: оригинальный первый баннер" width="2400" height="1094" loading="lazy" decoding="async"></picture></figure>
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-02-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-02-20261116.jpg" alt="Q7000MN: загрузка и работа системы" width="2400" height="1353" loading="lazy" decoding="async"></picture></figure>
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-03-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-03-20261116.jpg" alt="Q7000MN: производительность" width="2400" height="1353" loading="lazy" decoding="async"></picture></figure>
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-04-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-04-20261116.jpg" alt="Q7000MN: ресурс и надёжность" width="2400" height="1167" loading="lazy" decoding="async"></picture></figure>
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-05-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-05-20261116.jpg" alt="Q7000MN: совместимость" width="2400" height="1167" loading="lazy" decoding="async"></picture></figure>
+    <figure class="q7-slide"><picture><source srcset="assets/q7000mn-landing-06-20261116.webp" type="image/webp"><img src="assets/q7000mn-landing-06-20261116.jpg" alt="Q7000MN: накопитель для PS5" width="2400" height="1167" loading="lazy" decoding="async"></picture></figure>
+    <p class="q7-note">На баннерах показана версия 512 ГБ. Характеристики выбранного объёма приведены в конфигураторе и таблице ниже</p>
   </section>
 
   <section class="specs" id="specs" aria-labelledby="specs-title">
@@ -1289,7 +1179,17 @@ const GAL={
 const galleryEl=document.querySelector('.gallery');
 const confImg=document.getElementById('conf-img');
 const confPicture=confImg.closest('picture');
-const confSource=confPicture.querySelector('source');
+const confSource=confPicture.querySelector('source:not([media])');
+const galleryMobile=matchMedia('(max-width:860px)');
+const confMobileWebp=document.createElement('source');
+const confMobileJpeg=document.createElement('source');
+for(const source of [confMobileWebp,confMobileJpeg]){
+  source.media='(max-width:860px)';confPicture.insertBefore(source,confSource);
+}
+confMobileWebp.type='image/webp';confMobileJpeg.type='image/jpeg';
+function galleryAsset(frame){
+  return galleryMobile.matches&&frame.mobileSrc?{src:frame.mobileSrc,webp:frame.mobileWebp}:{src:frame.src,webp:frame.webp};
+}
 const thumbsEl=document.getElementById('g-thumbs');
 const autoButton=galleryEl.querySelector('.g-auto');
 let galKey=null,galIx=0,galAutoTimer,galRequest=0,galTransition=null,galPreload;
@@ -1309,9 +1209,9 @@ async function showFrame(i){
   const frames=GAL[galKey];
   galIx=(i+frames.length)%frames.length;
   const fr=frames[galIx],request=++galRequest;
-  const loaded=new Image();let useWebP=!!fr.webp;loaded.src=fr.webp||fr.src;
+  const asset=galleryAsset(fr),loaded=new Image();let useWebP=!!asset.webp;loaded.src=asset.webp||asset.src;
   try{
-    await loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();});
+    await loaded.decode().catch(()=>{useWebP=false;loaded.src=asset.src;return loaded.decode();});
     if(request!==galRequest)return;
     // Finish the visible blend before starting the latest requested frame.
     if(galTransition)await galTransition.finished.catch(()=>{});
@@ -1326,6 +1226,8 @@ async function showFrame(i){
       confPicture.after(previous);
     }
     if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+    if(useWebP&&fr.mobileWebp)confMobileWebp.srcset=fr.mobileWebp;else confMobileWebp.removeAttribute('srcset');
+    if(fr.mobileSrc)confMobileJpeg.srcset=fr.mobileSrc;else confMobileJpeg.removeAttribute('srcset');
     confImg.src=fr.src;confImg.alt=fr.alt;
     confPicture.style.setProperty('--image-scale',fr.scale||1);
     confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
@@ -1346,7 +1248,8 @@ async function showFrame(i){
     // Decode ahead of the next tick so the photo does not wait on the network.
     if(frames.length>1){
       const next=frames[(galIx+1)%frames.length];galPreload=new Image();
-      galPreload.src=next.webp||next.src;galPreload.decode().catch(()=>{});
+      const nextAsset=galleryAsset(next);
+      galPreload.src=nextAsset.webp||nextAsset.src;galPreload.decode().catch(()=>{});
     }
     scheduleGallery();
   }catch{if(request===galRequest)scheduleGallery();}
@@ -1480,13 +1383,9 @@ new IntersectionObserver(entries=>{
   if(!videoInView)openProductVideo(false);else syncProductVideo();
 },{threshold:.1}).observe(videoPeek);
 
-/* One owner-supplied landing for every documented Q7000MN capacity. */
-function updateProductLanding(model,capacity,variant){
-  const landing=document.getElementById('q7000-landing');
-  landing.hidden=model!=='Q7000MN';
-  if(landing.hidden)return;
-  const values={capacity,read:variant.read.toLocaleString('ru-RU'),write:variant.write.toLocaleString('ru-RU'),tbw:variant.tbw.toLocaleString('ru-RU')};
-  landing.querySelectorAll('[data-q7-value]').forEach(el=>{el.textContent=values[el.dataset.q7Value];});
+/* The original banners apply to Q7000MN only; specifications remain in the configurator. */
+function updateProductLanding(model){
+  document.getElementById('q7000-landing').hidden=model!=='Q7000MN';
 }
 
 /* Speeds and NAND: QOPP Product Tech List.xlsx, checked 12.11.2026.

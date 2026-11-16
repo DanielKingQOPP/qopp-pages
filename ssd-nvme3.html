@@ -1171,7 +1171,17 @@ const GAL={
 const galleryEl=document.querySelector('.gallery');
 const confImg=document.getElementById('conf-img');
 const confPicture=confImg.closest('picture');
-const confSource=confPicture.querySelector('source');
+const confSource=confPicture.querySelector('source:not([media])');
+const galleryMobile=matchMedia('(max-width:860px)');
+const confMobileWebp=document.createElement('source');
+const confMobileJpeg=document.createElement('source');
+for(const source of [confMobileWebp,confMobileJpeg]){
+  source.media='(max-width:860px)';confPicture.insertBefore(source,confSource);
+}
+confMobileWebp.type='image/webp';confMobileJpeg.type='image/jpeg';
+function galleryAsset(frame){
+  return galleryMobile.matches&&frame.mobileSrc?{src:frame.mobileSrc,webp:frame.mobileWebp}:{src:frame.src,webp:frame.webp};
+}
 const thumbsEl=document.getElementById('g-thumbs');
 const autoButton=galleryEl.querySelector('.g-auto');
 let galKey=null,galIx=0,galAutoTimer,galRequest=0,galTransition=null,galPreload;
@@ -1191,9 +1201,9 @@ async function showFrame(i){
   const frames=GAL[galKey];
   galIx=(i+frames.length)%frames.length;
   const fr=frames[galIx],request=++galRequest;
-  const loaded=new Image();let useWebP=!!fr.webp;loaded.src=fr.webp||fr.src;
+  const asset=galleryAsset(fr),loaded=new Image();let useWebP=!!asset.webp;loaded.src=asset.webp||asset.src;
   try{
-    await loaded.decode().catch(()=>{useWebP=false;loaded.src=fr.src;return loaded.decode();});
+    await loaded.decode().catch(()=>{useWebP=false;loaded.src=asset.src;return loaded.decode();});
     if(request!==galRequest)return;
     // Finish the visible blend before starting the latest requested frame.
     if(galTransition)await galTransition.finished.catch(()=>{});
@@ -1208,6 +1218,8 @@ async function showFrame(i){
       confPicture.after(previous);
     }
     if(useWebP)confSource.srcset=fr.webp;else confSource.removeAttribute('srcset');
+    if(useWebP&&fr.mobileWebp)confMobileWebp.srcset=fr.mobileWebp;else confMobileWebp.removeAttribute('srcset');
+    if(fr.mobileSrc)confMobileJpeg.srcset=fr.mobileSrc;else confMobileJpeg.removeAttribute('srcset');
     confImg.src=fr.src;confImg.alt=fr.alt;
     confPicture.style.setProperty('--image-scale',fr.scale||1);
     confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
@@ -1228,7 +1240,8 @@ async function showFrame(i){
     // Decode ahead of the next tick so the photo does not wait on the network.
     if(frames.length>1){
       const next=frames[(galIx+1)%frames.length];galPreload=new Image();
-      galPreload.src=next.webp||next.src;galPreload.decode().catch(()=>{});
+      const nextAsset=galleryAsset(next);
+      galPreload.src=nextAsset.webp||nextAsset.src;galPreload.decode().catch(()=>{});
     }
     scheduleGallery();
   }catch{if(request===galRequest)scheduleGallery();}
