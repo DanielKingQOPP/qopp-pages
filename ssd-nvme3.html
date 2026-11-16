@@ -1310,6 +1310,7 @@ function renderNvme(){
     b.setAttribute('aria-pressed',String(b.dataset.nvmeCap===nvmeState.cap));
   });
   text('nvme-status',nvmeState.model+', '+nvmeState.cap+'. Чтение до '+variant.read+', запись до '+variant.write+' МБ/с. Ресурс '+variant.tbw+' TBW.');
+  if(typeof updateProductLanding==='function')updateProductLanding(nvmeState.model,nvmeState.cap,variant);
 }
 document.querySelectorAll('[data-nvme-model]').forEach(b=>b.addEventListener('click',()=>{
   nvmeState.model=b.dataset.nvmeModel;
