@@ -493,8 +493,9 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 /* Shared owner-photo gallery; scale only trims blank margins around the product. */
 .gallery{display:flex;flex-direction:column;min-width:0}
 .g-main{background:#fff;border-radius:18px;overflow:hidden;aspect-ratio:1400 / 676;margin:0}
-.g-main picture{display:block;width:100%;height:100%}
-.g-main img{width:100%;height:100%;display:block;object-fit:contain;transform:scale(var(--image-scale,1))}
+/* Keep framing on picture so the image's pointer tilt cannot override it. */
+.g-main picture{display:block;width:100%;height:100%;transform:translate(var(--image-x,0%),var(--image-y,0%)) scale(var(--image-scale,1))}
+.g-main img{width:100%;height:100%;display:block;object-fit:contain}
 .g-main picture.g-previous{position:absolute;inset:0;z-index:1;background:#fff;pointer-events:none;will-change:opacity}
 .g-thumbs{display:flex;justify-content:flex-start;gap:12px;overflow-x:auto;padding:20px 0 2px;scrollbar-width:none;overscroll-behavior-x:contain}
 .g-thumbs::-webkit-scrollbar{display:none}
@@ -510,7 +511,7 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .has-gallery .nvme-subtitle{font-size:14px}
 @media(max-width:860px){
   .g-main{aspect-ratio:1.04}
-  .g-main img{transform:scale(var(--image-scale-mobile,1))}
+  .g-main picture{transform:translate(var(--image-x-mobile,0%),var(--image-y-mobile,0%)) scale(var(--image-scale-mobile,1))}
   .g-thumbs{padding:16px 20px 2px;gap:10px}
   .g-th{width:64px;height:64px}
   .nvme-overview.has-gallery{grid-template-columns:1fr;padding:0 0 40px;gap:28px}
@@ -1406,8 +1407,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-128gb-01-20261116-fit-mobile.webp",
       "thumb": "assets/q600ms-128gb-01-20261116-fit-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.868326,
+      "mobile": 0.966506,
+      "offset": [
+        0.03119,
+        -0.035185
+      ],
+      "mobileOffset": [
+        0.031296,
+        0.769562
+      ],
+      "thumbScale": 1.004808,
+      "thumbOffset": [
+        -0.208333,
+        0.625
+      ]
     },
     {
       "src": "assets/q600ms-128gb-02-20261116-fit-desktop.jpg",
@@ -1416,8 +1430,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-128gb-02-20261116-fit-mobile.webp",
       "thumb": "assets/q600ms-128gb-02-20261116-fit-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
       "src": "assets/q600ms-128gb-03-20261116-fit-desktop.jpg",
@@ -1426,8 +1453,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-128gb-03-20261116-fit-mobile.webp",
       "thumb": "assets/q600ms-128gb-03-20261116-fit-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, под углом",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.87915,
+      "mobile": 0.952293,
+      "offset": [
+        0.577835,
+        0.991683
+      ],
+      "mobileOffset": [
+        0.336633,
+        0.982803
+      ],
+      "thumbScale": 0.990338,
+      "thumbOffset": [
+        0.414654,
+        1.031602
+      ]
     },
     {
       "src": "assets/q600ms-128gb-04-20261116-fit-desktop.jpg",
@@ -1436,8 +1476,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-128gb-04-20261116-fit-mobile.webp",
       "thumb": "assets/q600ms-128gb-04-20261116-fit-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, упаковка",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.001951,
+      "mobile": 0.728428,
+      "offset": [
+        -0.178328,
+        -0.259164
+      ],
+      "mobileOffset": [
+        0.360108,
+        -0.934926
+      ],
+      "thumbScale": 0.76,
+      "thumbOffset": [
+        0.366667,
+        -0.833333
+      ]
     }
   ],
   "Q600MS-256 ГБ": [
@@ -1490,8 +1543,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-512gb-01-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-512gb-01-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 512 ГБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.863022,
+      "mobile": 0.96722,
+      "offset": [
+        -0.061751,
+        -0.062001
+      ],
+      "mobileOffset": [
+        0.000364,
+        0.80185
+      ],
+      "thumbScale": 1.004808,
+      "thumbOffset": [
+        -0.208333,
+        0.625
+      ]
     },
     {
       "src": "assets/q600ms-512gb-02-20261117-fit-desktop.jpg",
@@ -1500,8 +1566,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-512gb-02-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-512gb-02-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 512 ГБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
       "src": "assets/q600ms-512gb-03-20261117-fit-desktop.jpg",
@@ -1510,16 +1589,42 @@ const GAL={
       "mobileWebp": "assets/q600ms-512gb-03-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-512gb-03-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 512 ГБ, под углом",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.873228,
+      "mobile": 0.954411,
+      "offset": [
+        0.684345,
+        0.47498
+      ],
+      "mobileOffset": [
+        0.367766,
+        0.985274
+      ],
+      "thumbScale": 0.990338,
+      "thumbOffset": [
+        0.414654,
+        1.031602
+      ]
     },
     {
       "src": "assets/q600ms-512gb-package-20261113.jpg",
       "webp": "assets/q600ms-512gb-package-20261113.webp",
       "thumb": "assets/q600ms-512gb-package-20261113-thumb.webp",
       "alt": "Упаковка QOPP Q600MS, 512 ГБ",
-      "scale": 1.25,
-      "mobile": 1.15
+      "scale": 1.370922,
+      "mobile": 1.0,
+      "offset": [
+        -0.438972,
+        1.104189
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     }
   ],
   "Q600MS-1 ТБ": [
@@ -1530,8 +1635,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-1tb-01-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-1tb-01-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.867993,
+      "mobile": 1.005908,
+      "offset": [
+        0.01566,
+        -0.355868
+      ],
+      "mobileOffset": [
+        0.000364,
+        -0.004166
+      ],
+      "thumbScale": 1.004808,
+      "thumbOffset": [
+        -0.208333,
+        -0.003005
+      ]
     },
     {
       "src": "assets/q600ms-1tb-02-20261117-fit-desktop.jpg",
@@ -1540,8 +1658,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-1tb-02-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-1tb-02-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
       "src": "assets/q600ms-1tb-03-20261117-fit-desktop.jpg",
@@ -1550,16 +1681,42 @@ const GAL={
       "mobileWebp": "assets/q600ms-1tb-03-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-1tb-03-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, под углом",
-      "scale": 1,
-      "mobile": 1
+      "scale": 0.877749,
+      "mobile": 0.992587,
+      "offset": [
+        0.514514,
+        0.731994
+      ],
+      "mobileOffset": [
+        0.367766,
+        0.221745
+      ],
+      "thumbScale": 0.990338,
+      "thumbOffset": [
+        0.414654,
+        0.20632
+      ]
     },
     {
       "src": "assets/q600ms-1tb-package-20261113.jpg",
       "webp": "assets/q600ms-1tb-package-20261113.webp",
       "thumb": "assets/q600ms-1tb-package-20261113-thumb.webp",
       "alt": "Упаковка QOPP Q600MS, 1 ТБ",
-      "scale": 1.25,
-      "mobile": 1.15
+      "scale": 1.370922,
+      "mobile": 1.0,
+      "offset": [
+        -0.438972,
+        1.104189
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     }
   ],
   "Q600MS-2 ТБ": [
@@ -1570,8 +1727,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-2tb-01-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-2tb-01-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.000383,
+      "mobile": 1.0,
+      "offset": [
+        -0.015435,
+        -1.088375
+      ],
+      "mobileOffset": [
+        0.0,
+        0.641026
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.416667
+      ]
     },
     {
       "src": "assets/q600ms-2tb-02-20261117-fit-desktop.jpg",
@@ -1580,8 +1750,21 @@ const GAL={
       "mobileWebp": "assets/q600ms-2tb-02-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-2tb-02-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
       "src": "assets/q600ms-2tb-03-20261117-fit-desktop.jpg",
@@ -1590,16 +1773,42 @@ const GAL={
       "mobileWebp": "assets/q600ms-2tb-03-20261117-fit-mobile.webp",
       "thumb": "assets/q600ms-2tb-03-20261117-fit-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, под углом",
-      "scale": 1,
-      "mobile": 1
+      "scale": 1.009509,
+      "mobile": 0.991852,
+      "offset": [
+        0.185358,
+        0.410392
+      ],
+      "mobileOffset": [
+        0.336995,
+        0.221486
+      ],
+      "thumbScale": 0.990338,
+      "thumbOffset": [
+        0.414654,
+        0.20632
+      ]
     },
     {
       "src": "assets/q600ms-2tb-package-20261113.jpg",
       "webp": "assets/q600ms-2tb-package-20261113.webp",
       "thumb": "assets/q600ms-2tb-package-20261113-thumb.webp",
       "alt": "Упаковка QOPP Q600MS, 2 ТБ",
-      "scale": 1.25,
-      "mobile": 1.15
+      "scale": 1.370922,
+      "mobile": 1.0,
+      "offset": [
+        -0.438972,
+        1.104189
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     }
   ],
   "Q500S-480 ГБ": [
@@ -1744,6 +1953,10 @@ async function showFrame(i){
     confImg.src=fr.src;confImg.alt=fr.alt;
     confPicture.style.setProperty('--image-scale',fr.scale||1);
     confPicture.style.setProperty('--image-scale-mobile',fr.mobile||1);
+    confPicture.style.setProperty('--image-x',(fr.offset?.[0]||0)+'%');
+    confPicture.style.setProperty('--image-y',(fr.offset?.[1]||0)+'%');
+    confPicture.style.setProperty('--image-x-mobile',(fr.mobileOffset?.[0]||0)+'%');
+    confPicture.style.setProperty('--image-y-mobile',(fr.mobileOffset?.[1]||0)+'%');
     if(previous){
       const blend=previous.animate([{opacity:1},{opacity:0}],{duration:750,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
       galTransition=blend;
@@ -1778,6 +1991,7 @@ function setGallery(key){
     b.type='button';b.className='g-th'+(i===0?' on':'');
     const preview=document.createElement('img');
     preview.src=fr.thumb||fr.webp||fr.src;preview.alt='';preview.width=240;preview.height=240;
+    if(fr.thumbScale)preview.style.transform=`translate(${fr.thumbOffset?.[0]||0}%,${fr.thumbOffset?.[1]||0}%) scale(${fr.thumbScale})`;
     preview.loading='lazy';preview.decoding='async';b.appendChild(preview);
     b.setAttribute('aria-label',fr.alt);b.setAttribute('aria-pressed',String(i===0));
     b.addEventListener('click',()=>showFrame(i));
