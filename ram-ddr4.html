@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оперативная память DDR4. QOPP</title>
-<meta name="description" content="Модули и комплекты оперативной памяти QOPP DDR4. Выбор форм-фактора, модели и объёма. Характеристики и бессрочная гарантия.">
+<title>Оперативная память DDR4 для ПК. QOPP</title>
+<meta name="description" content="Оперативная память QOPP DDR4 UDIMM для ПК. Выбор модели, комплектации и объёма. Характеристики и бессрочная гарантия.">
 <meta name="theme-color" content="#f6f6f7">
-<meta property="og:title" content="Оперативная память DDR4. QOPP">
-<meta property="og:description" content="Модули и комплекты оперативной памяти QOPP DDR4. Выбор форм-фактора, модели и объёма. Характеристики и бессрочная гарантия.">
+<meta property="og:title" content="Оперативная память DDR4 для ПК. QOPP">
+<meta property="og:description" content="Оперативная память QOPP DDR4 UDIMM для ПК. Выбор модели, комплектации и объёма. Характеристики и бессрочная гарантия.">
 <meta property="og:url" content="https://qopp.ru/ram-ddr4.html">
 <link rel="canonical" href="https://qopp.ru/ram-ddr4.html">
 <meta name="color-scheme" content="only light">
@@ -26,6 +26,11 @@ img,video,canvas,picture{-webkit-user-drag:none;user-select:none;-webkit-user-se
 addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});
 addEventListener('dragstart',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});})();</script>
 
+<style>/* Generation and form factor are fixed by the selected catalog section. */
+.catalog-product .product-fixed{display:flex;align-items:center;justify-content:center;cursor:default}
+.catalog-product .product-fixed:hover{border-color:#cfd2d7}
+</style>
+<script>if(new URLSearchParams(location.search).get("form")==="sodimm")location.replace("ram-sodimm-ddr4.html"+location.search+location.hash);</script>
 <style>
 /* фирменный Montserrat, свой хостинг: переменный шрифт Google, все веса 100-900, прямой и курсив.
    Латинские файлы с 05.10.2026 идут с фирменной Q (кольцо с хвостом из логотипа): MontserratQOPP-*, делает САЙТ РЕФЫ/make_font_qopp.py */
@@ -857,7 +862,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 <nav aria-label="Основная навигация">
   <div class="brand"><a class="logo" href="index.html">
     <img src="assets/logo.png" alt="QOPP. На главную" width="384" height="152">
-  </a><p class="nav-crumbs" aria-label="Вы здесь"><a href="index.html">Главная</a><span aria-hidden="true">›</span><a href="ram.html">Оперативная память</a><span aria-hidden="true">›</span><span aria-current="page">DDR4</span></p></div>
+  </a><p class="nav-crumbs" aria-label="Вы здесь"><a href="index.html">Главная</a><span aria-hidden="true">›</span><a href="udimm.html">Для ПК</a><span aria-hidden="true">›</span><span aria-current="page">DDR4</span></p></div>
   <div class="menu-pill">
     <a class="mi active" id="mi-catalog">Каталог</a>
     <a class="mi" href="warranty.html">Гарантия</a>
@@ -870,7 +875,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 </nav>
 <div class="cat-drop" id="cat-drop" aria-label="Категории каталога">
   <a class="cd-item" href="ssd.html">Внутренние SSD</a>
-  <a class="cd-item current" href="ram.html">Оперативная память</a>
+  <a class="cd-item" href="ram.html">Оперативная память</a>
   <div class="cd-sub">
     <a class="cd-si" href="udimm.html">Для персонального компьютера</a>
     <a class="cd-si" href="sodimm.html">Для ноутбука</a>
@@ -935,21 +940,12 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         <h1 class="nvme-title" id="product-title">ME-U R4</h1>
         <p class="nvme-subtitle" id="product-subtitle">UDIMM · DDR4</p>
       </div>
-      <fieldset class="nvme-options"><legend>Поколение памяти</legend><div>
-        <a class="nvme-opt product-generation" data-product-generation="3" href="ram-ddr3.html?form=udimm&amp;kit=1&amp;capacity=8">DDR3</a>
-        <a class="nvme-opt product-generation" data-product-generation="4" href="ram-ddr4.html?form=udimm&amp;kit=1&amp;capacity=8" aria-current="page">DDR4</a>
-        <a class="nvme-opt product-generation" data-product-generation="5" href="ram-ddr5.html?form=udimm&amp;kit=1&amp;capacity=8">DDR5</a>
-      </div></fieldset>
-      <fieldset class="nvme-options" data-product-group="form"><legend>Форм-фактор</legend><div>
-        <button type="button" class="nvme-opt" data-product-option="udimm" aria-pressed="true">UDIMM</button>
-        <button type="button" class="nvme-opt" data-product-option="sodimm" aria-pressed="false">SO-DIMM</button>
-      </div></fieldset>
+      <fieldset class="nvme-options"><legend>Поколение памяти</legend><div><span class="nvme-opt product-fixed">DDR4</span></div></fieldset>
+      <fieldset class="nvme-options"><legend>Форм-фактор</legend><div><span class="nvme-opt product-fixed">UDIMM</span></div></fieldset>
       <fieldset class="nvme-options" data-product-group="model"><legend>Модель</legend><div>
         <button type="button" class="nvme-opt" data-product-option="st-u-r4" aria-pressed="false">ST-U R4</button>
         <button type="button" class="nvme-opt" data-product-option="me-u-r4" aria-pressed="true">ME-U R4</button>
         <button type="button" class="nvme-opt" data-product-option="hi-u-r4" aria-pressed="false">HI-U R4</button>
-        <button type="button" class="nvme-opt" data-product-option="st-s-r4" aria-pressed="false" hidden>ST-S R4</button>
-        <button type="button" class="nvme-opt" data-product-option="me-s-r4" aria-pressed="false" hidden>ME-S R4</button>
       </div></fieldset>
       <fieldset class="nvme-options" data-product-group="kit"><legend>Комплектация</legend><div>
         <button type="button" class="nvme-opt" data-product-option="1" aria-pressed="true">1 модуль</button>
@@ -1029,20 +1025,6 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
   "defaultId": "Q1DDR4-UD/3200/8",
   "groups": [
     {
-      "key": "form",
-      "label": "Форм-фактор",
-      "options": [
-        {
-          "value": "udimm",
-          "label": "UDIMM"
-        },
-        {
-          "value": "sodimm",
-          "label": "SO-DIMM"
-        }
-      ]
-    },
-    {
       "key": "model",
       "label": "Модель",
       "options": [
@@ -1057,14 +1039,6 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         {
           "value": "hi-u-r4",
           "label": "HI-U R4"
-        },
-        {
-          "value": "st-s-r4",
-          "label": "ST-S R4"
-        },
-        {
-          "value": "me-s-r4",
-          "label": "ME-S R4"
         }
       ]
     },
@@ -1399,246 +1373,6 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         "timing": "18-22-22-44",
         "voltage": "1,35 В",
         "heatsink": "Да",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/8",
-      "form": "sodimm",
-      "model": "st-s-r4",
-      "family": "ST-S R4",
-      "kit": "1",
-      "capacity": "8",
-      "title": "ST-S R4",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 8 ГБ",
-      "stat": {
-        "value": "2 666",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ST-S R4",
-        "part": "Q1DDR4-SOD/8",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "8 ГБ",
-        "moduleCapacity": "8 ГБ",
-        "modules": "1 модуль",
-        "frequency": "2 666 МГц",
-        "timing": "19-19-19-43",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/16",
-      "form": "sodimm",
-      "model": "st-s-r4",
-      "family": "ST-S R4",
-      "kit": "1",
-      "capacity": "16",
-      "title": "ST-S R4",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 16 ГБ",
-      "stat": {
-        "value": "2 666",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ST-S R4",
-        "part": "Q1DDR4-SOD/16",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "16 ГБ",
-        "moduleCapacity": "16 ГБ",
-        "modules": "1 модуль",
-        "frequency": "2 666 МГц",
-        "timing": "19-19-19-43",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/8-KIT",
-      "form": "sodimm",
-      "model": "st-s-r4",
-      "family": "ST-S R4",
-      "kit": "2",
-      "capacity": "16",
-      "title": "ST-S R4 K2/16",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 16 ГБ",
-      "stat": {
-        "value": "2 666",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ST-S R4 K2/16",
-        "part": "Q1DDR4-SOD/8-KIT",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "16 ГБ",
-        "moduleCapacity": "8 ГБ",
-        "modules": "2 модуля по 8 ГБ",
-        "frequency": "2 666 МГц",
-        "timing": "19-19-19-43",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/16-KIT",
-      "form": "sodimm",
-      "model": "st-s-r4",
-      "family": "ST-S R4",
-      "kit": "2",
-      "capacity": "32",
-      "title": "ST-S R4 K2/32",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 32 ГБ",
-      "stat": {
-        "value": "2 666",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ST-S R4 K2/32",
-        "part": "Q1DDR4-SOD/16-KIT",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "32 ГБ",
-        "moduleCapacity": "16 ГБ",
-        "modules": "2 модуля по 16 ГБ",
-        "frequency": "2 666 МГц",
-        "timing": "19-19-19-43",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/3200/8",
-      "form": "sodimm",
-      "model": "me-s-r4",
-      "family": "ME-S R4",
-      "kit": "1",
-      "capacity": "8",
-      "title": "ME-S R4",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 8 ГБ",
-      "stat": {
-        "value": "3 200",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ME-S R4",
-        "part": "Q1DDR4-SOD/3200/8",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "8 ГБ",
-        "moduleCapacity": "8 ГБ",
-        "modules": "1 модуль",
-        "frequency": "3 200 МГц",
-        "timing": "22-22-22-52",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/3200/16",
-      "form": "sodimm",
-      "model": "me-s-r4",
-      "family": "ME-S R4",
-      "kit": "1",
-      "capacity": "16",
-      "title": "ME-S R4",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 16 ГБ",
-      "stat": {
-        "value": "3 200",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ME-S R4",
-        "part": "Q1DDR4-SOD/3200/16",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "16 ГБ",
-        "moduleCapacity": "16 ГБ",
-        "modules": "1 модуль",
-        "frequency": "3 200 МГц",
-        "timing": "22-22-22-52",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/3200/8-KIT",
-      "form": "sodimm",
-      "model": "me-s-r4",
-      "family": "ME-S R4",
-      "kit": "2",
-      "capacity": "16",
-      "title": "ME-S R4 K2/16",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 16 ГБ",
-      "stat": {
-        "value": "3 200",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ME-S R4 K2/16",
-        "part": "Q1DDR4-SOD/3200/8-KIT",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "16 ГБ",
-        "moduleCapacity": "8 ГБ",
-        "modules": "2 модуля по 8 ГБ",
-        "frequency": "3 200 МГц",
-        "timing": "22-22-22-52",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
-        "warranty": "Бессрочная",
-        "chips": "Samsung / SK hynix / Micron"
-      }
-    },
-    {
-      "id": "Q1DDR4-SOD/3200/16-KIT",
-      "form": "sodimm",
-      "model": "me-s-r4",
-      "family": "ME-S R4",
-      "kit": "2",
-      "capacity": "32",
-      "title": "ME-S R4 K2/32",
-      "subtitle": "SO-DIMM · DDR4",
-      "barSubtitle": "SO-DIMM · DDR4 · 32 ГБ",
-      "stat": {
-        "value": "3 200",
-        "unit": "МГц"
-      },
-      "specs": {
-        "model": "ME-S R4 K2/32",
-        "part": "Q1DDR4-SOD/3200/16-KIT",
-        "type": "DDR4",
-        "form": "SO-DIMM",
-        "capacity": "32 ГБ",
-        "moduleCapacity": "16 ГБ",
-        "modules": "2 модуля по 16 ГБ",
-        "frequency": "3 200 МГц",
-        "timing": "22-22-22-52",
-        "voltage": "1,2 В",
-        "heatsink": "Нет",
         "warranty": "Бессрочная",
         "chips": "Samsung / SK hynix / Micron"
       }
