@@ -355,8 +355,7 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .nvme-opt:hover{border-color:var(--ink)}
 .nvme-opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .nvme-opt:focus-visible{outline:2px solid #2672d5;outline-offset:3px}
-.nvme-terms{font-size:12px;line-height:1.7;color:var(--muted);margin-top:12px}
-.nvme-terms a,.spec-note a{color:inherit;text-underline-offset:3px}
+.spec-note a{color:inherit;text-underline-offset:3px}
 .nvme-page .specs{scroll-margin-top:190px}
 .nvme-page .specs h2{letter-spacing:.04em;text-transform:none;text-align:left}
 .nvme-page .spec dt{letter-spacing:.04em;text-transform:none;font-size:13px}
@@ -426,6 +425,24 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 /* Shared product controls and headline specifications. */
 .product-page .opt,.product-page .nvme-opt,.product-page .pbar .pbtn,.product-page .soon{border-radius:6px}
 .product-page .conf-details .kicker,.product-page .nvme-kicker{color:#5b6068;font-size:12px;letter-spacing:.16em}
+.product-page .conf-title,.product-page .nvme-title{font-family:var(--display);font-size:clamp(28px,2.6vw,40px);font-weight:800;line-height:1.15;letter-spacing:.01em;margin:12px 0 0}
+.product-page .conf-sub,.product-page .nvme-subtitle{font-family:var(--body);font-size:clamp(14px,1.2vw,17px);font-weight:400;line-height:1.6;letter-spacing:.1em;color:var(--ink);margin:8px 0 0}
+.product-terms{font-size:12px;line-height:1.7;color:var(--muted);margin-top:12px}
+.product-terms a{color:inherit;text-underline-offset:3px}
+.conf-acts{margin-top:24px;display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
+.soon{
+  display:inline-flex;align-items:center;gap:13px;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border-radius:15px;padding:12px 22px;line-height:1.55;
+  background:
+    linear-gradient(168deg,rgba(255,255,255,.8),rgba(240,240,242,.5) 70%),
+    radial-gradient(120% 100% at 20% 0%,rgba(255,255,255,.9),transparent 60%);
+  border:1px solid rgba(255,255,255,.75);
+  backdrop-filter:blur(20px) saturate(170%);
+  -webkit-backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(20,22,28,.05),0 8px 24px rgba(20,22,28,.08);
+}
+.soon svg{flex:none;opacity:.55;color:var(--accent-deep)}
 .product-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:16px;margin-top:28px;border-top:1px solid var(--hairline);padding-top:22px}
 .product-stats>div{min-width:0;text-align:center;padding:0}
 .product-stats>div+div{border-left:1px solid var(--hairline)}
@@ -960,7 +977,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
     <div class="nvme-intro">
       <p class="nvme-kicker">Внутренний SSD · NVMe 4.0</p>
       <h1 class="nvme-title" id="nvme-title">Q7000MN</h1>
-      <p class="nvme-subtitle" id="nvme-subtitle">M.2 2280 · PCIe 4.0 ×4 · 1 ТБ</p>
+      <p class="nvme-subtitle" id="nvme-subtitle">M.2 2280 · PCIe 4.0 ×4</p>
 
     </div>
       <fieldset class="nvme-options"><legend>Модель</legend><div>
@@ -976,7 +993,14 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         <div><dt>Скорость чтения, до</dt><dd><b id="nvme-read">7 000</b><small>МБ/с</small></dd></div>
         <div><dt>Гарантия</dt><dd><b>5</b><small>лет</small></dd></div>
       </dl>
-      <p class="nvme-terms">5 лет или до достижения ресурса TBW, смотря что наступит раньше. <a href="warranty.html">Условия гарантии</a></p>
+      <p class="product-terms">5 лет или до достижения ресурса TBW, смотря что наступит раньше. <a href="warranty.html">Условия гарантии</a></p>
+      <div class="conf-acts">
+        <span class="soon">
+          <svg width="22" height="26" viewBox="0 0 360 400" aria-hidden="true"><circle cx="150" cy="150" r="119" fill="none" stroke="currentColor" stroke-width="52"/><path d="M254 233 L318 361 L185 292 Z" fill="currentColor"/></svg>
+          <span>Скоро доступно<br>для заказа на сайте</span>
+        </span>
+      </div>
+
       <p id="nvme-status" class="sr" role="status" aria-live="polite" aria-atomic="true"></p>
     </div>
   </section>
@@ -1896,14 +1920,14 @@ function renderNvme(){
     galleryEl.hidden=!hasPhotos;
     overview.classList.toggle('has-gallery',hasPhotos);
     if(hasPhotos){
-      details.prepend(intro);details.insertBefore(stats,details.querySelector('.nvme-terms'));setGallery(key);
+      details.prepend(intro);details.insertBefore(stats,details.querySelector('.product-terms'));setGallery(key);
     }else{
       overview.insertBefore(intro,details);intro.appendChild(stats);
     }
     if(typeof setProductVideo==='function')setProductVideo(nvmeState.model==='Q7000MN');
   }
   text('nvme-title',nvmeState.model);
-  text('nvme-subtitle','M.2 2280 · PCIe '+nvmeData.generation+'.0 ×4 · '+nvmeState.cap);
+  text('nvme-subtitle','M.2 2280 · PCIe '+nvmeData.generation+'.0 ×4');
   text('bar-model',nvmeState.model);
   text('bar-sub','NVMe '+nvmeData.generation+'.0 · '+nvmeState.cap);
   text('nvme-read',nvmeNumber(variant.read));
