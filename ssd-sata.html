@@ -26,7 +26,6 @@ img,video,canvas,picture{-webkit-user-drag:none;user-select:none;-webkit-user-se
 (()=>{const M='img,video,canvas,picture,.poster';
 addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});
 addEventListener('dragstart',e=>{if(e.target.closest&&e.target.closest(M))e.preventDefault()});})();</script>
-<link rel="preload" as="image" href="assets/q600s-photo-01-20261113.webp" type="image/webp" fetchpriority="high">
 <style>
 /* фирменный Montserrat, свой хостинг: переменный шрифт Google, все веса 100-900, прямой и курсив.
    Латинские файлы с 05.10.2026 идут с фирменной Q (кольцо с хвостом из логотипа): MontserratQOPP-*, делает САЙТ РЕФЫ/make_font_qopp.py */
@@ -562,6 +561,8 @@ a.fl:hover::after,a.fl:focus-visible::after{transform:scaleX(1);transform-origin
 .product-page .pbar .pbtn{border-radius:15px}
 @media(max-width:720px){.product-page .pbar .pbtn{border-radius:11px}}
 </style>
+<link rel="preload" as="image" href="assets/q600s-256gb-01-20261118-gallery-desktop.webp" type="image/webp" media="(min-width:861px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/q600s-256gb-01-20261118-gallery-mobile.webp" type="image/webp" media="(max-width:860px)" fetchpriority="high">
 <style id="mobile-fix">
 /* Прозрачная системная подсветка касания, включая сенсорные компьютеры.
    Клавиатурный :focus-visible и состояния кнопок сохраняются. */
@@ -1010,7 +1011,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
 <header class="conf reveal" id="top">
   <div class="gallery part">
     <figure class="g-main">
-      <picture style="--image-scale:2.25;--image-scale-mobile:1.3"><source srcset="assets/q600s-photo-01-20261113.webp" type="image/webp"><img id="conf-img" src="assets/q600s-photo-01-20261113.jpg" alt="QOPP Q600S, фото 1" width="1650" height="2200" fetchpriority="high" decoding="async"></picture>
+      <picture style="--image-scale:1.0;--image-scale-mobile:1.0;--image-x:0.0%;--image-y:0.0%;--image-x-mobile:0.0%;--image-y-mobile:0.0%"><source media="(max-width:860px)" srcset="assets/q600s-256gb-01-20261118-gallery-mobile.webp" type="image/webp"><source media="(max-width:860px)" srcset="assets/q600s-256gb-01-20261118-gallery-mobile.jpg" type="image/jpeg"><source srcset="assets/q600s-256gb-01-20261118-gallery-desktop.webp" type="image/webp"><img id="conf-img" src="assets/q600s-256gb-01-20261118-gallery-desktop.jpg" alt="QOPP Q600S, 128 ГБ, вид спереди" width="2800" height="1352" fetchpriority="high" decoding="async"></picture>
       <button type="button" class="g-arrow g-prev" aria-label="Предыдущее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button type="button" class="g-arrow g-next" aria-label="Следующее фото"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button type="button" class="g-auto" aria-label="Приостановить автоперелистывание" aria-pressed="false"><svg class="g-pause" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg><svg class="g-play" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
@@ -1249,163 +1250,700 @@ const FF={
   'm2':{label:'M2 SATA III SSD',ffName:'M2 2280',size:'80 × 22 мм',weight:''}
 };
 const state={model:'Q600S',cap:'128 ГБ'};
-/* Owner photos; tools/prepare_ssd_photos.py and tools/prepare_sata_fitted_photos.py. */
+/* Current owner photos; tools/prepare_fitted_ssd_photos.py. */
 const GAL={
-  "Q500S": [
+  "Q500S-120 ГБ": [
     {
-      "src": "assets/q500s-photo-01-20261113.jpg",
-      "webp": "assets/q500s-photo-01-20261113.webp",
-      "thumb": "assets/q500s-photo-01-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 1",
-      "scale": 1.95,
-      "mobile": 1.3
+      "src": "assets/q500s-120gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-120gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-120gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-120gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-120gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 120 ГБ, вид спереди",
+      "scale": 0.985994,
+      "mobile": 0.987654,
+      "offset": [
+        0.372374,
+        0.390126
+      ],
+      "mobileOffset": [
+        0.064043,
+        0.507963
+      ],
+      "thumbScale": 0.993151,
+      "thumbOffset": [
+        0.208333,
+        0.617865
+      ]
     },
     {
-      "src": "assets/q500s-photo-02-20261113.jpg",
-      "webp": "assets/q500s-photo-02-20261113.webp",
-      "thumb": "assets/q500s-photo-02-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 2",
-      "scale": 1.85,
-      "mobile": 1.3
+      "src": "assets/q500s-120gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-120gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-120gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-120gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-120gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 120 ГБ, обратная сторона",
+      "scale": 1.035294,
+      "mobile": 0.991736,
+      "offset": [
+        0.511029,
+        0.249739
+      ],
+      "mobileOffset": [
+        0.125517,
+        1.285496
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        1.25
+      ]
     },
     {
-      "src": "assets/q500s-photo-03-20261113.jpg",
-      "webp": "assets/q500s-photo-03-20261113.webp",
-      "thumb": "assets/q500s-photo-03-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 3",
-      "scale": 1.85,
-      "mobile": 1.3
-    },
-    {
-      "src": "assets/q500s-photo-04-20261113.jpg",
-      "webp": "assets/q500s-photo-04-20261113.webp",
-      "thumb": "assets/q500s-photo-04-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 4",
-      "scale": 1.8,
-      "mobile": 1.3
-    },
-    {
-      "src": "assets/q500s-photo-05-20261113.jpg",
-      "webp": "assets/q500s-photo-05-20261113.webp",
-      "thumb": "assets/q500s-photo-05-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 5",
-      "scale": 1.7,
-      "mobile": 1.2
-    },
-    {
-      "src": "assets/q500s-photo-06-20261113.jpg",
-      "webp": "assets/q500s-photo-06-20261113.webp",
-      "thumb": "assets/q500s-photo-06-20261113-thumb.webp",
-      "alt": "QOPP Q500S, фото 6",
-      "scale": 2,
-      "mobile": 1.25
+      "src": "assets/q500s-120gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-120gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-120gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-120gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-120gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 120 ГБ, под углом",
+      "scale": 1.002849,
+      "mobile": 0.79602,
+      "offset": [
+        0.250178,
+        0.387945
+      ],
+      "mobileOffset": [
+        0.237251,
+        -0.455
+      ],
+      "thumbScale": 0.801105,
+      "thumbOffset": [
+        0.208333,
+        -0.416667
+      ]
     }
   ],
-  "Q600S": [
+  "Q500S-240 ГБ": [
     {
-      "src": "assets/q600s-photo-01-20261113.jpg",
-      "webp": "assets/q600s-photo-01-20261113.webp",
-      "thumb": "assets/q600s-photo-01-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 1",
-      "scale": 2.25,
-      "mobile": 1.3
+      "src": "assets/q500s-240gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-240gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-240gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-240gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-240gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 240 ГБ, вид спереди",
+      "scale": 0.985994,
+      "mobile": 0.987654,
+      "offset": [
+        0.372374,
+        0.390126
+      ],
+      "mobileOffset": [
+        0.064043,
+        0.507963
+      ],
+      "thumbScale": 0.993151,
+      "thumbOffset": [
+        0.208333,
+        0.617865
+      ]
     },
     {
-      "src": "assets/q600s-photo-02-20261113.jpg",
-      "webp": "assets/q600s-photo-02-20261113.webp",
-      "thumb": "assets/q600s-photo-02-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 2",
-      "scale": 2.1,
-      "mobile": 1.3
+      "src": "assets/q500s-240gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-240gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-240gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-240gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-240gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 240 ГБ, обратная сторона",
+      "scale": 1.035294,
+      "mobile": 0.985626,
+      "offset": [
+        0.511029,
+        0.249739
+      ],
+      "mobileOffset": [
+        0.1875,
+        1.210708
+      ],
+      "thumbScale": 0.986395,
+      "thumbOffset": [
+        0.208333,
+        1.227324
+      ]
     },
     {
-      "src": "assets/q600s-photo-03-20261113.jpg",
-      "webp": "assets/q600s-photo-03-20261113.webp",
-      "thumb": "assets/q600s-photo-03-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 3",
-      "scale": 1.65,
-      "mobile": 1.2
+      "src": "assets/q500s-240gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-240gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-240gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-240gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-240gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 240 ГБ, под углом",
+      "scale": 1.002849,
+      "mobile": 0.79602,
+      "offset": [
+        0.250178,
+        0.387945
+      ],
+      "mobileOffset": [
+        0.237251,
+        -0.455
+      ],
+      "thumbScale": 0.801105,
+      "thumbOffset": [
+        0.208333,
+        -0.416667
+      ]
+    }
+  ],
+  "Q500S-480 ГБ": [
+    {
+      "src": "assets/q500s-480gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-480gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-480gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-480gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-480gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 480 ГБ, вид спереди",
+      "scale": 0.985994,
+      "mobile": 0.987654,
+      "offset": [
+        0.372374,
+        0.390126
+      ],
+      "mobileOffset": [
+        0.064043,
+        0.507963
+      ],
+      "thumbScale": 0.993151,
+      "thumbOffset": [
+        0.208333,
+        0.617865
+      ]
     },
     {
-      "src": "assets/q600s-photo-04-20261113.jpg",
-      "webp": "assets/q600s-photo-04-20261113.webp",
-      "thumb": "assets/q600s-photo-04-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 4",
-      "scale": 1.7,
-      "mobile": 1.2
+      "src": "assets/q500s-480gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-480gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-480gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-480gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-480gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 480 ГБ, обратная сторона",
+      "scale": 0.988764,
+      "mobile": 0.981595,
+      "offset": [
+        0.125702,
+        0.773719
+      ],
+      "mobileOffset": [
+        0.1875,
+        0.948681
+      ],
+      "thumbScale": 0.986395,
+      "thumbOffset": [
+        0.208333,
+        0.816327
+      ]
     },
     {
-      "src": "assets/q600s-photo-05-20261113.jpg",
-      "webp": "assets/q600s-photo-05-20261113.webp",
-      "thumb": "assets/q600s-photo-05-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 5",
-      "scale": 1.05,
-      "mobile": 1
+      "src": "assets/q500s-480gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-480gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-480gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-480gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-480gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 480 ГБ, под углом",
+      "scale": 1.002849,
+      "mobile": 0.79602,
+      "offset": [
+        0.250178,
+        0.387945
+      ],
+      "mobileOffset": [
+        0.237251,
+        -0.455
+      ],
+      "thumbScale": 0.801105,
+      "thumbOffset": [
+        0.208333,
+        -0.416667
+      ]
     },
     {
-      "src": "assets/q600s-photo-06-20261113.jpg",
-      "webp": "assets/q600s-photo-06-20261113.webp",
-      "thumb": "assets/q600s-photo-06-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 6",
-      "scale": 1.05,
-      "mobile": 1
+      "src": "assets/q500s-480gb-04-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-480gb-04-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-480gb-04-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-480gb-04-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-480gb-04-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 480 ГБ, упаковка",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "Q500S-960 ГБ": [
+    {
+      "src": "assets/q500s-960gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-960gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-960gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-960gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-960gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 960 ГБ, вид спереди",
+      "scale": 0.985994,
+      "mobile": 0.987654,
+      "offset": [
+        0.372374,
+        0.390126
+      ],
+      "mobileOffset": [
+        0.064043,
+        0.507963
+      ],
+      "thumbScale": 0.993151,
+      "thumbOffset": [
+        0.208333,
+        0.617865
+      ]
     },
     {
-      "src": "assets/q600s-photo-07-20261113.jpg",
-      "webp": "assets/q600s-photo-07-20261113.webp",
-      "thumb": "assets/q600s-photo-07-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 7",
-      "scale": 2,
-      "mobile": 1.2
+      "src": "assets/q500s-960gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-960gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-960gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-960gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-960gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 960 ГБ, обратная сторона",
+      "scale": 1.04142,
+      "mobile": 0.987654,
+      "offset": [
+        0.773299,
+        0.78735
+      ],
+      "mobileOffset": [
+        0.125772,
+        1.406728
+      ],
+      "thumbScale": 0.993151,
+      "thumbOffset": [
+        0.208333,
+        1.445491
+      ]
     },
     {
-      "src": "assets/q600s-photo-08-20261113.jpg",
-      "webp": "assets/q600s-photo-08-20261113.webp",
-      "thumb": "assets/q600s-photo-08-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 8",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q500s-960gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q500s-960gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q500s-960gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q500s-960gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q500s-960gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q500S, 960 ГБ, под углом",
+      "scale": 1.002849,
+      "mobile": 0.79602,
+      "offset": [
+        0.250178,
+        0.387945
+      ],
+      "mobileOffset": [
+        0.237251,
+        -0.455
+      ],
+      "thumbScale": 0.801105,
+      "thumbOffset": [
+        0.208333,
+        -0.416667
+      ]
+    }
+  ],
+  "Q600S-1 ТБ": [
+    {
+      "src": "assets/q600s-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 1 ТБ, вид спереди",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
-      "src": "assets/q600s-photo-09-20261113.jpg",
-      "webp": "assets/q600s-photo-09-20261113.webp",
-      "thumb": "assets/q600s-photo-09-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 9",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600s-1tb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-1tb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-1tb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-1tb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-1tb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 1 ТБ, обратная сторона",
+      "scale": 1.047619,
+      "mobile": 0.995851,
+      "offset": [
+        -0.205357,
+        0.246548
+      ],
+      "mobileOffset": [
+        0.249741,
+        -0.51973
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.416667,
+        -0.416667
+      ]
     },
     {
-      "src": "assets/q600s-photo-10-20261113.jpg",
-      "webp": "assets/q600s-photo-10-20261113.webp",
-      "thumb": "assets/q600s-photo-10-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 10",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600s-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 1 ТБ, под углом",
+      "scale": 0.99435,
+      "mobile": 0.774194,
+      "offset": [
+        0.311794,
+        0.260338
+      ],
+      "mobileOffset": [
+        0.332661,
+        -0.605968
+      ],
+      "thumbScale": 0.77957,
+      "thumbOffset": [
+        0.370744,
+        -0.579077
+      ]
+    }
+  ],
+  "Q600S-128 ГБ": [
+    {
+      "src": "assets/q600s-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 128 ГБ, вид спереди",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
     },
     {
-      "src": "assets/q600s-photo-11-20261113.jpg",
-      "webp": "assets/q600s-photo-11-20261113.webp",
-      "thumb": "assets/q600s-photo-11-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 11",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600s-128gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-128gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-128gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-128gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-128gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 128 ГБ, обратная сторона",
+      "scale": 1.047619,
+      "mobile": 0.995851,
+      "offset": [
+        -0.205357,
+        0.246548
+      ],
+      "mobileOffset": [
+        0.249741,
+        -0.51973
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.416667,
+        -0.416667
+      ]
     },
     {
-      "src": "assets/q600s-photo-12-20261113.jpg",
-      "webp": "assets/q600s-photo-12-20261113.webp",
-      "thumb": "assets/q600s-photo-12-20261113-thumb.webp",
-      "alt": "QOPP Q600S, фото 12",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600s-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 128 ГБ, под углом",
+      "scale": 0.99435,
+      "mobile": 0.774194,
+      "offset": [
+        0.311794,
+        0.260338
+      ],
+      "mobileOffset": [
+        0.332661,
+        -0.605968
+      ],
+      "thumbScale": 0.77957,
+      "thumbOffset": [
+        0.370744,
+        -0.579077
+      ]
+    }
+  ],
+  "Q600S-2 ТБ": [
+    {
+      "src": "assets/q600s-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 2 ТБ, вид спереди",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "src": "assets/q600s-2tb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-2tb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-2tb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-2tb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-2tb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 2 ТБ, обратная сторона",
+      "scale": 1.047619,
+      "mobile": 0.995851,
+      "offset": [
+        -0.205357,
+        0.246548
+      ],
+      "mobileOffset": [
+        0.249741,
+        -0.51973
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.416667,
+        -0.416667
+      ]
+    },
+    {
+      "src": "assets/q600s-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 2 ТБ, под углом",
+      "scale": 0.99435,
+      "mobile": 0.774194,
+      "offset": [
+        0.311794,
+        0.260338
+      ],
+      "mobileOffset": [
+        0.332661,
+        -0.605968
+      ],
+      "thumbScale": 0.77957,
+      "thumbOffset": [
+        0.370744,
+        -0.579077
+      ]
+    }
+  ],
+  "Q600S-256 ГБ": [
+    {
+      "src": "assets/q600s-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 256 ГБ, вид спереди",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "src": "assets/q600s-256gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 256 ГБ, обратная сторона",
+      "scale": 0.99435,
+      "mobile": 0.995851,
+      "offset": [
+        0.249647,
+        0.517751
+      ],
+      "mobileOffset": [
+        0.249741,
+        -0.51973
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.208333,
+        -0.416667
+      ]
+    },
+    {
+      "src": "assets/q600s-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 256 ГБ, под углом",
+      "scale": 0.99435,
+      "mobile": 0.774194,
+      "offset": [
+        0.311794,
+        0.260338
+      ],
+      "mobileOffset": [
+        0.332661,
+        -0.605968
+      ],
+      "thumbScale": 0.77957,
+      "thumbOffset": [
+        0.370744,
+        -0.579077
+      ]
+    },
+    {
+      "src": "assets/q600s-256gb-04-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-04-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-04-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-04-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-04-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 256 ГБ, упаковка",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "Q600S-512 ГБ": [
+    {
+      "src": "assets/q600s-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 512 ГБ, вид спереди",
+      "scale": 1.0,
+      "mobile": 1.0,
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "mobileOffset": [
+        0.0,
+        0.0
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "src": "assets/q600s-512gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-512gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-512gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-512gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-512gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 512 ГБ, обратная сторона",
+      "scale": 1.047619,
+      "mobile": 0.995851,
+      "offset": [
+        -0.205357,
+        0.246548
+      ],
+      "mobileOffset": [
+        0.249741,
+        -0.51973
+      ],
+      "thumbScale": 1.0,
+      "thumbOffset": [
+        0.416667,
+        -0.416667
+      ]
+    },
+    {
+      "src": "assets/q600s-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600s-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600s-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600s-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600s-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600S, 512 ГБ, под углом",
+      "scale": 0.99435,
+      "mobile": 0.774194,
+      "offset": [
+        0.311794,
+        0.260338
+      ],
+      "mobileOffset": [
+        0.332661,
+        -0.605968
+      ],
+      "thumbScale": 0.77957,
+      "thumbOffset": [
+        0.370744,
+        -0.579077
+      ]
     }
   ],
   "Q600MS-128 ГБ": [
     {
-      "src": "assets/q600ms-128gb-01-20261116-fit-desktop.jpg",
-      "webp": "assets/q600ms-128gb-01-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-128gb-01-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-128gb-01-20261116-fit-mobile.webp",
-      "thumb": "assets/q600ms-128gb-01-20261116-fit-thumb.webp",
+      "src": "assets/q600ms-128gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-128gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-128gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-128gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-128gb-01-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, вид спереди",
       "scale": 0.868326,
       "mobile": 0.966506,
@@ -1424,34 +1962,34 @@ const GAL={
       ]
     },
     {
-      "src": "assets/q600ms-128gb-02-20261116-fit-desktop.jpg",
-      "webp": "assets/q600ms-128gb-02-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-128gb-02-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-128gb-02-20261116-fit-mobile.webp",
-      "thumb": "assets/q600ms-128gb-02-20261116-fit-thumb.webp",
+      "src": "assets/q600ms-128gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-128gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-128gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-128gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-128gb-02-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, обратная сторона",
-      "scale": 0.867343,
-      "mobile": 0.970464,
+      "scale": 0.887966,
+      "mobile": 0.972969,
       "offset": [
-        -0.049546,
-        -0.314244
+        -0.103363,
+        -0.221085
       ],
       "mobileOffset": [
-        -0.076674,
-        0.587528
+        -0.063232,
+        0.13915
       ],
-      "thumbScale": 1.024258,
+      "thumbScale": 1.024318,
       "thumbOffset": [
-        -1.1116,
-        0.419253
+        -1.114321,
+        -0.015512
       ]
     },
     {
-      "src": "assets/q600ms-128gb-03-20261116-fit-desktop.jpg",
-      "webp": "assets/q600ms-128gb-03-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-128gb-03-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-128gb-03-20261116-fit-mobile.webp",
-      "thumb": "assets/q600ms-128gb-03-20261116-fit-thumb.webp",
+      "src": "assets/q600ms-128gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-128gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-128gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-128gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-128gb-03-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, под углом",
       "scale": 0.846289,
       "mobile": 0.909893,
@@ -1470,177 +2008,17 @@ const GAL={
       ]
     },
     {
-      "src": "assets/q600ms-128gb-04-20261116-fit-desktop.jpg",
-      "webp": "assets/q600ms-128gb-04-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-128gb-04-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-128gb-04-20261116-fit-mobile.webp",
-      "thumb": "assets/q600ms-128gb-04-20261116-fit-thumb.webp",
+      "src": "assets/q600ms-128gb-04-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-128gb-04-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-128gb-04-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-128gb-04-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-128gb-04-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 128 ГБ, упаковка",
-      "scale": 1.001951,
-      "mobile": 0.728428,
-      "offset": [
-        -0.178328,
-        -0.259164
-      ],
-      "mobileOffset": [
-        0.360108,
-        -0.934926
-      ],
-      "thumbScale": 0.76,
-      "thumbOffset": [
-        0.366667,
-        -0.833333
-      ]
-    }
-  ],
-  "Q600MS-256 ГБ": [
-    {
-      "src": "assets/q600ms-256gb-01-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-256gb-01-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-256gb-01-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-256gb-01-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-256gb-01-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 256 ГБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
-    },
-    {
-      "src": "assets/q600ms-256gb-02-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-256gb-02-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-256gb-02-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-256gb-02-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-256gb-02-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 256 ГБ, обратная сторона",
-      "scale": 0.867343,
-      "mobile": 0.970464,
-      "offset": [
-        -0.049546,
-        -0.314244
-      ],
-      "mobileOffset": [
-        -0.076674,
-        0.587528
-      ],
-      "thumbScale": 1.024258,
-      "thumbOffset": [
-        -1.1116,
-        0.419253
-      ]
-    },
-    {
-      "src": "assets/q600ms-256gb-03-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-256gb-03-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-256gb-03-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-256gb-03-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-256gb-03-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 256 ГБ, под углом",
-      "scale": 0.941531,
-      "mobile": 0.952972,
-      "offset": [
-        -0.247329,
-        0.896597
-      ],
-      "mobileOffset": [
-        -0.081773,
-        1.403996
-      ],
-      "thumbScale": 0.951531,
-      "thumbOffset": [
-        -0.484734,
-        1.159314
-      ]
-    },
-    {
-      "src": "assets/q600ms-256gb-04-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-256gb-04-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-256gb-package-20261113.jpg",
-      "mobileWebp": "assets/q600ms-256gb-package-20261113.webp",
-      "thumb": "assets/q600ms-256gb-package-20261113-thumb.webp",
-      "alt": "QOPP Q600MS, 256 ГБ, упаковка",
-      "scale": 1,
-      "mobile": 1
-    }
-  ],
-  "Q600MS-512 ГБ": [
-    {
-      "src": "assets/q600ms-512gb-01-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-512gb-01-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-512gb-01-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-512gb-01-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-512gb-01-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 512 ГБ, вид спереди",
-      "scale": 0.863022,
-      "mobile": 0.96722,
-      "offset": [
-        -0.061751,
-        -0.062001
-      ],
-      "mobileOffset": [
-        0.000364,
-        0.80185
-      ],
-      "thumbScale": 1.004808,
-      "thumbOffset": [
-        -0.208333,
-        0.625
-      ]
-    },
-    {
-      "src": "assets/q600ms-512gb-02-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-512gb-02-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-512gb-02-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-512gb-02-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-512gb-02-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 512 ГБ, обратная сторона",
-      "scale": 0.867343,
-      "mobile": 0.970464,
-      "offset": [
-        -0.049546,
-        -0.314244
-      ],
-      "mobileOffset": [
-        -0.076674,
-        0.587528
-      ],
-      "thumbScale": 1.024258,
-      "thumbOffset": [
-        -1.1116,
-        0.419253
-      ]
-    },
-    {
-      "src": "assets/q600ms-512gb-03-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-512gb-03-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-512gb-03-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-512gb-03-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-512gb-03-20261117-fit-thumb.webp",
-      "alt": "QOPP Q600MS, 512 ГБ, под углом",
-      "scale": 0.873402,
-      "mobile": 0.908474,
-      "offset": [
-        0.941111,
-        0.204405
-      ],
-      "mobileOffset": [
-        0.004196,
-        2.367341
-      ],
-      "thumbScale": 0.944817,
-      "thumbOffset": [
-        -0.20228,
-        2.143011
-      ]
-    },
-    {
-      "src": "assets/q600ms-512gb-package-20261113.jpg",
-      "webp": "assets/q600ms-512gb-package-20261113.webp",
-      "thumb": "assets/q600ms-512gb-package-20261113-thumb.webp",
-      "alt": "Упаковка QOPP Q600MS, 512 ГБ",
-      "scale": 1.370922,
+      "scale": 1.0,
       "mobile": 1.0,
       "offset": [
-        -0.438972,
-        1.104189
+        0.0,
+        0.0
       ],
       "mobileOffset": [
         0.0,
@@ -1655,11 +2033,11 @@ const GAL={
   ],
   "Q600MS-1 ТБ": [
     {
-      "src": "assets/q600ms-1tb-01-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-1tb-01-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-1tb-01-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-1tb-01-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-1tb-01-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-1tb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-1tb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-1tb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-1tb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-1tb-01-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, вид спереди",
       "scale": 0.867993,
       "mobile": 1.005908,
@@ -1678,34 +2056,34 @@ const GAL={
       ]
     },
     {
-      "src": "assets/q600ms-1tb-02-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-1tb-02-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-1tb-02-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-1tb-02-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-1tb-02-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-1tb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-1tb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-1tb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-1tb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-1tb-02-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, обратная сторона",
-      "scale": 0.867343,
-      "mobile": 0.970464,
+      "scale": 0.887966,
+      "mobile": 0.972969,
       "offset": [
-        -0.049546,
-        -0.314244
+        -0.103363,
+        -0.221085
       ],
       "mobileOffset": [
-        -0.076674,
-        0.587528
+        -0.063232,
+        0.13915
       ],
-      "thumbScale": 1.024258,
+      "thumbScale": 1.024318,
       "thumbOffset": [
-        -1.1116,
-        0.419253
+        -1.114321,
+        -0.015512
       ]
     },
     {
-      "src": "assets/q600ms-1tb-03-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-1tb-03-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-1tb-03-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-1tb-03-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-1tb-03-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-1tb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-1tb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-1tb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-1tb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-1tb-03-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 1 ТБ, под углом",
       "scale": 0.847468,
       "mobile": 0.947212,
@@ -1722,17 +2100,21 @@ const GAL={
         -0.245296,
         1.360698
       ]
-    },
+    }
+  ],
+  "Q600MS-256 ГБ": [
     {
-      "src": "assets/q600ms-1tb-package-20261113.jpg",
-      "webp": "assets/q600ms-1tb-package-20261113.webp",
-      "thumb": "assets/q600ms-1tb-package-20261113-thumb.webp",
-      "alt": "Упаковка QOPP Q600MS, 1 ТБ",
-      "scale": 1.370922,
+      "src": "assets/q600ms-256gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-256gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-256gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-256gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-256gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 256 ГБ, вид спереди",
+      "scale": 1.0,
       "mobile": 1.0,
       "offset": [
-        -0.438972,
-        1.104189
+        0.0,
+        0.0
       ],
       "mobileOffset": [
         0.0,
@@ -1743,15 +2125,84 @@ const GAL={
         0.0,
         0.0
       ]
+    },
+    {
+      "src": "assets/q600ms-256gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-256gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-256gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-256gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-256gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 256 ГБ, обратная сторона",
+      "scale": 0.887966,
+      "mobile": 0.972969,
+      "offset": [
+        -0.103363,
+        -0.221085
+      ],
+      "mobileOffset": [
+        -0.063232,
+        0.13915
+      ],
+      "thumbScale": 1.024318,
+      "thumbOffset": [
+        -1.114321,
+        -0.015512
+      ]
+    },
+    {
+      "src": "assets/q600ms-256gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-256gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-256gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-256gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-256gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 256 ГБ, под углом",
+      "scale": 0.941531,
+      "mobile": 0.952972,
+      "offset": [
+        -0.247329,
+        0.896597
+      ],
+      "mobileOffset": [
+        -0.081773,
+        1.403996
+      ],
+      "thumbScale": 0.951531,
+      "thumbOffset": [
+        -0.484734,
+        1.159314
+      ]
+    },
+    {
+      "src": "assets/q600ms-256gb-04-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-256gb-04-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-256gb-04-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-256gb-04-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-256gb-04-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 256 ГБ, упаковка",
+      "scale": 0.994398,
+      "mobile": 1.988796,
+      "offset": [
+        0.185749,
+        0.258151
+      ],
+      "mobileOffset": [
+        0.433999,
+        0.194272
+      ],
+      "thumbScale": 1.990654,
+      "thumbOffset": [
+        0.621106,
+        0.41472
+      ]
     }
   ],
   "Q600MS-2 ТБ": [
     {
-      "src": "assets/q600ms-2tb-01-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-2tb-01-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-2tb-01-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-2tb-01-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-2tb-01-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-2tb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-2tb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-2tb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-2tb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-2tb-01-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, вид спереди",
       "scale": 1.000383,
       "mobile": 1.0,
@@ -1770,34 +2221,34 @@ const GAL={
       ]
     },
     {
-      "src": "assets/q600ms-2tb-02-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-2tb-02-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-2tb-02-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-2tb-02-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-2tb-02-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-2tb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-2tb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-2tb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-2tb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-2tb-02-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, обратная сторона",
-      "scale": 0.867343,
-      "mobile": 0.970464,
+      "scale": 0.887966,
+      "mobile": 0.972969,
       "offset": [
-        -0.049546,
-        -0.314244
+        -0.103363,
+        -0.221085
       ],
       "mobileOffset": [
-        -0.076674,
-        0.587528
+        -0.063232,
+        0.13915
       ],
-      "thumbScale": 1.024258,
+      "thumbScale": 1.024318,
       "thumbOffset": [
-        -1.1116,
-        0.419253
+        -1.114321,
+        -0.015512
       ]
     },
     {
-      "src": "assets/q600ms-2tb-03-20261117-fit-desktop.jpg",
-      "webp": "assets/q600ms-2tb-03-20261117-fit-desktop.webp",
-      "mobileSrc": "assets/q600ms-2tb-03-20261117-fit-mobile.jpg",
-      "mobileWebp": "assets/q600ms-2tb-03-20261117-fit-mobile.webp",
-      "thumb": "assets/q600ms-2tb-03-20261117-fit-thumb.webp",
+      "src": "assets/q600ms-2tb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-2tb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-2tb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-2tb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-2tb-03-20261118-gallery-thumb.webp",
       "alt": "QOPP Q600MS, 2 ТБ, под углом",
       "scale": 0.944665,
       "mobile": 0.9481,
@@ -1814,111 +2265,77 @@ const GAL={
         0.066462,
         1.465688
       ]
-    },
+    }
+  ],
+  "Q600MS-512 ГБ": [
     {
-      "src": "assets/q600ms-2tb-package-20261113.jpg",
-      "webp": "assets/q600ms-2tb-package-20261113.webp",
-      "thumb": "assets/q600ms-2tb-package-20261113-thumb.webp",
-      "alt": "Упаковка QOPP Q600MS, 2 ТБ",
-      "scale": 1.370922,
-      "mobile": 1.0,
+      "src": "assets/q600ms-512gb-01-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-512gb-01-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-512gb-01-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-512gb-01-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-512gb-01-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 512 ГБ, вид спереди",
+      "scale": 0.863022,
+      "mobile": 0.96722,
       "offset": [
-        -0.438972,
-        1.104189
+        -0.061751,
+        -0.062001
       ],
       "mobileOffset": [
-        0.0,
-        0.0
+        0.000364,
+        0.80185
       ],
-      "thumbScale": 1.0,
+      "thumbScale": 1.004808,
       "thumbOffset": [
-        0.0,
-        0.0
+        -0.208333,
+        0.625
       ]
-    }
-  ],
-  "Q500S-480 ГБ": [
-    {
-      "src": "assets/q500s-480gb-01-20261116-fit-desktop.jpg",
-      "webp": "assets/q500s-480gb-01-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q500s-480gb-01-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q500s-480gb-01-20261116-fit-mobile.webp",
-      "thumb": "assets/q500s-480gb-01-20261116-fit-thumb.webp",
-      "alt": "QOPP Q500S, 480 ГБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
     },
     {
-      "src": "assets/q500s-480gb-02-20261116-fit-desktop.jpg",
-      "webp": "assets/q500s-480gb-02-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q500s-480gb-02-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q500s-480gb-02-20261116-fit-mobile.webp",
-      "thumb": "assets/q500s-480gb-02-20261116-fit-thumb.webp",
-      "alt": "QOPP Q500S, 480 ГБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600ms-512gb-02-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-512gb-02-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-512gb-02-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-512gb-02-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-512gb-02-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 512 ГБ, обратная сторона",
+      "scale": 0.887966,
+      "mobile": 0.972969,
+      "offset": [
+        -0.103363,
+        -0.221085
+      ],
+      "mobileOffset": [
+        -0.063232,
+        0.13915
+      ],
+      "thumbScale": 1.024318,
+      "thumbOffset": [
+        -1.114321,
+        -0.015512
+      ]
     },
     {
-      "src": "assets/q500s-480gb-03-20261116-fit-desktop.jpg",
-      "webp": "assets/q500s-480gb-03-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q500s-480gb-03-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q500s-480gb-03-20261116-fit-mobile.webp",
-      "thumb": "assets/q500s-480gb-03-20261116-fit-thumb.webp",
-      "alt": "QOPP Q500S, 480 ГБ, под углом",
-      "scale": 1,
-      "mobile": 1
-    },
-    {
-      "src": "assets/q500s-480gb-04-20261116-fit-desktop.jpg",
-      "webp": "assets/q500s-480gb-04-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q500s-480gb-04-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q500s-480gb-04-20261116-fit-mobile.webp",
-      "thumb": "assets/q500s-480gb-04-20261116-fit-thumb.webp",
-      "alt": "QOPP Q500S, 480 ГБ, упаковка",
-      "scale": 1,
-      "mobile": 1
-    }
-  ],
-  "Q600S-256 ГБ": [
-    {
-      "src": "assets/q600s-256gb-01-20261116-fit-desktop.jpg",
-      "webp": "assets/q600s-256gb-01-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600s-256gb-01-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600s-256gb-01-20261116-fit-mobile.webp",
-      "thumb": "assets/q600s-256gb-01-20261116-fit-thumb.webp",
-      "alt": "QOPP Q600S, 256 ГБ, вид спереди",
-      "scale": 1,
-      "mobile": 1
-    },
-    {
-      "src": "assets/q600s-256gb-02-20261116-fit-desktop.jpg",
-      "webp": "assets/q600s-256gb-02-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600s-256gb-02-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600s-256gb-02-20261116-fit-mobile.webp",
-      "thumb": "assets/q600s-256gb-02-20261116-fit-thumb.webp",
-      "alt": "QOPP Q600S, 256 ГБ, обратная сторона",
-      "scale": 1,
-      "mobile": 1
-    },
-    {
-      "src": "assets/q600s-256gb-03-20261116-fit-desktop.jpg",
-      "webp": "assets/q600s-256gb-03-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600s-256gb-03-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600s-256gb-03-20261116-fit-mobile.webp",
-      "thumb": "assets/q600s-256gb-03-20261116-fit-thumb.webp",
-      "alt": "QOPP Q600S, 256 ГБ, под углом",
-      "scale": 1,
-      "mobile": 1
-    },
-    {
-      "src": "assets/q600s-256gb-04-20261116-fit-desktop.jpg",
-      "webp": "assets/q600s-256gb-04-20261116-fit-desktop.webp",
-      "mobileSrc": "assets/q600s-256gb-04-20261116-fit-mobile.jpg",
-      "mobileWebp": "assets/q600s-256gb-04-20261116-fit-mobile.webp",
-      "thumb": "assets/q600s-256gb-04-20261116-fit-thumb.webp",
-      "alt": "QOPP Q600S, 256 ГБ, упаковка",
-      "scale": 1,
-      "mobile": 1
+      "src": "assets/q600ms-512gb-03-20261118-gallery-desktop.jpg",
+      "webp": "assets/q600ms-512gb-03-20261118-gallery-desktop.webp",
+      "mobileSrc": "assets/q600ms-512gb-03-20261118-gallery-mobile.jpg",
+      "mobileWebp": "assets/q600ms-512gb-03-20261118-gallery-mobile.webp",
+      "thumb": "assets/q600ms-512gb-03-20261118-gallery-thumb.webp",
+      "alt": "QOPP Q600MS, 512 ГБ, под углом",
+      "scale": 0.873402,
+      "mobile": 0.908474,
+      "offset": [
+        0.941111,
+        0.204405
+      ],
+      "mobileOffset": [
+        0.004196,
+        2.367341
+      ],
+      "thumbScale": 0.944817,
+      "thumbOffset": [
+        -0.20228,
+        2.143011
+      ]
     }
   ]
 };
@@ -1929,8 +2346,8 @@ const confImg=document.getElementById('conf-img');
 const confPicture=confImg.closest('picture');
 const confSource=confPicture.querySelector('source:not([media])');
 const galleryMobile=matchMedia('(max-width:860px)');
-const confMobileWebp=document.createElement('source');
-const confMobileJpeg=document.createElement('source');
+const confMobileWebp=confPicture.querySelector('source[media][type="image/webp"]')||document.createElement('source');
+const confMobileJpeg=confPicture.querySelector('source[media][type="image/jpeg"]')||document.createElement('source');
 for(const source of [confMobileWebp,confMobileJpeg]){
   source.media='(max-width:860px)';confPicture.insertBefore(source,confSource);
 }
