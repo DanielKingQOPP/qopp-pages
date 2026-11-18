@@ -1049,7 +1049,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
       </div>
     </div>
     <dl class="product-stats" aria-label="Коротко о модели">
-      <div><dt>Скорость чтения, до</dt><dd><b id="q-spd">515</b><small>МБ/с</small></dd></div>
+      <div><dt>Скорость чтения, до</dt><dd><b id="q-spd">530</b><small>МБ/с</small></dd></div>
       <div><dt>Гарантия</dt><dd><b>5</b><small>лет</small></dd></div>
     </dl>
     <div class="conf-acts">
@@ -1074,11 +1074,11 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
       </div>
     </div>
     <div class="strip">
-      <picture><source srcset="assets/sata-speed.webp" type="image/webp"><img src="assets/sata-speed.jpg" alt="Скорость чтения 515 МБ/с, записи 440 МБ/с: загрузка системы в 3 раза быстрее HDD" width="2200" height="1028" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="assets/sata-speed.webp" type="image/webp"><img src="assets/sata-speed.jpg" alt="SSD QOPP SATA на тёмном фоне" width="2200" height="1028" loading="lazy" decoding="async"></picture>
       <span class="ovl ov-s-title t-big" aria-hidden="true">В 3 раза быстрее загрузка<br>и работа системы</span>
       <div class="ovl ov-s-nums" aria-hidden="true">
-        <span><span class="t-num"><span id="f-read">515</span><small>МБ/С</small></span><br><span class="t-cap">скорость чтения</span></span>
-        <span><span class="t-num"><span id="f-write">440</span><small>МБ/С</small></span><br><span class="t-cap">скорость записи</span></span>
+        <span><span class="t-num"><span id="f-read">530</span><small>МБ/С</small></span><br><span class="t-cap">скорость чтения</span></span>
+        <span><span class="t-num"><span id="f-write">450</span><small>МБ/С</small></span><br><span class="t-cap">скорость записи</span></span>
       </div>
       <div class="ovl ov-s-comp" aria-hidden="true">
         <span class="t-big">В 3 раза быстрее</span>
@@ -1126,8 +1126,8 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
         <div class="spec"><dt>Форм-фактор</dt><dd id="s-ff">2.5"</dd></div>
         <div class="spec"><dt>Контроллер</dt><dd>SMI</dd></div>
         <div class="spec"><dt>Тип флеш-памяти</dt><dd>3D NAND TLC</dd></div>
-        <div class="spec"><dt>Скорость чтения</dt><dd id="s-read">до 515 МБ/с</dd></div>
-        <div class="spec"><dt>Скорость записи</dt><dd id="s-write">до 440 МБ/с</dd></div>
+        <div class="spec"><dt>Скорость чтения</dt><dd id="s-read">до 530 МБ/с</dd></div>
+        <div class="spec"><dt>Скорость записи</dt><dd id="s-write">до 450 МБ/с</dd></div>
         <div class="spec"><dt>Ресурс TBW</dt><dd id="s-tbw">60 TBW</dd></div>
         <div class="spec"><dt>Время наработки на отказ</dt><dd>2 000 000 ч</dd></div>
         <div class="spec" id="row-size"><dt>Размеры без упаковки</dt><dd id="s-size">100 × 70 × 7 мм</dd></div>
@@ -1233,17 +1233,17 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 }
 
 /* ============ конфигуратор ============ */
-/* spd: скорость чтения и записи, МБ/с, по объёмам (данные владельца, 05.10.2026) */
+/* spd: чтение/запись, МБ/с, по объёмам. QOPP Product Tech List.xlsx, Solid State Drive; проверено 18.11.2026. */
 const DATA={
   'Q500S':{ff:'25',caps:['120 ГБ','240 ГБ','480 ГБ','960 ГБ'],
            tbw:{'120 ГБ':50,'240 ГБ':100,'480 ГБ':200,'960 ГБ':320},
-           spd:{'120 ГБ':[450,400],'240 ГБ':[450,400],'480 ГБ':[520,480],'960 ГБ':[530,480]}},
+           spd:{'120 ГБ':[480,400],'240 ГБ':[500,460],'480 ГБ':[520,480],'960 ГБ':[520,480]}},
   'Q600S':{ff:'25',caps:['128 ГБ','256 ГБ','512 ГБ','1 ТБ','2 ТБ'],
            tbw:{'128 ГБ':60,'256 ГБ':150,'512 ГБ':300,'1 ТБ':600,'2 ТБ':1200},
-           spd:{'128 ГБ':[515,440],'256 ГБ':[545,490],'512 ГБ':[540,490],'1 ТБ':[560,520],'2 ТБ':[545,500]}},
+           spd:{'128 ГБ':[530,450],'256 ГБ':[550,510],'512 ГБ':[560,520],'1 ТБ':[560,520],'2 ТБ':[560,520]}},
   'Q600MS':{ff:'m2',caps:['128 ГБ','256 ГБ','512 ГБ','1 ТБ','2 ТБ'],
            tbw:{'128 ГБ':60,'256 ГБ':125,'512 ГБ':250,'1 ТБ':500,'2 ТБ':1000},
-           spd:{'128 ГБ':[510,440],'256 ГБ':[540,490],'512 ГБ':[540,490],'1 ТБ':[560,520],'2 ТБ':[540,500]}}
+           spd:{'128 ГБ':[530,450],'256 ГБ':[550,510],'512 ГБ':[560,520],'1 ТБ':[560,520],'2 ТБ':[560,520]}}
 };
 const FF={
   '25':{label:'2.5" SATA III SSD',ffName:'2.5"',size:'100 × 70 × 7 мм',weight:'59 г'},
