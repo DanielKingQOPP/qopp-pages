@@ -200,7 +200,6 @@ a.mi{cursor:pointer;text-decoration:none}
   font-size:clamp(26px,2.2vw,36px);letter-spacing:.04em;line-height:1.15;
   margin-top:10px;
 }
-.conf-title .alt{display:inline-block;color:#c6c9ce}
 .conf-sub{font-size:clamp(14px,1.2vw,17px);letter-spacing:.1em;margin-top:8px}
 .rows{margin-top:24px;display:flex;flex-direction:column;gap:18px}
 .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -1025,7 +1024,7 @@ html.vt-in .c-hero.reveal .part:not(.side-label),html.vt-in .conf.reveal .part,h
   </div>
   <div class="conf-details">
     <p class="kicker">Внутренний SSD · SATA 3</p>
-    <h1 class="conf-title"><span id="t-main">Q600S</span> <span class="alt" id="t-alt">| Q500S</span></h1>
+    <h1 class="conf-title"><span id="t-main">Q600S</span></h1>
     <p class="conf-sub" id="conf-sub">2.5″ · SATA 3</p>
     <div class="rows">
       <div class="row" role="group" aria-label="Разъём">
@@ -2484,10 +2483,8 @@ function render(){
     b.classList.toggle('on',b.dataset.cap===state.cap);
     b.classList.toggle('dim',!md.caps.includes(b.dataset.cap));
   });
-  /* заголовок: выбранная модель и соседи по разъёму */
+  /* заголовок: только выбранная модель */
   document.getElementById('t-main').textContent=state.model;
-  const others=modelsOf(ff).filter(m=>m!==state.model);
-  document.getElementById('t-alt').textContent=others.length?('| '+others.join(' | ')):'';
   document.getElementById('conf-sub').textContent=FF[ff].label;
   /* Prefer the owner's prepared photos for the selected capacity. */
   const photoKey=state.model+'-'+state.cap;
